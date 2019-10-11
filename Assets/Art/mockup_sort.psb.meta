@@ -1,0 +1,1175 @@
+fileFormatVersion: 2
+guid: 3d5bfa2a92c73704e8aaa8c61baceca3
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 255
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData:
+  - name: Blue_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 792
+      width: 222
+      height: 192
+    spriteID: ce39814c4157d504696298a6c1eb31cd
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 395, y: -325}
+  - name: Red_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 202
+      width: 187
+      height: 187
+    spriteID: 94d13b1169e83e840980195293ac7277
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2053, y: -912}
+  - name: ui_sep
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1512
+      width: 1987
+      height: 5
+    spriteID: 8627a342e8013df48be5f7ebc2775388
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -938, y: 79}
+  - name: ui_sep_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1999
+      y: 1512
+      width: 1987
+      height: 5
+    spriteID: 6cb8f1cac39d4c14e9b273d4783f7114
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1064, y: 529}
+  - name: Green_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 1015
+      width: 190
+      height: 190
+    spriteID: 59f681fcfb4006643b79daa0c74b4407
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1285, y: -102}
+  - name: Blue_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 413
+      width: 193
+      height: 193
+    spriteID: ed153118d8e7fad4f9994b62a52b3e80
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2343, y: -705}
+  - name: Blue_Square_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 614
+      width: 193
+      height: 193
+    spriteID: 0c893f3b517c3264aa1b11057ccdfc1d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3152, y: -147}
+  - name: Green_Square_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 1213
+      width: 190
+      height: 190
+    spriteID: 5b46c36e6ba0597478c6e4a1bc81f0ae
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: 450}
+  - name: Red_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 815
+      width: 192
+      height: 192
+    spriteID: 3c753f3162e565041b4348ca0d06a8b4
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2895, y: 55}
+  - name: Red_Circle_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 397
+      width: 187
+      height: 187
+    spriteID: c135e3f856e93e94b8d641d69612875c
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3101, y: -626}
+  - name: Blue_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 4
+      width: 190
+      height: 190
+    spriteID: 28008161807f29241915793dde3a9d75
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3358, y: -1019}
+  - name: Green_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 4
+      width: 201
+      height: 201
+    spriteID: 22e93809fb5eece4bb4eb76eb45a65d1
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: -1008}
+  - name: Red_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 992
+      width: 222
+      height: 192
+    spriteID: 53042346310b90a42978707e5606b5ec
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2515, y: -280}
+  - name: Blue_Tri_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 1192
+      width: 222
+      height: 192
+    spriteID: 7dae5d52e1ae4954a94ac060e962bff9
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2787, y: -80}
+  - name: Green_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 213
+      width: 201
+      height: 192
+    spriteID: f3648a78e47076f4ca4e56ea12347e95
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: -1059}
+  - name: Bin_Inactive
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 4
+      width: 386
+      height: 386
+    spriteID: a1607c072f34db34e93a20300830baff
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1036, y: -216}
+  - name: Bin
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 398
+      width: 386
+      height: 386
+    spriteID: ff392f26e176a0d4aa8ab2d41c28d027
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 475, y: 178}
+  - name: Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 3000
+      height: 1500
+    spriteID: e5751b742bd87894ba38d26e884f6ebb
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+  rigSpriteImportData:
+  - name: Blue_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 792
+      width: 222
+      height: 192
+    spriteID: c339814bc3f98c24b896bdac3bc2e9b6
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 395, y: -325}
+  - name: Red_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 202
+      width: 187
+      height: 187
+    spriteID: 19997197344dc204b98ff8ca3ec77a4b
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2053, y: -912}
+  - name: ui_sep
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 1512
+      width: 1987
+      height: 5
+    spriteID: 8ba4a5df47e418542a7120f6f775f099
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -938, y: 79}
+  - name: ui_sep_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1999
+      y: 1512
+      width: 1987
+      height: 5
+    spriteID: 687cba178a3a7954681f4db2e6e46c7c
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1064, y: 529}
+  - name: Green_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 1015
+      width: 190
+      height: 190
+    spriteID: d9c4c8d4bfda71e418974c8f349227e8
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1285, y: -102}
+  - name: Blue_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 413
+      width: 193
+      height: 193
+    spriteID: d2d7efe08bf58494ca21fb6fe44d511a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2343, y: -705}
+  - name: Blue_Square_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 614
+      width: 193
+      height: 193
+    spriteID: 89133e6371f1159499746b972a98fba7
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3152, y: -147}
+  - name: Green_Square_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 1213
+      width: 190
+      height: 190
+    spriteID: a103be9902157c34a97fbc9183ac8389
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: 450}
+  - name: Red_Square
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 815
+      width: 192
+      height: 192
+    spriteID: 8098e751053d375499bf693c8cf8c125
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2895, y: 55}
+  - name: Red_Circle_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 397
+      width: 187
+      height: 187
+    spriteID: ab07b1e0471b6de47b92ee4443624d11
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3101, y: -626}
+  - name: Blue_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3615
+      y: 4
+      width: 190
+      height: 190
+    spriteID: 8ecbe65a70631e341997df66f6e81737
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3358, y: -1019}
+  - name: Green_Circle
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 4
+      width: 201
+      height: 201
+    spriteID: c22b553cd4625094b8b47e90684690a2
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: -1008}
+  - name: Red_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 992
+      width: 222
+      height: 192
+    spriteID: f6fdf7ee6568c684ea99f02c4cc57492
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2515, y: -280}
+  - name: Blue_Tri_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 1192
+      width: 222
+      height: 192
+    spriteID: 0853d0c2eaade7f42a763afe7e8b4144
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 2787, y: -80}
+  - name: Green_Tri
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3406
+      y: 213
+      width: 201
+      height: 192
+    spriteID: 14fa4f91540be8d49addb10ebb3a715a
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 3406, y: -1059}
+  - name: Bin_Inactive
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 4
+      width: 386
+      height: 386
+    spriteID: 004ee569e7ca9164395a7733072e9e29
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1036, y: -216}
+  - name: Bin
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3012
+      y: 398
+      width: 386
+      height: 386
+    spriteID: 79bff0ab43b62de4997bfcaa786260d9
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 475, y: 178}
+  - name: Background
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 3000
+      height: 1500
+    spriteID: 182fc71914633ad468795e08f3d2802d
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 4, y: 4}
+  platformSettings: []
+  mosaicLayers: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 2048
+  importedTextureHeight: 2048
+  documentSize: {x: 3000, y: 1500}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 0
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 4096
+  textureActualHeight: 4096
+  spritePackingTag: 
+  resliceFromLayer: 0
+  characterMode: 0
+  mosaicPSDLayers:
+  - name: Blue_Tri
+    spriteName: Blue_Tri
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ce39814c4157d504696298a6c1eb31cd
+    layerID: 40
+    mosaicPosition: {x: 3012, y: 792}
+  - name: Red_Circle
+    spriteName: Red_Circle
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 94d13b1169e83e840980195293ac7277
+    layerID: 39
+    mosaicPosition: {x: 3615, y: 202}
+  - name: ui_sep
+    spriteName: ui_sep
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8627a342e8013df48be5f7ebc2775388
+    layerID: 37
+    mosaicPosition: {x: 4, y: 1512}
+  - name: ui_sep
+    spriteName: ui_sep_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6cb8f1cac39d4c14e9b273d4783f7114
+    layerID: 36
+    mosaicPosition: {x: 1999, y: 1512}
+  - name: Green_Square
+    spriteName: Green_Square
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 59f681fcfb4006643b79daa0c74b4407
+    layerID: 38
+    mosaicPosition: {x: 3406, y: 1015}
+  - name: Blue_Square
+    spriteName: Blue_Square
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ed153118d8e7fad4f9994b62a52b3e80
+    layerID: 35
+    mosaicPosition: {x: 3406, y: 413}
+  - name: Primatives
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 00000000000000000000000000000000
+    layerID: 33
+    mosaicPosition: {x: 0, y: 0}
+  - name: Blue_Square
+    spriteName: Blue_Square_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 0c893f3b517c3264aa1b11057ccdfc1d
+    layerID: 32
+    mosaicPosition: {x: 3406, y: 614}
+  - name: Green_Square
+    spriteName: Green_Square_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 5b46c36e6ba0597478c6e4a1bc81f0ae
+    layerID: 31
+    mosaicPosition: {x: 3406, y: 1213}
+  - name: Red_Square
+    spriteName: Red_Square
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 3c753f3162e565041b4348ca0d06a8b4
+    layerID: 30
+    mosaicPosition: {x: 3406, y: 815}
+  - name: Red_Circle
+    spriteName: Red_Circle_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: c135e3f856e93e94b8d641d69612875c
+    layerID: 29
+    mosaicPosition: {x: 3615, y: 397}
+  - name: Blue_Circle
+    spriteName: Blue_Circle
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 28008161807f29241915793dde3a9d75
+    layerID: 28
+    mosaicPosition: {x: 3615, y: 4}
+  - name: Green_Circle
+    spriteName: Green_Circle
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 22e93809fb5eece4bb4eb76eb45a65d1
+    layerID: 25
+    mosaicPosition: {x: 3406, y: 4}
+  - name: Red_Tri
+    spriteName: Red_Tri
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 53042346310b90a42978707e5606b5ec
+    layerID: 23
+    mosaicPosition: {x: 3012, y: 992}
+  - name: Blue_Tri
+    spriteName: Blue_Tri_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 7dae5d52e1ae4954a94ac060e962bff9
+    layerID: 22
+    mosaicPosition: {x: 3012, y: 1192}
+  - name: Green_Tri
+    spriteName: Green_Tri
+    isGroup: 0
+    parentIndex: 6
+    spriteID: f3648a78e47076f4ca4e56ea12347e95
+    layerID: 19
+    mosaicPosition: {x: 3406, y: 213}
+  - name: Bin_Inactive
+    spriteName: Bin_Inactive
+    isGroup: 0
+    parentIndex: -1
+    spriteID: a1607c072f34db34e93a20300830baff
+    layerID: 42
+    mosaicPosition: {x: 3012, y: 4}
+  - name: Bin
+    spriteName: Bin
+    isGroup: 0
+    parentIndex: -1
+    spriteID: ff392f26e176a0d4aa8ab2d41c28d027
+    layerID: 18
+    mosaicPosition: {x: 3012, y: 398}
+  - name: Background
+    spriteName: Background
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e5751b742bd87894ba38d26e884f6ebb
+    layerID: 1
+    mosaicPosition: {x: 4, y: 4}
+  rigPSDLayers:
+  - name: Blue_Tri
+    spriteName: Blue_Tri
+    isGroup: 0
+    parentIndex: -1
+    spriteID: c339814bc3f98c24b896bdac3bc2e9b6
+    layerID: 40
+    mosaicPosition: {x: 3012, y: 792}
+  - name: Red_Circle
+    spriteName: Red_Circle
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 19997197344dc204b98ff8ca3ec77a4b
+    layerID: 39
+    mosaicPosition: {x: 3615, y: 202}
+  - name: ui_sep
+    spriteName: ui_sep
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 8ba4a5df47e418542a7120f6f775f099
+    layerID: 37
+    mosaicPosition: {x: 4, y: 1512}
+  - name: ui_sep
+    spriteName: ui_sep_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 687cba178a3a7954681f4db2e6e46c7c
+    layerID: 36
+    mosaicPosition: {x: 1999, y: 1512}
+  - name: Green_Square
+    spriteName: Green_Square
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d9c4c8d4bfda71e418974c8f349227e8
+    layerID: 38
+    mosaicPosition: {x: 3406, y: 1015}
+  - name: Blue_Square
+    spriteName: Blue_Square
+    isGroup: 0
+    parentIndex: -1
+    spriteID: d2d7efe08bf58494ca21fb6fe44d511a
+    layerID: 35
+    mosaicPosition: {x: 3406, y: 413}
+  - name: Primatives
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 
+    layerID: 33
+    mosaicPosition: {x: 0, y: 0}
+  - name: Blue_Square
+    spriteName: Blue_Square_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 89133e6371f1159499746b972a98fba7
+    layerID: 32
+    mosaicPosition: {x: 3406, y: 614}
+  - name: Green_Square
+    spriteName: Green_Square_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: a103be9902157c34a97fbc9183ac8389
+    layerID: 31
+    mosaicPosition: {x: 3406, y: 1213}
+  - name: Red_Square
+    spriteName: Red_Square
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 8098e751053d375499bf693c8cf8c125
+    layerID: 30
+    mosaicPosition: {x: 3406, y: 815}
+  - name: Red_Circle
+    spriteName: Red_Circle_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: ab07b1e0471b6de47b92ee4443624d11
+    layerID: 29
+    mosaicPosition: {x: 3615, y: 397}
+  - name: Blue_Circle
+    spriteName: Blue_Circle
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 8ecbe65a70631e341997df66f6e81737
+    layerID: 28
+    mosaicPosition: {x: 3615, y: 4}
+  - name: Green_Circle
+    spriteName: Green_Circle
+    isGroup: 0
+    parentIndex: 6
+    spriteID: c22b553cd4625094b8b47e90684690a2
+    layerID: 25
+    mosaicPosition: {x: 3406, y: 4}
+  - name: Red_Tri
+    spriteName: Red_Tri
+    isGroup: 0
+    parentIndex: 6
+    spriteID: f6fdf7ee6568c684ea99f02c4cc57492
+    layerID: 23
+    mosaicPosition: {x: 3012, y: 992}
+  - name: Blue_Tri
+    spriteName: Blue_Tri_1
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 0853d0c2eaade7f42a763afe7e8b4144
+    layerID: 22
+    mosaicPosition: {x: 3012, y: 1192}
+  - name: Green_Tri
+    spriteName: Green_Tri
+    isGroup: 0
+    parentIndex: 6
+    spriteID: 14fa4f91540be8d49addb10ebb3a715a
+    layerID: 19
+    mosaicPosition: {x: 3406, y: 213}
+  - name: Bin_Inactive
+    spriteName: Bin_Inactive
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 004ee569e7ca9164395a7733072e9e29
+    layerID: 42
+    mosaicPosition: {x: 3012, y: 4}
+  - name: Bin
+    spriteName: Bin
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 79bff0ab43b62de4997bfcaa786260d9
+    layerID: 18
+    mosaicPosition: {x: 3012, y: 398}
+  - name: Background
+    spriteName: Background
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 182fc71914633ad468795e08f3d2802d
+    layerID: 1
+    mosaicPosition: {x: 4, y: 4}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+  boneGOs: []
+  generateGOHierarchy: 0
+  textureAssetName: mockup_sort Texture
+  prefabAssetName: mockup_sort Prefab
+  spriteLibAssetName: mockup_sort Sprite Lib

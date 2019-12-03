@@ -1,0 +1,10 @@
+order_of_conditions (string with 27 possible values),task duration (int seconds),rest duration after task (int seconds),pause before rest (boolean)
+WM_Low_AL_Off_VL_Off,30,30,TRUE
+WM_Low_AL_Off_VL_Low,30,30,TRUE
+WM_Low_AL_Off_VL_High,20,30,TRUE
+WM_Med_AL_Low_VL_Off,15,30,TRUE
+WM_Med_AL_Low_VL_Low,37,30,TRUE
+WM_Med_AL_Low_VL_High,40,30,TRUE
+WM_High_AL_High_VL_Off,30,30,TRUE
+WM_High_AL_High_VL_Low,30,30,TRUE
+WM_High_AL_High_VL_High,20,30,TRUE

@@ -24,11 +24,12 @@ public class Logger : MonoBehaviour
         InitValues();
         DontDestroyOnLoad(this.gameObject);
 
-        EventManager.AddTrialStartedListener(HandleTrialStartedEvent);
+        EventManager.AddTaskStartedListener(HandleTaskStartedEvent);
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
         EventManager.AddTargetShapeListener(HandleTargetShapeEvent);
         EventManager.AddTargetBinsListener(HandleTargetBinsEvent);
         EventManager.AddUserIdListener(HandleUserIdEvent);
+        EventManager.AddBinsSwitchedListener(HandleBinsSwitchedEvent);
         
     }
     void Start()
@@ -136,7 +137,7 @@ public class Logger : MonoBehaviour
         
     }
 
-    private void HandleTrialStartedEvent()
+    private void HandleTaskStartedEvent()
     {
         timeTrialStarted = Time.fixedTime;
     }
@@ -157,6 +158,22 @@ public class Logger : MonoBehaviour
     {
         user_id = id;
         filePath = ReturnFilePath();
+    }
+
+    private void HandleBinsSwitchedEvent()
+    {
+        int numBins = targetBins.Count * 2;
+
+        List<int> newTargetBins = new List<int>();
+        for(int i = 1; i < numBins + 1; i++)
+            newTargetBins.Add(i);
+
+        foreach(int bin in targetBins)
+        {
+            newTargetBins.Remove(bin);
+        }
+
+        targetBins = newTargetBins;
     }
     #endregion
 }

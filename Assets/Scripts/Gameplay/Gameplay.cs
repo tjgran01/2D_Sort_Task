@@ -13,9 +13,11 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject eightBinsObj;
 
 
-    TrialStartedEvent trialStartedEvent = new TrialStartedEvent();
+    TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
     TargetBinsEvent targetBinsEvent = new TargetBinsEvent();
+    TaskEndedEvent taskEndedEvent = new TaskEndedEvent();
+    InitializeTaskEvent initializeTaskEvent = new InitializeTaskEvent();
 
     GameplayUI ui;
     ShapesPopulation shapesPopulationObj;
@@ -46,10 +48,12 @@ public class Gameplay : MonoBehaviour
     void Start()
     {
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
-        EventManager.AddTrialStartedInvoker(this);
+        EventManager.AddTaskStartedInvoker(this);
         EventManager.AddTargetShapeInvoker(this);
         EventManager.AddTargetBinsInvoker(this);
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
+        EventManager.AddTaskEndedInvoker(this);
+        EventManager.AddInitializeTaskInvoker(this);
 
         ui = gameObject.GetComponent<GameplayUI>();
         shapesPopulationObj = gameObject.GetComponent<ShapesPopulation>();
@@ -65,6 +69,7 @@ public class Gameplay : MonoBehaviour
             taskDuration -= Time.deltaTime;
             if (taskDuration <= 0f)
             {
+                taskEndedEvent.Invoke();
                 DestroyAllObjects();
                 shapesPopulationObj.SetTaskStarted = false;
 
@@ -225,6 +230,7 @@ public class Gameplay : MonoBehaviour
     private void InitializeTask()
     {
         SetTaskParams();
+        initializeTaskEvent.Invoke(currentSoundVar, taskDuration);
 
         shapes.Shuffle();
         targetShape = ReturnTargetShape();
@@ -286,7 +292,7 @@ public class Gameplay : MonoBehaviour
         }
 
         taskStarted = true;
-        trialStartedEvent.Invoke();
+        taskStartedEvent.Invoke();
     }
 
     public void ContinueTask(GameObject shapeChosen, bool forceTargetShapePopulation)
@@ -329,7 +335,7 @@ public class Gameplay : MonoBehaviour
 
 
         if (IsTargetShapePopulated())
-            trialStartedEvent.Invoke();
+            taskStartedEvent.Invoke();
     }
 
     private void DestroyAllObjects()
@@ -374,9 +380,9 @@ public class Gameplay : MonoBehaviour
 
 
     #region Add Listeners
-    public void AddTrialStartedListener(UnityAction listener)
+    public void AddTaskStartedListener(UnityAction listener)
     {
-        trialStartedEvent.AddListener(listener);
+        taskStartedEvent.AddListener(listener);
     }
 
     public void AddTargetShapeListener(UnityAction<string> listener)
@@ -387,6 +393,16 @@ public class Gameplay : MonoBehaviour
     public void AddTargetBinsListener(UnityAction<List<int>> listener)
     {
         targetBinsEvent.AddListener(listener);
+    }
+
+    public void AddTaskEndedListener(UnityAction listener)
+    {
+        taskEndedEvent.AddListener(listener);
+    }
+
+    public void AddInitializeTaskListener(UnityAction<int, float> listener)
+    {
+        initializeTaskEvent.AddListener(listener);
     }
     #endregion
 

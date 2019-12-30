@@ -14,6 +14,7 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] GameObject startButtonObj;
     [SerializeField] GameObject pauseButtonObj;
     [SerializeField] GameObject resumeButtonObj;
+    [SerializeField] GameObject targetSoundButtonObj;
 
     TextMeshProUGUI timerComponent;
     string timerText;
@@ -24,11 +25,18 @@ public class GameplayUI : MonoBehaviour
     TextMeshProUGUI targetBinsComponent;
     string targetBins;
 
+    AudioClipName targetSound;
+
     bool startButtonWasActive;
-    void Start()
+
+    void Awake()
     {
         EventManager.AddStartTaskInvoker(this);
+        EventManager.AddTargetSoundListener(HandleTargetSoundEvent);
+    }
 
+    void Start()
+    {
         timerComponent = timerObj.GetComponent<TextMeshProUGUI>();
         targetShapeComponent = targetShapeObj.GetComponent<TextMeshProUGUI>();
         targetBinsComponent = targetBinsObj.GetComponent<TextMeshProUGUI>();
@@ -54,6 +62,8 @@ public class GameplayUI : MonoBehaviour
         startButtonObj.SetActive(false);
         targetShape = "";
         targetBins = "";
+        targetSoundButtonObj.SetActive(false);
+
         startTaskEvent.Invoke();
     }
 
@@ -82,6 +92,21 @@ public class GameplayUI : MonoBehaviour
             startButtonObj.SetActive(true);
         }
     }
+
+    public void PlayTargetSoundButton()
+    {
+        AudioManager.Play(targetSound);
+    }
+
+    #region Event Handlers
+    private void HandleTargetSoundEvent(ushort sound)
+    {
+        targetSound = (AudioClipName)sound;
+
+        targetSoundButtonObj.SetActive(true);
+    }
+    #endregion
+
 
     #region Add Listeners
     public void AddStartTaskListener(UnityAction listener)

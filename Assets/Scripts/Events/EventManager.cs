@@ -10,8 +10,8 @@ public class EventManager : MonoBehaviour
     static List<UnityAction<GameObject, int>> binChosenListeners =
         new List<UnityAction<GameObject, int>>();
 
-    static List<Gameplay> trialStartedInvokers = new List<Gameplay>();
-    static List<UnityAction> trialStartedListeners =
+    static List<Gameplay> taskStartedInvokers = new List<Gameplay>();
+    static List<UnityAction> taskStartedListeners =
         new List<UnityAction>();
 
     static List<Gameplay> targetShapeInvokers = new List<Gameplay>();
@@ -33,6 +33,22 @@ public class EventManager : MonoBehaviour
     static List<Shape> draggingShapeInvokers = new List<Shape>();
     static List<UnityAction<bool>> draggingShapeListeners =
         new List<UnityAction<bool>>();
+
+    static List<Gameplay> taskEndedInvokers = new List<Gameplay>();
+    static List<UnityAction> taskEndedListeners =
+        new List<UnityAction>();
+
+    static List<Gameplay> initializeTaskInvokers = new List<Gameplay>();
+    static List<UnityAction<int, float>> initializeTaskListeners =
+        new List<UnityAction<int, float>>();
+
+    static List<SoundsManager> binsSwitchedInvokers = new List<SoundsManager>();
+    static List<UnityAction> binsSwitchedListeners =
+        new List<UnityAction>();
+
+    static List<SoundsManager> targetSoundInvokers = new List<SoundsManager>();
+    static List<UnityAction<ushort>> targetSoundListeners =
+        new List<UnityAction<ushort>>();
     #endregion
 
 
@@ -57,22 +73,22 @@ public class EventManager : MonoBehaviour
     #endregion
 
 
-    #region Trial Started Support
-    public static void AddTrialStartedInvoker(Gameplay invoker)
+    #region Task Started Support
+    public static void AddTaskStartedInvoker(Gameplay invoker)
     {
-        trialStartedInvokers.Add(invoker);
-        foreach(UnityAction listener in trialStartedListeners)
+        taskStartedInvokers.Add(invoker);
+        foreach(UnityAction listener in taskStartedListeners)
         {
-            invoker.AddTrialStartedListener(listener);
+            invoker.AddTaskStartedListener(listener);
         }
     }
 
-    public static void AddTrialStartedListener(UnityAction listener)
+    public static void AddTaskStartedListener(UnityAction listener)
     {
-        trialStartedListeners.Add(listener);
-        foreach(Gameplay invoker in trialStartedInvokers)
+        taskStartedListeners.Add(listener);
+        foreach(Gameplay invoker in taskStartedInvokers)
         {
-            invoker.AddTrialStartedListener(listener);
+            invoker.AddTaskStartedListener(listener);
         }
     }
     #endregion
@@ -178,6 +194,90 @@ public class EventManager : MonoBehaviour
         foreach(Shape invoker in draggingShapeInvokers)
         {
             invoker.AddDraggingShapeListener(listener);
+        }
+    }
+    #endregion
+
+
+    #region Task Ended Support
+    public static void AddTaskEndedInvoker(Gameplay invoker)
+    {
+        taskEndedInvokers.Add(invoker);
+        foreach(UnityAction listener in taskEndedListeners)
+        {
+            invoker.AddTaskEndedListener(listener);
+        }
+    }
+
+    public static void AddTaskEndedListener(UnityAction listener)
+    {
+        taskEndedListeners.Add(listener);
+        foreach(Gameplay invoker in taskEndedInvokers)
+        {
+            invoker.AddTaskEndedListener(listener);
+        }
+    }
+    #endregion
+
+
+    #region Initialize Task Support
+    public static void AddInitializeTaskInvoker(Gameplay invoker)
+    {
+        initializeTaskInvokers.Add(invoker);
+        foreach(UnityAction<int, float> listener in initializeTaskListeners)
+        {
+            invoker.AddInitializeTaskListener(listener);
+        }
+    }
+
+    public static void AddInitializeTaskListener(UnityAction<int, float> listener)
+    {
+        initializeTaskListeners.Add(listener);
+        foreach(Gameplay invoker in initializeTaskInvokers)
+        {
+            invoker.AddInitializeTaskListener(listener);
+        }
+    }
+    #endregion
+
+
+    #region Bins Switched Support
+    public static void AddBinsSwitchedInvoker(SoundsManager invoker)
+    {
+        binsSwitchedInvokers.Add(invoker);
+        foreach(UnityAction listener in binsSwitchedListeners)
+        {
+            invoker.AddBinsSwitchedListener(listener);
+        }
+    }
+
+    public static void AddBinsSwitchedListener(UnityAction listener)
+    {
+        binsSwitchedListeners.Add(listener);
+        foreach(SoundsManager invoker in binsSwitchedInvokers)
+        {
+            invoker.AddBinsSwitchedListener(listener);
+        }
+    }
+    #endregion
+
+
+    #region Target Sound Support
+    public static void AddTargetSoundInvoker(SoundsManager invoker)
+    {
+        targetSoundInvokers.Add(invoker);
+        foreach(UnityAction<ushort> listener in targetSoundListeners)
+        {
+            invoker.AddTargetSoundListener(listener);
+        }
+    }
+
+    public static void AddTargetSoundListener(UnityAction<ushort> listener)
+    {
+        targetSoundListeners.Add(listener);
+        foreach(SoundsManager invoker in targetSoundInvokers)
+        {
+            invoker.AddTargetSoundListener(listener);
         }
     }
     #endregion

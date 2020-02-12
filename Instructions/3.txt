@@ -1,1 +1,5 @@
-fdfdsl;fs fdfdsk;lsdk 
+Below are three different examples of some of the objects that you will see in the task:
+
+<Red_Tri> <Green_Square> <Blue_Circle>
+
+A target object has both a color, which can be red, green, or blue, as well as a shape which can be a triangle, a cricle, or a sqaure. Make sure that the object you select matches in both shape AND color to the target object given to you before the task begins.

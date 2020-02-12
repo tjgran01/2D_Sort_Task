@@ -1,0 +1,6 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Taken
+1321,Red_Circle,4 & 2 & 6,Blue_Square,2,1.619999
+1321,Red_Circle,4 & 2 & 6,Blue_Tri,2,0.8800011
+1321,Red_Circle,4 & 2 & 6,Blue_Square,2,0.8799992
+1321,Red_Circle,1 & 3 & 5,Red_Circle,6,1.58
+

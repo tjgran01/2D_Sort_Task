@@ -25,7 +25,6 @@ public class Instructions : MonoBehaviour
 
         ReadInstructions();
         numInstructions = instructions.Count;
-
         textObj.GetComponent<TextMeshProUGUI>().text = instructions[instructionIndex];
     }
 

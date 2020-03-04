@@ -1,0 +1,66 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Taken
+321,Green_Square,4 & 1,Blue_Circle,4,2.360016
+321,Green_Square,4 & 1,Green_Square,2,3.119995
+321,Green_Square,4 & 1,Green_Square,2,1.52002
+321,Green_Square,4 & 1,Green_Square,2,1.420013
+321,Red_Circle,2 & 4,Red_Circle,2,1.640015
+321,Red_Circle,2 & 4,Red_Circle,2,1.379974
+321,Red_Circle,2 & 4,Red_Circle,2,2.320007
+321,Red_Circle,2 & 4,Red_Circle,2,0.9199829
+321,Red_Circle,2 & 4,Red_Circle,4,1.26001
+321,Red_Circle,2 & 4,Red_Circle,4,1.800018
+321,Red_Circle,2 & 4,Red_Circle,2,2.160004
+321,Red_Circle,2 & 4,Red_Circle,2,1.259979
+321,Red_Circle,2 & 4,Red_Circle,4,1.180023
+321,Red_Circle,2 & 4,Red_Tri,1,1.699982
+321,Red_Circle,2 & 4,Red_Circle,4,2.259979
+321,Red_Circle,2 & 4,Green_Circle,4,2.880005
+321,Red_Circle,2 & 4,Red_Circle,4,1
+321,Red_Circle,2 & 4,Red_Circle,4,0.6600037
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,2,1.600006
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,4,1.539978
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,4,0.9400024
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,6,1.220001
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,2,1.73999
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,4,0.960022
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,2,1.399963
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,4,1.460022
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,6,2.5
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,3,2.840027
+321,Red_Square,8 & 6 & 3 & 4,Red_Square,4,1.23999
+321,Blue_Tri,1 & 2,Blue_Tri,4,1.180054
+321,Blue_Tri,1 & 2,Green_Square,4,2.720032
+321,Blue_Tri,1 & 2,Green_Square,4,1.099976
+321,Blue_Tri,1 & 2,Blue_Tri,1,0.8000488
+321,Blue_Tri,1 & 2,Red_Square,2,0.7599487
+321,Blue_Tri,1 & 2,Blue_Tri,1,2.100037
+321,Blue_Tri,1 & 2,Blue_Tri,1,0.8200073
+321,Blue_Tri,1 & 2,Blue_Tri,1,1.179993
+321,Green_Square,4 & 3,Green_Square,4,1.099976
+321,Green_Square,4 & 3,Green_Square,4,1.220032
+321,Green_Square,4 & 3,Green_Square,4,1.279968
+321,Green_Square,4 & 3,Green_Square,4,1.039978
+321,Green_Square,4 & 3,Red_Circle,1,1.419983
+321,Green_Square,4 & 3,Green_Square,3,1.26001
+321,Green_Square,4 & 3,Green_Square,4,1.599976
+321,Green_Square,4 & 3,Green_Square,3,2.140015
+321,Green_Square,4 & 3,Green_Square,3,1.079956
+321,Green_Square,4 & 3,Green_Square,4,1.079956
+321,Green_Square,4 & 3,Green_Square,4,2.059937
+321,Green_Square,4 & 3,Green_Square,3,1.800049
+321,Green_Square,4 & 3,Green_Square,3,1.140015
+321,Green_Square,4 & 3,Green_Square,4,1.060059
+321,Green_Tri,4 & 1,Green_Tri,4,1.5
+321,Green_Tri,4 & 1,Green_Tri,1,1.47998
+321,Green_Tri,4 & 1,Green_Tri,1,1.159912
+321,Green_Tri,4 & 1,Green_Tri,1,1.159912
+321,Green_Tri,4 & 1,Green_Tri,4,1.079956
+321,Green_Tri,4 & 1,Green_Tri,4,1.339966
+321,Green_Tri,4 & 1,Green_Tri,4,1.859985
+321,Green_Tri,4 & 1,Green_Tri,4,1.439941
+321,Green_Tri,4 & 1,Green_Square,1,1.76001
+321,Green_Tri,4 & 1,Blue_Tri,1,0.9000244
+321,Green_Tri,4 & 1,Green_Tri,4,2.179932
+321,Green_Tri,4 & 1,Green_Tri,1,2.359985
+321,Green_Tri,4 & 1,Blue_Tri,4,1.599976
+

@@ -45,20 +45,12 @@ public static class AudioManager
             Resources.Load<AudioClip>("Audio/lowAud1"));        
         audioClips.Add(AudioClipName.lowAud2,
             Resources.Load<AudioClip>("Audio/lowAud2"));
-        audioClips.Add(AudioClipName.lowAud3,
-            Resources.Load<AudioClip>("Audio/lowAud3"));
-        audioClips.Add(AudioClipName.lowAud4,
-            Resources.Load<AudioClip>("Audio/lowAud4"));
 
         // For Callsign Experiment
         audioClips.Add(AudioClipName.highAud1,
             Resources.Load<AudioClip>("Audio/highAud1"));
         audioClips.Add(AudioClipName.highAud2,
             Resources.Load<AudioClip>("Audio/highAud2"));
-        audioClips.Add(AudioClipName.highAud3,
-            Resources.Load<AudioClip>("Audio/highAud3"));
-        audioClips.Add(AudioClipName.highAud4,
-            Resources.Load<AudioClip>("Audio/highAud4"));
 
     }
 

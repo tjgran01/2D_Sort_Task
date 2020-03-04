@@ -1,0 +1,11 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Taken
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Tri,7,0.8800011
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Tri,7,1.200001
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Square,6,1.76
+1321,Blue_Square,6 & 7 & 1 & 4,Green_Square,5,1.120003
+1321,Blue_Square,6 & 7 & 1 & 4,Green_Square,5,1.779999
+1321,Blue_Square,6 & 7 & 1 & 4,Green_Square,3,3.940002
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Circle,8,0.9400024
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Square,6,1.959999
+1321,Blue_Square,6 & 7 & 1 & 4,Blue_Square,3,1.18
+

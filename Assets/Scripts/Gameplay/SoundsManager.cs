@@ -84,7 +84,7 @@ public class SoundsManager : MonoBehaviour
     private List<AudioClipName> FindDistinctSounds() //Low Auditory Load
     {
         List<AudioClipName> possibleTaskSounds = new List<AudioClipName>();
-        possibleTaskSounds.Add(targetSound);
+        // possibleTaskSounds.Add(targetSound);
 
         foreach(AudioClipName sound in sounds)
         {
@@ -111,11 +111,16 @@ public class SoundsManager : MonoBehaviour
 
         foreach(AudioClipName sound in sounds)
         {
-            if(sound.ToString()[0] == targetSound.ToString()[0] ||
-                sound.ToString()[1] == targetSound.ToString()[1])
+            //if(sound.ToString()[0] == targetSound.ToString()[0] ||
+            //    sound.ToString()[1] == targetSound.ToString()[1])
+            //{
+            //    Console.WriteLine(sound.ToString()[0]);
+            //    Console.WriteLine("----------------");
+            //    possibleTaskSounds.Add(sound);
+            //}
+
+            if (sound.ToString()[0] == 'h')
             {
-                Console.WriteLine(sound.ToString()[0]);
-                Console.WriteLine("----------------");
                 possibleTaskSounds.Add(sound);
             }
         }
@@ -130,7 +135,7 @@ public class SoundsManager : MonoBehaviour
     #region Event Handlers
     private void HandleInitalizeTaskEvent(int soundVar, float duration)
     {
-        SetTargetSound();
+        // SetTargetSound();
         taskDuration = duration;
 
         List<AudioClipName> possibleTaskSounds = new List<AudioClipName>();
@@ -159,15 +164,16 @@ public class SoundsManager : MonoBehaviour
 
         Debug.Log("targetSound: " + targetSound);
 
-        int numSounds = (int)(taskDuration / playSoundsRate) - 1;
+        int numSounds = 1;
         int randomNum;
-        taskSounds.Add(targetSound);
+        // taskSounds.Add(targetSound);
         for (int i = 0; i < numSounds; i++)
         {
             randomNum = UnityEngine.Random.Range(0, possibleTaskSounds.Count);
             taskSounds.Add(possibleTaskSounds[randomNum]);
         }
 
+        Console.WriteLine(taskSounds);
         taskSounds.Shuffle();
     }
 

@@ -11,5 +11,16 @@ public enum AudioClipName
     ko,
     ta,
     te,
-    to
+    to,
+
+    // for callsign
+    
+    lowAud1,
+    lowAud2,
+    lowAud3,
+    lowAud4,
+    highAud1,
+    highAud2,
+    highAud3,
+    highAud4,
 }

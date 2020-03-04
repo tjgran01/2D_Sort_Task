@@ -21,6 +21,8 @@ public class SoundsManager : MonoBehaviour
     int soundToPlayIndex;
     bool playSound;
 
+    bool soundPlayed = false;
+
     void Start()
     {
         EventManager.AddInitializeTaskListener(HandleInitalizeTaskEvent);
@@ -36,7 +38,7 @@ public class SoundsManager : MonoBehaviour
 
     void Update()
     {
-        if(taskStarted)
+        if (taskStarted)
         {
             taskDuration -= Time.deltaTime;
             taskSoundRate -= Time.deltaTime;
@@ -47,16 +49,25 @@ public class SoundsManager : MonoBehaviour
                 soundToPlayIndex = 0;
             }
 
-            if(taskSoundRate <= 0f && playSound)
+            if(taskSoundRate <= 0f && playSound && !soundPlayed)
             {
-                if (taskSounds[soundToPlayIndex] == targetSound)
-                    binsSwitchedEvent.Invoke();
+                //if (taskSounds[soundToPlayIndex] == targetSound)
+                //    binsSwitchedEvent.Invoke();
+
 
                 AudioManager.Play(taskSounds[soundToPlayIndex]);
+                soundPlayed = true;
 
-                soundToPlayIndex++;
-                taskSoundRate = playSoundsRate;
+
+            // Just playing long sounud files now.
+                //soundToPlayIndex++;
+                // taskSoundRate = playSoundsRate;
             }
+        }
+
+        else
+        {
+            soundPlayed = false;
         }
     }
 
@@ -66,7 +77,6 @@ public class SoundsManager : MonoBehaviour
     {
         int randomNum = UnityEngine.Random.Range(0, 9);
         targetSound = sounds[randomNum];
-
         targetSoundEvent.Invoke((ushort)targetSound);
 
     }
@@ -78,8 +88,13 @@ public class SoundsManager : MonoBehaviour
 
         foreach(AudioClipName sound in sounds)
         {
-            if(sound.ToString()[0] != targetSound.ToString()[0] &&
-                sound.ToString()[1] != targetSound.ToString()[1])
+            //if(sound.ToString()[0] != targetSound.ToString()[0] &&
+            //    sound.ToString()[1] != targetSound.ToString()[1])
+            //{
+            //    possibleTaskSounds.Add(sound);
+            //}
+
+            if(sound.ToString()[0] == 'l')
             {
                 possibleTaskSounds.Add(sound);
             }
@@ -99,6 +114,8 @@ public class SoundsManager : MonoBehaviour
             if(sound.ToString()[0] == targetSound.ToString()[0] ||
                 sound.ToString()[1] == targetSound.ToString()[1])
             {
+                Console.WriteLine(sound.ToString()[0]);
+                Console.WriteLine("----------------");
                 possibleTaskSounds.Add(sound);
             }
         }
@@ -107,8 +124,8 @@ public class SoundsManager : MonoBehaviour
 
         return possibleTaskSounds;
     }
-    #endregion
 
+    #endregion
 
     #region Event Handlers
     private void HandleInitalizeTaskEvent(int soundVar, float duration)
@@ -128,11 +145,16 @@ public class SoundsManager : MonoBehaviour
         {
             playSound = true;
             possibleTaskSounds = FindDistinctSounds();
+            foreach (AudioClipName sound in possibleTaskSounds)
+            {
+                Debug.Log(sound);
+            }
         }
         else if (soundVar == 2)
         {
             playSound = true;
             possibleTaskSounds = FindSimilarSounds();
+            // possibleTaskSounds = FindHighAudLoadSound();
         }
 
         Debug.Log("targetSound: " + targetSound);

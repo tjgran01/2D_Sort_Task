@@ -12,6 +12,8 @@ TagManager:
   - Logger
   - PauseButton
   - ResumeButton
+  - BefordTextEntry
+  - Bedford
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: img
+    uniqueID: 3580250719
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -19,7 +19,7 @@ public class UserInfo : MonoBehaviour
     public void OnSubmit()
     {
         userIdEvent.Invoke(textField.GetComponent<TMP_InputField>().text);
-        SceneManager.LoadScene("Instructions");
+        SceneManager.LoadScene("HeadphoneCheck");
     }
 
     public void AddUserIdListener(UnityAction<string> listener)

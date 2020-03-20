@@ -12,6 +12,7 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject sixBinsObj;
     [SerializeField] GameObject eightBinsObj;
 
+    [SerializeField] int taskCount;
 
     TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
@@ -20,6 +21,9 @@ public class Gameplay : MonoBehaviour
     InitializeTaskEvent initializeTaskEvent = new InitializeTaskEvent();
 
     GameplayUI ui;
+
+    GameObject bedfordUI;
+
     ShapesPopulation shapesPopulationObj;
 
 
@@ -58,6 +62,10 @@ public class Gameplay : MonoBehaviour
         ui = gameObject.GetComponent<GameplayUI>();
         shapesPopulationObj = gameObject.GetComponent<ShapesPopulation>();
 
+        bedfordUI = GameObject.FindGameObjectWithTag("Bedford");
+        bedfordUI.SetActive(false);
+        Debug.Log(bedfordUI);
+
         InitializeFields();
         InitializeTask();
     }
@@ -74,12 +82,20 @@ public class Gameplay : MonoBehaviour
                 shapesPopulationObj.SetTaskStarted = false;
 
                 //Start the next task
+                ShowBedford();
                 taskStarted = false;
                 InitializeTask();
             }
             ui.setTimerText = ((int)taskDuration).ToString();
         }
     }
+
+
+    private void ShowBedford()
+    {
+        bedfordUI.SetActive(true);
+    }
+
 
     #region Return Variables
     private GameObject ReturnTargetShape()
@@ -229,6 +245,7 @@ public class Gameplay : MonoBehaviour
 
     private void InitializeTask()
     {
+
         SetTaskParams();
         initializeTaskEvent.Invoke(currentSoundVar, taskDuration);
 

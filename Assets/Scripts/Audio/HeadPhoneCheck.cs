@@ -27,6 +27,6 @@ public class HeadPhoneCheck : MonoBehaviour
 
     public void MoveOn()
     {
-        SceneManager.LoadScene("Bedford");
+        SceneManager.LoadScene("Instructions");
     }
 }

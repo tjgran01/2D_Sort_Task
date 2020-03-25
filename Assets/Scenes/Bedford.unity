@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40.17, y: 51.22}
-  m_SizeDelta: {x: 702.81, y: 387.79}
+  m_AnchoredPosition: {x: -40.17, y: 57.63}
+  m_SizeDelta: {x: 702.81, y: 374.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109189900
 MonoBehaviour:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a8d917bfa267b1499d9d289449df0ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 544a73f1aecee484a9a33f2346c17fc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -602,8 +602,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.1, y: -193.9}
-  m_SizeDelta: {x: 589.9, y: 91.7}
+  m_AnchoredPosition: {x: -93.1, y: -187.68}
+  m_SizeDelta: {x: 589.9, y: 115.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865624434
 MonoBehaviour:
@@ -636,11 +636,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "At certain times throughout the task you will be shown a screen similar
-    to this one. In order to move past this sceen you will be required to submit one
-    of the number values shown in the image above. \n\nFor this example - try typing
-    a number between one and ten into the box to the right, and then click \"Submit.\"
-    You will be down further instructions about the task on the next page.\n"
+  m_Text: "After each task you'll be asked to fill out the following survey. Please
+    take a moment to read through the survey now, so that you'll be more familiar
+    with it when you see it after completing the tasks. In order to move past this
+    sceen you will be required to submit one of the number values shown in the image
+    above. \n\nFor this example - try typing a number between one and ten into the
+    box to the right, and then click \"Submit.\" You will be down further instructions
+    about the task on the next page.\n"
 --- !u!222 &865624435
 CanvasRenderer:
   m_ObjectHideFlags: 0

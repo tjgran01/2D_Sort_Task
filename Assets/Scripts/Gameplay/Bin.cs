@@ -1,21 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Bin : MonoBehaviour
 {
-    [SerializeField] GameObject textObj;
+    private bool greyedOut = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //textObj.GetComponent<Text>().text = gameObject.name;
 
-        //Debug.Log(gameObject.transform.position);
-        //textObj.transform.localPosition = new Vector3(0, 0, 0);
-    }
+    public bool SetGreyedOut { set { greyedOut = value; } }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool IsGreyedOut { get { return greyedOut; } }
 }

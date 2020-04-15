@@ -2,25 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Grayout : MonoBehaviour
 {
     [SerializeField] float grayoutTimeRate;
+    [SerializeField] bool timeConsidered;
+    [SerializeField] bool mixGreyoutBehavior;
 
     GameObject[] bins;
     int binsCount;
     int randomBinNum;
-    string binToGrayout1;
-    string binToGrayout2;
+    string binToGrayout;
 
     bool taskStarted;
     bool grayout;
     float currentTimeRate;
 
+    string lastBinChosen = null;
+
+
+
     void Start()
     {
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
         EventManager.AddTaskEndedListener(HandleTaskEndedEvent);
+        EventManager.AddBinChosenListener(HandleBinChosenEvent);
 
         currentTimeRate = grayoutTimeRate;
         grayout = false;
@@ -28,43 +35,87 @@ public class Grayout : MonoBehaviour
 
     void Update()
     {
-        if(taskStarted && grayout)
+        if(binsCount >= 6)
         {
-            currentTimeRate -= Time.deltaTime;
-            if(currentTimeRate <= 0)
+            if (timeConsidered)
             {
-                randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
-                binToGrayout1 = randomBinNum.ToString();
-                binToGrayout2 = randomBinNum.ToString();
-
-                if(binsCount == 8)
+                if (taskStarted && grayout && lastBinChosen != null)
                 {
-                    while(binToGrayout2 == binToGrayout1)
+                    currentTimeRate -= Time.deltaTime;
+                    if (currentTimeRate <= 0)
                     {
-                        randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
-                        binToGrayout2 = randomBinNum.ToString();
+                        GreyOutTimelimit();
+                        currentTimeRate = grayoutTimeRate;
                     }
                 }
-
-                foreach (GameObject bin in bins)
-                {
-                    if(bin.name == binToGrayout1 || bin.name == binToGrayout2)
-                    {
-                        bin.GetComponent<PolygonCollider2D>().enabled = false;
-                        bin.GetComponent<SpriteRenderer>().color = Color.black;
-                    }
-                    else
-                    {
-                        bin.GetComponent<PolygonCollider2D>().enabled = true;
-                        bin.GetComponent<SpriteRenderer>().color = Color.white;
-                    }
-                }
-
-                currentTimeRate = grayoutTimeRate;
+            }
+            else
+            {
+                GreyOutNoTimelimit();
             }
         }
     }
 
+
+    void GreyOutNoTimelimit()
+    {
+        if (taskStarted && grayout && lastBinChosen != null)
+        {
+            binToGrayout = lastBinChosen;
+            if (binsCount == 8)
+            {
+                while (binToGrayout == lastBinChosen)
+                {
+                    randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                    binToGrayout = randomBinNum.ToString();
+                }
+            }
+
+            foreach (GameObject bin in bins)
+            {
+                if (bin.name == binToGrayout || bin.name == lastBinChosen)
+                {
+                    bin.GetComponent<Image>().color = Color.black;
+                    bin.GetComponent<Bin>().SetGreyedOut = true;
+                }
+                else
+                {
+                    bin.GetComponent<Image>().color = Color.white;
+                    bin.GetComponent<Bin>().SetGreyedOut = false;
+                }
+            }
+
+            grayout = false;
+        }
+    }
+
+
+    void GreyOutTimelimit()
+    {
+        binToGrayout = lastBinChosen;
+        if (binsCount == 8)
+        {
+            while (binToGrayout == lastBinChosen)
+            {
+                randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                binToGrayout = randomBinNum.ToString();
+            }
+        }
+
+        foreach (GameObject bin in bins)
+        {
+            if (bin.name == binToGrayout || bin.name == lastBinChosen)
+            {
+                bin.GetComponent<Image>().color = Color.black;
+                bin.GetComponent<Bin>().SetGreyedOut = true;
+            }
+            else
+            {
+                bin.GetComponent<Image>().color = Color.white;
+                bin.GetComponent<Bin>().SetGreyedOut = false;
+            }
+        }
+    }
 
     #region Event Handlers
     private void HandleStartTaskEvent()
@@ -83,6 +134,18 @@ public class Grayout : MonoBehaviour
     {
         taskStarted = false;
         grayout = false;
+    }
+
+    private void HandleBinChosenEvent(GameObject shape, int bin)
+    {
+        lastBinChosen = bin.ToString();
+        grayout = true;
+
+        if(mixGreyoutBehavior && timeConsidered)
+        {
+            GreyOutTimelimit();
+            currentTimeRate = grayoutTimeRate;
+        }
     }
     #endregion
 

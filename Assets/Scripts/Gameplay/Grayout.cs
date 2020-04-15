@@ -34,14 +34,14 @@ public class Grayout : MonoBehaviour
             if(currentTimeRate <= 0)
             {
                 randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
-                binToGrayout1 = randomBinNum.ToString();
+                binToGrayout1 = randomBinNum.ToString(); // This will be the last bin that an object was sorted into.
                 binToGrayout2 = randomBinNum.ToString();
 
                 if(binsCount == 8)
                 {
                     while(binToGrayout2 == binToGrayout1)
                     {
-                        randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                        randomBinNum = UnityEngine.Random.Range(1, binsCount + 1); // Random among target bins, != binToGreyOut1
                         binToGrayout2 = randomBinNum.ToString();
                     }
                 }

@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -683,12 +684,14 @@ MonoBehaviour:
     located in the colored bars when assessing your level of load.
 
 
-    If you are having trouble, use the "YES/NO" questionnaire values on the left hand
-    side of the page to help you narrow down the options.
+    If you are
+    having trouble, use the "YES/NO" questionnaire values on the left hand side of
+    the page to help you narrow down the options.
 
 
-    Once you have entered the value in the text entry box to the right - click the
-    "Submit" button to continue the task.'
+    Once you have entered the
+    value in the text entry box to the right - click the "Submit" button to continue
+    the task.'
 --- !u!222 &446688815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -807,13 +810,14 @@ MonoBehaviour:
   - {fileID: 3515499949479966006, guid: 03e31b7d77817428cbad210c62c4bd93, type: 3}
   - {fileID: 5177660988628539201, guid: efe7a8a6fd49e41f49152ab9418a085a, type: 3}
   - {fileID: 8794679712892286728, guid: 6c7c373c2bd3f4d468cb8f5ae762192e, type: 3}
-  fourBinsObj: {fileID: 939699703924259173, guid: 4c98afc1310f840d88ca6faf57b21fcb,
+  fourBinsObj: {fileID: 3089117570597373741, guid: 4c98afc1310f840d88ca6faf57b21fcb,
     type: 3}
-  sixBinsObj: {fileID: 1107676170014214730, guid: 77b594f47620b4e818238ce88f637c56,
+  sixBinsObj: {fileID: 6346103763914610106, guid: 77b594f47620b4e818238ce88f637c56,
     type: 3}
   eightBinsObj: {fileID: 244960646162015899, guid: 621346b91d7894fcd806d335a0849122,
     type: 3}
   taskCount: 0
+  numShapes: 3
 --- !u!114 &504867454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,6 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8926710692942e3990f14ef65ededa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  populationRate: 2
 --- !u!114 &504867456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,6 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grayoutTimeRate: 4
+  timeConsidered: 1
+  mixGreyoutBehavior: 0
 --- !u!1001 &671749824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1695,8 +1702,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '*Additional Tasks* refers to something other than the sort task you were
-    performing. When the scale refers to "additional tasks" consider a task such as
-    noticing your cell phone has gone off and requires your attention.'
+    performing. When the scale refers to "additional tasks" consider a task such
+    as noticing your cell phone has gone off and requires your attention.'
 --- !u!222 &1309047701
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2095,11 +2102,11 @@ RectTransform:
   m_Father: {fileID: 1934202168}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: 219.95}
-  m_SizeDelta: {x: 249.2, y: 24.999}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 249.2, y: 24.998993}
+  m_Pivot: {x: 0.5, y: 2}
 --- !u!114 &1656854235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2391,7 +2398,7 @@ GameObject:
   - component: {fileID: 1934202165}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2909,6 +2916,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1934202168}
     m_Modifications:
+    - target: {fileID: 5322485168778135714, guid: 984a11989132ae74d9025f0348169590,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 504867454}
     - target: {fileID: 5322485168778135740, guid: 984a11989132ae74d9025f0348169590,
         type: 3}
       propertyPath: m_Name
@@ -3019,11 +3031,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5322485168778135714, guid: 984a11989132ae74d9025f0348169590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 504867454}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984a11989132ae74d9025f0348169590, type: 3}
 --- !u!4 &5322485168486426451

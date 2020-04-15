@@ -11,8 +11,8 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject fourBinsObj;
     [SerializeField] GameObject sixBinsObj;
     [SerializeField] GameObject eightBinsObj;
-
     [SerializeField] int taskCount;
+    [SerializeField] int numShapes;
 
     TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
@@ -271,22 +271,25 @@ public class Gameplay : MonoBehaviour
     {
         if (currentNumBins == 4)
         {
-            Instantiate(fourBinsObj, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject tempObj = Instantiate(fourBinsObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         }
         else if (currentNumBins == 6)
         {
-            Instantiate(sixBinsObj, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject tempObj = Instantiate(sixBinsObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         }
         else if (currentNumBins == 8)
         {
-            Instantiate(eightBinsObj, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject tempObj = Instantiate(eightBinsObj, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+            tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         }
 
         possibleTaskShapes = ReturnPossibleTaskShapes(currentShapeVar);
         List<GameObject> trialShapes = new List<GameObject>();
 
         int randomNum;
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < numShapes - 1; i++)
         {
             randomNum = UnityEngine.Random.Range(0, possibleTaskShapes.Count);
             trialShapes.Add(possibleTaskShapes[randomNum]);
@@ -294,18 +297,22 @@ public class Gameplay : MonoBehaviour
         trialShapes.Add(targetShape);
         trialShapes.Shuffle();
 
-        float start_index = -2;
+        float start_index = -((numShapes * 100 / 2) - 50);
         int x = 0;
         foreach (GameObject shape in trialShapes)
         {
-            shape.GetComponent<Shape>().xPosition = start_index + x;
-            GameObject tempObj = Instantiate(shape, new Vector3(start_index + x, 4, 0), Quaternion.identity) as GameObject;
+            GameObject tempObj = Instantiate(shape, new Vector3(start_index + x, 100, 0), Quaternion.identity) as GameObject;
+            tempObj.GetComponent<Shape>().xPosition = start_index + x;
+            tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+            tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(start_index + x, 100, 0);
+            tempObj.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+
             if (tempObj.name.Contains(targetShape.name))
             {
                 tempObj.GetComponent<Shape>().SetIsTarget = true;
             }
 
-            x += 2;
+            x += 100;
         }
 
         taskStarted = true;
@@ -314,13 +321,17 @@ public class Gameplay : MonoBehaviour
 
     public void ContinueTask(GameObject shapeChosen, bool forceTargetShapePopulation)
     {
+        int numCurrentShapes = GameObject.FindGameObjectsWithTag("Shape").Length;
+
         destroyedObjXPosition = shapeChosen.GetComponent<Shape>().xPosition;
         Destroy(shapeChosen);
 
-        StartCoroutine(PopulateNewShape(forceTargetShapePopulation));
+        numCurrentShapes -= 1;
+        if (numCurrentShapes < numShapes)
+            StartCoroutine(PopulateNewShape(forceTargetShapePopulation, shapeChosen));
     }
 
-    IEnumerator PopulateNewShape(bool forceTargetShapePopulation)
+    IEnumerator PopulateNewShape(bool forceTargetShapePopulation, GameObject shapeChosen)
     {
         yield return new WaitForEndOfFrame();
 
@@ -343,8 +354,11 @@ public class Gameplay : MonoBehaviour
 
         newShape.GetComponent<Shape>().xPosition = destroyedObjXPosition;
 
+        GameObject tempObj = Instantiate(newShape, new Vector3(destroyedObjXPosition, 100, 0), Quaternion.identity) as GameObject;
+        tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+        tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(destroyedObjXPosition, 100, 0);
+        tempObj.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
 
-        GameObject tempObj = Instantiate(newShape, new Vector3(destroyedObjXPosition, 4, 0), Quaternion.identity) as GameObject;
         if (tempObj.name.Contains(targetShape.name))
         {
             tempObj.GetComponent<Shape>().SetIsTarget = true;

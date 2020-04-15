@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ShapesPopulation : MonoBehaviour
 {
-    float populationRate = 2f; //seconds
+    [SerializeField] float populationRate; //seconds
     float noTargetShapeLimit = 6f;
 
     Gameplay gameplayObj;

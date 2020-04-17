@@ -40,7 +40,7 @@ public class Grayout : MonoBehaviour
             if (timeConsidered)
             {
                 randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
-                binToGrayout1 = randomBinNum.ToString(); // This will be the last bin that an object was sorted into.
+                binToGrayout1 = randomBinNum.ToString();
                 binToGrayout2 = randomBinNum.ToString();
                 if(binsCount == 8)
                 if (taskStarted && grayout && lastBinChosen != null)
@@ -48,8 +48,13 @@ public class Grayout : MonoBehaviour
                     currentTimeRate -= Time.deltaTime;
                     if (currentTimeRate <= 0)
                     {
+<<<<<<< HEAD
                         GreyOutTimelimit();
                         currentTimeRate = grayoutTimeRate;
+=======
+                        randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                        binToGrayout2 = randomBinNum.ToString();
+>>>>>>> parent of 834df9c... added comments
                     }
                 }
             }

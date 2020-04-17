@@ -7,6 +7,6 @@ public class BedfordIntro : MonoBehaviour
 {
     public void MoveOn()
     {
-        SceneManager.LoadScene("LastInstructions");
+        SceneManager.LoadScene("Instructions");
     }
 }

@@ -65,7 +65,7 @@ public class Instructions : MonoBehaviour
         if (instructionIndex < numInstructions)
             textObj.GetComponent<TextMeshProUGUI>().text = instructions[instructionIndex];
         else
-            SceneManager.LoadScene("Bedford");
+            SceneManager.LoadScene("Gameplay");
     }
 
     public void OnBackButtonClicked()

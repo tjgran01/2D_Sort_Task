@@ -8,13 +8,13 @@ public class GameplayUI : MonoBehaviour
 {
     StartTaskEvent startTaskEvent = new StartTaskEvent();
 
-    [SerializeField] GameObject timerObj;
-    [SerializeField] GameObject targetShapeObj;
-    [SerializeField] GameObject targetBinsObj;
-    [SerializeField] GameObject startButtonObj;
-    [SerializeField] GameObject pauseButtonObj;
-    [SerializeField] GameObject resumeButtonObj;
-    [SerializeField] GameObject targetSoundButtonObj;
+    [SerializeField] GameObject timerObj = null;
+    [SerializeField] GameObject targetShapeObj = null;
+    [SerializeField] GameObject targetBinsObj = null;
+    [SerializeField] GameObject startButtonObj = null;
+    [SerializeField] GameObject pauseButtonObj = null;
+    [SerializeField] GameObject resumeButtonObj = null;
+    [SerializeField] GameObject targetSoundButtonObj = null;
 
     TextMeshProUGUI timerComponent;
     string timerText;

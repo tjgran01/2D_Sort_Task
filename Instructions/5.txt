@@ -1,0 +1,5 @@
+The bins in the task are labeled with their bin number values. Make sure you place the target object into the correct bin. The numbers of the valid sorting bins will be given to you before the task begins.
+
+Sometimes, as the task is ongoing, some of the bins will turn black and you will no longer be able to see their bin number. When a bin is in this state, it means that the bin is inactive and an object cannot be placed into it.
+
+If one of the bins that is inactive is one of the target bins, sort the object into one of the other target bins given in the task.

@@ -1,5 +1,0 @@
-While you are performing the task, you will sometimes hear a voice chime in asking for ANY object to be placed in a certain bin. This voice will begin by issueing a call to a specific callsign.
-
-If the voice references your callsign (Bravo), you should follow the instructions given by the voice. If the voice does not reference your callsign, you can ignore the request.
-
-Your callsign, (Bravo), is posted on the monitor of the computer so you can reference it throughout the task as needed.

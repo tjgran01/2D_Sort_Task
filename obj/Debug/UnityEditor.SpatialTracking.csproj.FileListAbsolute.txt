@@ -1,0 +1,1 @@
+/Users/mohd/Desktop/2D_Sort_Task/obj/Debug/UnityEditor.SpatialTracking.csproj.CoreCompileInputs.cache

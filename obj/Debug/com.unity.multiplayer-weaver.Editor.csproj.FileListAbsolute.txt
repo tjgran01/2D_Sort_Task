@@ -1,0 +1,2 @@
+/Users/mohd/Desktop/2D_Sort_Task/obj/Debug/com.unity.multiplayer-weaver.Editor.csprojAssemblyReference.cache
+/Users/mohd/Desktop/2D_Sort_Task/obj/Debug/com.unity.multiplayer-weaver.Editor.csproj.CoreCompileInputs.cache

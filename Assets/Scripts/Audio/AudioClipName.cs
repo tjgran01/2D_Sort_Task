@@ -3,20 +3,22 @@
 /// </summary>
 public enum AudioClipName
 {
-    ba,
-    be,
-    bo,
-    ka,
-    ke,
-    ko,
-    ta,
-    te,
-    to,
+   attentionAlpha,
+   attentionBravo,
+   attentionHotel,
+   attentionTango,
 
-    // for callsign
-    
-    lowAud1,
-    lowAud2,
-    highAud1,
-    highAud2,
+   alpha,
+   bravo,
+   hotel,
+   tango,
+
+   one,
+   two,
+   three,
+   four,
+   five,
+   six,
+   seven,
+   eight
 }

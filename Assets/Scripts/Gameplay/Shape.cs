@@ -33,7 +33,6 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
         defaultPosition = rt.position;
 
         bins = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bin"));
-
     }
 
 
@@ -50,15 +49,20 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
         bool binChosen = false;
 
+        Debug.Log("bin count: " + bins.Count);
+
         foreach (GameObject bin in bins)
         {
+            Debug.Log("bin name: " + bin.name);
             if (!bin.GetComponent<Bin>().IsGreyedOut && rt.Overlaps(bin.GetComponent<RectTransform>()))
             {
+                Debug.Log("binChosenEvent");
                 binChosenEvent.Invoke(gameObject, int.Parse(bin.name));
                 binChosen = true;
                 break;
             }
         }
+
 
         if (!binChosen)
         {

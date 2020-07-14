@@ -41,14 +41,6 @@ public class EventManager : MonoBehaviour
     static List<Gameplay> initializeTaskInvokers = new List<Gameplay>();
     static List<UnityAction<int, float>> initializeTaskListeners =
         new List<UnityAction<int, float>>();
-
-    static List<SoundsManager> binsSwitchedInvokers = new List<SoundsManager>();
-    static List<UnityAction> binsSwitchedListeners =
-        new List<UnityAction>();
-
-    static List<SoundsManager> targetSoundInvokers = new List<SoundsManager>();
-    static List<UnityAction<ushort>> targetSoundListeners =
-        new List<UnityAction<ushort>>();
     #endregion
 
 
@@ -65,7 +57,7 @@ public class EventManager : MonoBehaviour
     public static void AddBinChosenListener(UnityAction<GameObject, int> listener)
     {
         binChosenListeners.Add(listener);
-        foreach(Shape invoker in binChosenInvokers)
+        foreach (Shape invoker in binChosenInvokers)
         {
             invoker.AddBinChosenListener(listener);
         }
@@ -77,7 +69,7 @@ public class EventManager : MonoBehaviour
     public static void AddTaskStartedInvoker(Gameplay invoker)
     {
         taskStartedInvokers.Add(invoker);
-        foreach(UnityAction listener in taskStartedListeners)
+        foreach (UnityAction listener in taskStartedListeners)
         {
             invoker.AddTaskStartedListener(listener);
         }
@@ -86,7 +78,7 @@ public class EventManager : MonoBehaviour
     public static void AddTaskStartedListener(UnityAction listener)
     {
         taskStartedListeners.Add(listener);
-        foreach(Gameplay invoker in taskStartedInvokers)
+        foreach (Gameplay invoker in taskStartedInvokers)
         {
             invoker.AddTaskStartedListener(listener);
         }
@@ -98,7 +90,7 @@ public class EventManager : MonoBehaviour
     public static void AddTargetShapeInvoker(Gameplay invoker)
     {
         targetShapeInvokers.Add(invoker);
-        foreach(UnityAction<string> listener in targetShapeListeners)
+        foreach (UnityAction<string> listener in targetShapeListeners)
         {
             invoker.AddTargetShapeListener(listener);
         }
@@ -107,7 +99,7 @@ public class EventManager : MonoBehaviour
     public static void AddTargetShapeListener(UnityAction<string> listener)
     {
         targetShapeListeners.Add(listener);
-        foreach(Gameplay invoker in targetShapeInvokers)
+        foreach (Gameplay invoker in targetShapeInvokers)
         {
             invoker.AddTargetShapeListener(listener);
         }
@@ -119,7 +111,7 @@ public class EventManager : MonoBehaviour
     public static void AddTargetBinsInvoker(Gameplay invoker)
     {
         targetBinsInvokers.Add(invoker);
-        foreach(UnityAction<List<int>> listener in targetBinsListeners)
+        foreach (UnityAction<List<int>> listener in targetBinsListeners)
         {
             invoker.AddTargetBinsListener(listener);
         }
@@ -128,7 +120,7 @@ public class EventManager : MonoBehaviour
     public static void AddTargetBinsListener(UnityAction<List<int>> listener)
     {
         targetBinsListeners.Add(listener);
-        foreach(Gameplay invoker in targetBinsInvokers)
+        foreach (Gameplay invoker in targetBinsInvokers)
         {
             invoker.AddTargetBinsListener(listener);
         }
@@ -140,7 +132,7 @@ public class EventManager : MonoBehaviour
     public static void AddUserIdInvoker(UserInfo invoker)
     {
         userIdInvokers.Add(invoker);
-        foreach(UnityAction<string> listener in userIdListeners)
+        foreach (UnityAction<string> listener in userIdListeners)
         {
             invoker.AddUserIdListener(listener);
         }
@@ -149,7 +141,7 @@ public class EventManager : MonoBehaviour
     public static void AddUserIdListener(UnityAction<string> listener)
     {
         userIdListeners.Add(listener);
-        foreach(UserInfo invoker in userIdInvokers)
+        foreach (UserInfo invoker in userIdInvokers)
         {
             invoker.AddUserIdListener(listener);
         }
@@ -161,7 +153,7 @@ public class EventManager : MonoBehaviour
     public static void AddStartTaskInvoker(GameplayUI invoker)
     {
         startTaskInvokers.Add(invoker);
-        foreach(UnityAction listener in startTaskListeners)
+        foreach (UnityAction listener in startTaskListeners)
         {
             invoker.AddStartTaskListener(listener);
         }
@@ -170,7 +162,7 @@ public class EventManager : MonoBehaviour
     public static void AddStartTaskListener(UnityAction listener)
     {
         startTaskListeners.Add(listener);
-        foreach(GameplayUI invoker in startTaskInvokers)
+        foreach (GameplayUI invoker in startTaskInvokers)
         {
             invoker.AddStartTaskListener(listener);
         }
@@ -182,7 +174,7 @@ public class EventManager : MonoBehaviour
     public static void AddDraggingShapeInvoker(Shape invoker)
     {
         draggingShapeInvokers.Add(invoker);
-        foreach(UnityAction<bool> listener in draggingShapeListeners)
+        foreach (UnityAction<bool> listener in draggingShapeListeners)
         {
             invoker.AddDraggingShapeListener(listener);
         }
@@ -191,7 +183,7 @@ public class EventManager : MonoBehaviour
     public static void AddDraggingShapeListener(UnityAction<bool> listener)
     {
         draggingShapeListeners.Add(listener);
-        foreach(Shape invoker in draggingShapeInvokers)
+        foreach (Shape invoker in draggingShapeInvokers)
         {
             invoker.AddDraggingShapeListener(listener);
         }
@@ -203,7 +195,7 @@ public class EventManager : MonoBehaviour
     public static void AddTaskEndedInvoker(Gameplay invoker)
     {
         taskEndedInvokers.Add(invoker);
-        foreach(UnityAction listener in taskEndedListeners)
+        foreach (UnityAction listener in taskEndedListeners)
         {
             invoker.AddTaskEndedListener(listener);
         }
@@ -212,7 +204,7 @@ public class EventManager : MonoBehaviour
     public static void AddTaskEndedListener(UnityAction listener)
     {
         taskEndedListeners.Add(listener);
-        foreach(Gameplay invoker in taskEndedInvokers)
+        foreach (Gameplay invoker in taskEndedInvokers)
         {
             invoker.AddTaskEndedListener(listener);
         }
@@ -224,7 +216,7 @@ public class EventManager : MonoBehaviour
     public static void AddInitializeTaskInvoker(Gameplay invoker)
     {
         initializeTaskInvokers.Add(invoker);
-        foreach(UnityAction<int, float> listener in initializeTaskListeners)
+        foreach (UnityAction<int, float> listener in initializeTaskListeners)
         {
             invoker.AddInitializeTaskListener(listener);
         }
@@ -233,53 +225,12 @@ public class EventManager : MonoBehaviour
     public static void AddInitializeTaskListener(UnityAction<int, float> listener)
     {
         initializeTaskListeners.Add(listener);
-        foreach(Gameplay invoker in initializeTaskInvokers)
+        foreach (Gameplay invoker in initializeTaskInvokers)
         {
             invoker.AddInitializeTaskListener(listener);
         }
     }
     #endregion
 
-
-    #region Bins Switched Support
-    public static void AddBinsSwitchedInvoker(SoundsManager invoker)
-    {
-        binsSwitchedInvokers.Add(invoker);
-        foreach(UnityAction listener in binsSwitchedListeners)
-        {
-            invoker.AddBinsSwitchedListener(listener);
-        }
-    }
-
-    public static void AddBinsSwitchedListener(UnityAction listener)
-    {
-        binsSwitchedListeners.Add(listener);
-        foreach(SoundsManager invoker in binsSwitchedInvokers)
-        {
-            invoker.AddBinsSwitchedListener(listener);
-        }
-    }
-    #endregion
-
-
-    #region Target Sound Support
-    public static void AddTargetSoundInvoker(SoundsManager invoker)
-    {
-        targetSoundInvokers.Add(invoker);
-        foreach(UnityAction<ushort> listener in targetSoundListeners)
-        {
-            invoker.AddTargetSoundListener(listener);
-        }
-    }
-
-    public static void AddTargetSoundListener(UnityAction<ushort> listener)
-    {
-        targetSoundListeners.Add(listener);
-        foreach(SoundsManager invoker in targetSoundInvokers)
-        {
-            invoker.AddTargetSoundListener(listener);
-        }
-    }
-    #endregion
 }
 

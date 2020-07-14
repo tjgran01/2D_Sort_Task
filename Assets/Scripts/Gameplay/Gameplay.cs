@@ -11,8 +11,8 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject fourBinsObj;
     [SerializeField] GameObject sixBinsObj;
     [SerializeField] GameObject eightBinsObj;
-    [SerializeField] int taskCount;
-    [SerializeField] int numShapes;
+    [SerializeField] GameObject bedfordUI;
+
 
     TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
@@ -21,8 +21,6 @@ public class Gameplay : MonoBehaviour
     InitializeTaskEvent initializeTaskEvent = new InitializeTaskEvent();
 
     GameplayUI ui;
-
-    GameObject bedfordUI;
 
     ShapesPopulation shapesPopulationObj;
 
@@ -49,6 +47,8 @@ public class Gameplay : MonoBehaviour
 
     float destroyedObjXPosition;
 
+    int numShapes;
+
     void Start()
     {
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
@@ -62,9 +62,9 @@ public class Gameplay : MonoBehaviour
         ui = gameObject.GetComponent<GameplayUI>();
         shapesPopulationObj = gameObject.GetComponent<ShapesPopulation>();
 
-        bedfordUI = GameObject.FindGameObjectWithTag("Bedford");
         bedfordUI.SetActive(false);
-        Debug.Log(bedfordUI);
+
+        numShapes = InitGame.Instance().GetNumShapes;
 
         InitializeFields();
         InitializeTask();
@@ -198,7 +198,7 @@ public class Gameplay : MonoBehaviour
 
         paramsIndex = 0;
 
-        parameters = InitGame.Instance().GetParams;
+        parameters = InitGame.Instance().GetParams(InitGame.Instance().GetEnteredKey);
     }
 
     private void SetTaskParams()
@@ -260,9 +260,6 @@ public class Gameplay : MonoBehaviour
         ui.SetTargetShapeText("Target shape: <sprite name=" + targetShape.name + ">");
         ui.SetTargetBinsText("Target bins: " + string.Join(", ", targetBins.ConvertAll(i => i.ToString()).ToArray()));
         ui.SetStartButton = true;
-
-        Debug.Log("Target shape: " + targetShape.name);
-        Debug.Log("Target bins: " + string.Join(", ", targetBins.ConvertAll(i => i.ToString()).ToArray()));
     }
     #endregion
 
@@ -298,22 +295,22 @@ public class Gameplay : MonoBehaviour
         trialShapes.Add(targetShape);
         trialShapes.Shuffle();
 
-        float start_index = -((numShapes * 100 / 2) - 50);
+        float start_index = -((numShapes * 150 / 2) - 50);
         int x = 0;
         foreach (GameObject shape in trialShapes)
         {
-            GameObject tempObj = Instantiate(shape, new Vector3(start_index + x, 100, 0), Quaternion.identity) as GameObject;
+            GameObject tempObj = Instantiate(shape, new Vector3(start_index + x, 250, 0), Quaternion.identity) as GameObject;
             tempObj.GetComponent<Shape>().xPosition = start_index + x;
             tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-            tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(start_index + x, 100, 0);
-            tempObj.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+            tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(start_index + x, 250, 0);
+            tempObj.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1);
 
             if (tempObj.name.Contains(targetShape.name))
             {
                 tempObj.GetComponent<Shape>().SetIsTarget = true;
             }
 
-            x += 100;
+            x += 150;
         }
 
         taskStarted = true;
@@ -329,10 +326,10 @@ public class Gameplay : MonoBehaviour
 
         numCurrentShapes -= 1;
         if (numCurrentShapes < numShapes)
-            StartCoroutine(PopulateNewShape(forceTargetShapePopulation, shapeChosen));
+            StartCoroutine(PopulateNewShape(forceTargetShapePopulation, shapeChosen, destroyedObjXPosition));
     }
 
-    IEnumerator PopulateNewShape(bool forceTargetShapePopulation, GameObject shapeChosen)
+    IEnumerator PopulateNewShape(bool forceTargetShapePopulation, GameObject shapeChosen, float xPosition)
     {
         yield return new WaitForEndOfFrame();
 
@@ -353,12 +350,12 @@ public class Gameplay : MonoBehaviour
             newShape = temp[randomNum];
         }
 
-        newShape.GetComponent<Shape>().xPosition = destroyedObjXPosition;
+        newShape.GetComponent<Shape>().xPosition = xPosition;
 
-        GameObject tempObj = Instantiate(newShape, new Vector3(destroyedObjXPosition, 100, 0), Quaternion.identity) as GameObject;
+        GameObject tempObj = Instantiate(newShape, new Vector3(xPosition, 250, 0), Quaternion.identity) as GameObject;
         tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(destroyedObjXPosition, 100, 0);
-        tempObj.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1);
+        tempObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(xPosition, 250, 0);
+        tempObj.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1);
 
         if (tempObj.name.Contains(targetShape.name))
         {

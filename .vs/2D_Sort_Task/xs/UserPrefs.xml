@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{3D7BE82A-7B49-3B35-40DB-BC39476A2545}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Storage/InitGame.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Storage/InitAWS.cs" Line="30" Column="34" />
+      <File FileName="Assets/Scripts/Storage/PHPCommunicator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Storage/InitGame.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="2D_Sort_Task" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Storage" expanded="True">
+                  <Node name="InitGame.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b12bef88-c98d-43d5-b7f2-4617cc2110c0" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

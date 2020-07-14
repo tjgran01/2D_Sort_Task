@@ -54,6 +54,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.bc
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+Library/il2cpp_cache/

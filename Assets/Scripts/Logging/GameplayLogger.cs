@@ -38,9 +38,7 @@ public class GameplayLogger : MonoBehaviour
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
         EventManager.AddTargetShapeListener(HandleTargetShapeEvent);
         EventManager.AddTargetBinsListener(HandleTargetBinsEvent);
-        EventManager.AddUserIdListener(HandleUserIdEvent);
-        EventManager.AddBinsSwitchedListener(HandleBinsSwitchedEvent);
-        
+        EventManager.AddUserIdListener(HandleUserIdEvent);        
     }
 
     void Start()
@@ -214,22 +212,6 @@ public class GameplayLogger : MonoBehaviour
     {
         userId = id;
         SetFilePath($"Data/UserData/USER_{userId}/Gameplay");
-    }
-
-    private void HandleBinsSwitchedEvent()
-    {
-        int numBins = targetBins.Count * 2;
-
-        List<int> newTargetBins = new List<int>();
-        for(int i = 1; i < numBins + 1; i++)
-            newTargetBins.Add(i);
-
-        foreach(int bin in targetBins)
-        {
-            newTargetBins.Remove(bin);
-        }
-
-        targetBins = newTargetBins;
     }
     #endregion
 

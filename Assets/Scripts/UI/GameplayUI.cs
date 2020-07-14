@@ -32,14 +32,11 @@ public class GameplayUI : MonoBehaviour
     string reminderText;
     Timer reminderTimer;
 
-    AudioClipName targetSound;
-
     bool startButtonWasActive;
 
     void Awake()
     {
         EventManager.AddStartTaskInvoker(this);
-        EventManager.AddTargetSoundListener(HandleTargetSoundEvent);
     }
 
     void Start()
@@ -102,14 +99,8 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    public void PlayTargetSoundButton()
-    {
-        AudioManager.Play(targetSound);
-    }
-
     public void ReminderButton()
     {
-        Debug.Log("ReminderButton");
         reminderButton.SetActive(false);
 
         reminderObj.SetActive(true);
@@ -122,11 +113,6 @@ public class GameplayUI : MonoBehaviour
 
 
     #region Event Handlers
-    private void HandleTargetSoundEvent(ushort sound)
-    {
-        targetSound = (AudioClipName)sound;
-    }
-
     private void HandleReminderTimerFinishedEvent()
     {
         reminderObj.SetActive(false);

@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
-using System.Collections;
 
 public class BedfordLogger : MonoBehaviour
 {
-    TMP_InputField textEntryBox;
-    string user_id = "NO_ID_PROVIDED";
+    [SerializeField] GameObject bedfordInput;
+
     string filePath;
     List<string[]> rowData = new List<string[]>();
     bool fileCreated = false;
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         filePath = GameplayLogger.Instance().GetBedfordFilePath;
@@ -26,14 +21,14 @@ public class BedfordLogger : MonoBehaviour
 
     public void LogBedfordValue()
     {
-        var myInputObj = GameObject.FindGameObjectWithTag("BefordTextEntry");
-        textEntryBox = myInputObj.GetComponent<TMP_InputField>();
+        SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
 
-        string bedfordValue = textEntryBox.text;
-        SaveToCSV(bedfordValue);
+        gameObject.SetActive(false);
+    }
 
-        GameObject.FindGameObjectWithTag("Bedford").SetActive(false);
-        //transform.parent.gameObject.SetActive(false);
+    public void MoveOn()
+    {
+        SceneManager.LoadScene("LastInstructions");
     }
 
     void SaveToCSV(string bedfordValue)
@@ -66,6 +61,7 @@ public class BedfordLogger : MonoBehaviour
             { "path", filePath },
             { "data", sb.ToString() }
         };
+
         StartCoroutine(PHPCommunicator.Instance().PostRequest("WriteToFile.php", fields, _ => { }));
     }
 }

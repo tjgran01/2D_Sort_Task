@@ -1,0 +1,2 @@
+/Users/mohd/Desktop/2D_Sort_Task/obj/Debug/Unity.VSCode.Editor.csprojAssemblyReference.cache
+/Users/mohd/Desktop/2D_Sort_Task/obj/Debug/Unity.VSCode.Editor.csproj.CoreCompileInputs.cache

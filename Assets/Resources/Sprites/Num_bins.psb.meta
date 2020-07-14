@@ -61,6 +61,7 @@ ScriptedImporter:
     maxTextureSizeSet: 0
     compressionQualitySet: 0
     textureFormatSet: 0
+    applyGammaDecoding: 0
   spriteImportData:
   - name: 
     originalName: 
@@ -84,7 +85,51 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
-  mosaicSpriteImportData: []
+  mosaicSpriteImportData:
+  - name: Bin_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 386
+      height: 386
+    spriteID: 3a170d113fe5348b8ae69aa3c7655873
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -1440, y: -553}
+  - name: Bin_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 398
+      width: 386
+      height: 386
+    spriteID: 12b594b8fb95b4cb8ab18deef5b0e1cb
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -853, y: -159}
   rigSpriteImportData:
   - name: Bin_2
     originalName: 
@@ -147,7 +192,21 @@ ScriptedImporter:
   spritePackingTag: 
   resliceFromLayer: 0
   characterMode: 0
-  mosaicPSDLayers: []
+  mosaicPSDLayers:
+  - name: Bin_2
+    spriteName: Bin_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3a170d113fe5348b8ae69aa3c7655873
+    layerID: 7
+    mosaicPosition: {x: 4, y: 4}
+  - name: Bin_1
+    spriteName: Bin_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 12b594b8fb95b4cb8ab18deef5b0e1cb
+    layerID: 5
+    mosaicPosition: {x: 4, y: 398}
   rigPSDLayers:
   - name: Bin_2
     spriteName: Bin_2
@@ -168,8 +227,8 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
-  boneGOs: []
   generateGOHierarchy: 0
   textureAssetName: Num_bins Texture
   prefabAssetName: Num_bins Prefab
   spriteLibAssetName: Num_bins Sprite Lib
+  secondarySpriteTextures: []

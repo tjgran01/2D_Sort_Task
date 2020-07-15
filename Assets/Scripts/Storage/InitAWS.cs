@@ -19,15 +19,18 @@ public class InitAWS : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(1);
         CognitoAWSCredentials credentials = new CognitoAWSCredentials(
             "us-east-2:9eec7ba4-d0eb-48b9-bce1-1225a340c3e5", // Identity pool ID
             RegionEndpoint.USEast2 // Region
         );
-
+        Debug.Log(2);
         S3Client = new AmazonS3Client(credentials, RegionEndpoint.USEast2);
+        Debug.Log(3);
         S3BucketName = "sort-task-project";
-
+        Debug.Log(4);
         GetObject("config1.csv");
+        Debug.Log(5);
     }
 
     private void GetObject(string fileName)

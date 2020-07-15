@@ -30,27 +30,27 @@ public class ShapesPopulation : MonoBehaviour
 
     void Update()
     {
-        //if(!draggingShape && taskStarted)
-        //{
-        //    timer -= Time.deltaTime;
+        if (!draggingShape && taskStarted)
+        {
+            timer -= Time.deltaTime;
 
-        //    if(gameplayObj.IsTargetShapePopulated())
-        //        noTargetShapeTimer = noTargetShapeLimit;
-        //    else
-        //        noTargetShapeTimer -= Time.deltaTime;
+            if (gameplayObj.IsTargetShapePopulated())
+                noTargetShapeTimer = noTargetShapeLimit;
+            else
+                noTargetShapeTimer -= Time.deltaTime;
 
 
-        //    if(noTargetShapeTimer <= 0)
-        //    {
-        //        RePopulateOneShape(true);
-        //        timer = populationRate;
-        //    }
-        //    else if (timer <= 0)
-        //    {
-        //        RePopulateOneShape(false);
-        //        timer = populationRate;
-        //    }
-        //}
+            if (noTargetShapeTimer <= 0)
+            {
+                RePopulateOneShape(true);
+                timer = populationRate;
+            }
+            else if (timer <= 0)
+            {
+                RePopulateOneShape(false);
+                timer = populationRate;
+            }
+        }
     }
 
 

@@ -748,7 +748,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 120}
+  m_SizeDelta: {x: 1300, y: 120}
   m_Pivot: {x: -0.02, y: -0.8}
 --- !u!114 &1264754700
 MonoBehaviour:
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 319
+  m_firstOverflowCharacterIndex: 292
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
     spaceCount: 98
     wordCount: 96
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

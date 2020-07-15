@@ -11,7 +11,8 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject fourBinsObj;
     [SerializeField] GameObject sixBinsObj;
     [SerializeField] GameObject eightBinsObj;
-    [SerializeField] GameObject bedfordUI;
+    [SerializeField] GameObject mainCanvas;
+    [SerializeField] GameObject bedfordCanvas;
 
 
     TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
@@ -62,7 +63,7 @@ public class Gameplay : MonoBehaviour
         ui = gameObject.GetComponent<GameplayUI>();
         shapesPopulationObj = gameObject.GetComponent<ShapesPopulation>();
 
-        bedfordUI.SetActive(false);
+        SwitchCanvas(false);
 
         numShapes = InitGame.Instance().GetNumShapes;
 
@@ -82,7 +83,7 @@ public class Gameplay : MonoBehaviour
                 shapesPopulationObj.SetTaskStarted = false;
 
                 //Start the next task
-                ShowBedford();
+                SwitchCanvas(true);
                 taskStarted = false;
                 InitializeTask();
             }
@@ -91,10 +92,13 @@ public class Gameplay : MonoBehaviour
     }
 
 
-    private void ShowBedford()
+
+    public void SwitchCanvas(bool isBedfordActive)
     {
-        bedfordUI.SetActive(true);
+        mainCanvas.SetActive(!isBedfordActive);
+        bedfordCanvas.SetActive(isBedfordActive);
     }
+
 
 
     #region Return Variables

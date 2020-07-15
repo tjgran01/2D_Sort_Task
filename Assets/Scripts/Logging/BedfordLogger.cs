@@ -23,7 +23,7 @@ public class BedfordLogger : MonoBehaviour
     {
         SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
 
-        gameObject.SetActive(false);
+        Camera.main.GetComponent<Gameplay>().SwitchCanvas(false);
     }
 
     public void MoveOn()

@@ -9,4 +9,9 @@ public class Bin : MonoBehaviour
     public bool SetGreyedOut { set { greyedOut = value; } }
 
     public bool IsGreyedOut { get { return greyedOut; } }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("OnCollisionEnter2D");
+    }
 } 

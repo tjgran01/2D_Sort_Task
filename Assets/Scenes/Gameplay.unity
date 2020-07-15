@@ -658,8 +658,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 800, y: 80}
   m_Pivot: {x: 0.5, y: 2.1}
 --- !u!114 &420733347
 MonoBehaviour:
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190256
   m_fontColor: {r: 0.6886792, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -708,8 +708,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1064,7 +1064,8 @@ MonoBehaviour:
     type: 3}
   eightBinsObj: {fileID: 244960646162015899, guid: 621346b91d7894fcd806d335a0849122,
     type: 3}
-  bedfordUI: {fileID: 212844203}
+  mainCanvas: {fileID: 1934202164}
+  bedfordCanvas: {fileID: 212844203}
 --- !u!114 &504867454
 MonoBehaviour:
   m_ObjectHideFlags: 0

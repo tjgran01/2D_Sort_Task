@@ -320,6 +320,18 @@
     <Reference Include="Unity.Tasks">
       <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
     </Reference>
+    <Reference Include="AWSSDK.CognitoIdentity">
+      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.CognitoIdentity.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.Core">
+      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.S3">
+      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.S3.dll</HintPath>
+    </Reference>
+    <Reference Include="AWSSDK.SecurityToken">
+      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.SecurityToken.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Library/PackageCache/com.unity.ads@3.4.5/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
@@ -334,18 +346,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.S3">
-      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.S3.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.CognitoIdentity">
-      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.CognitoIdentity.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.SecurityToken">
-      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.SecurityToken.dll</HintPath>
-    </Reference>
-    <Reference Include="AWSSDK.Core">
-      <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Assets/AWSSDK/AWSSDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>/Users/mohd/Desktop/2D_Sort_Task/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>

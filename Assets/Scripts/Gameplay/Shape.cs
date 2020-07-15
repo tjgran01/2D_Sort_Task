@@ -39,7 +39,11 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     public void OnDrag(PointerEventData eventData)
     {
         rt.position = Input.mousePosition;
-        draggingShapeEvent.Invoke(true);
+
+        if(!dragging)
+            draggingShapeEvent.Invoke(true);
+
+        dragging = true;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -49,14 +53,10 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
         bool binChosen = false;
 
-        Debug.Log("bin count: " + bins.Count);
-
         foreach (GameObject bin in bins)
         {
-            Debug.Log("bin name: " + bin.name);
-            if (!bin.GetComponent<Bin>().IsGreyedOut && rt.Overlaps(bin.GetComponent<RectTransform>()))
+            if (rt.Overlaps(bin.GetComponent<RectTransform>()))
             {
-                Debug.Log("binChosenEvent");
                 binChosenEvent.Invoke(gameObject, int.Parse(bin.name));
                 binChosen = true;
                 break;

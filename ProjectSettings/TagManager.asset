@@ -5,16 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bin
+  - EightBins
   - Shape
   - SixBins
-  - FourBins
-  - EightBins
   - Logger
-  - PauseButton
-  - ResumeButton
-  - BefordTextEntry
-  - Bedford
-  - Canvas
+  - FourBins
   layers:
   - Default
   - TransparentFX
@@ -24,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - ShapeLayer
-  - TestLayer
+  - 
+  - 
   - 
   - 
   - 
@@ -49,9 +44,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: img
-    uniqueID: 3580250719
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

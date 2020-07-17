@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{3D7BE82A-7B49-3B35-40DB-BC39476A2545}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Gameplay/ShapesPopulation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Events/EventManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Storage/PHPCommunicator.cs" Line="41" Column="65" />
-      <File FileName="Assets/Scripts/Storage/InitGame.cs" Line="114" Column="17" />
-      <File FileName="Assets/Scripts/Gameplay/Gameplay.cs" Line="64" Column="75" />
-      <File FileName="Assets/Scripts/Menus/Instructions.cs" Line="59" Column="39" />
-      <File FileName="Assets/Scripts/Gameplay/Bin.cs" Line="15" Column="41" />
-      <File FileName="Assets/Scripts/Gameplay/Shape.cs" Line="74" Column="56" />
-      <File FileName="Assets/Scripts/Gameplay/ShapesPopulation.cs" Line="31" Column="18" />
+      <File FileName="Assets/Scripts/Logging/MouseLogger.cs" Line="32" Column="1" />
+      <File FileName="Assets/Scripts/Gameplay/Timer.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/Storage/InitGame.cs" Line="81" Column="1" />
+      <File FileName="Assets/Scripts/Gameplay/Gameplay.cs" Line="378" Column="75" />
+      <File FileName="Assets/Scripts/Gameplay/ShapesPopulation.cs" Line="72" Column="18" />
+      <File FileName="Assets/Scripts/Events/TimerFinishedEvent.cs" Line="7" Column="1" />
+      <File FileName="Assets/Scripts/Logging/GameplayLogger.cs" Line="114" Column="10" />
+      <File FileName="Assets/Scripts/Events/EventManager.cs" Line="53" Column="80" />
+      <File FileName="Assets/Scripts/Gameplay/Shape.cs" Line="68" Column="105" />
+      <File FileName="Assets/Scripts/Gameplay/Grayout.cs" Line="140" Column="74" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -15,12 +18,18 @@
           <Node name="2D_Sort_Task" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Gameplay" expanded="True">
-                  <Node name="ShapesPopulation.cs" selected="True" />
+                <Node name="Audio" expanded="True" />
+                <Node name="Events" expanded="True">
+                  <Node name="EventManager.cs" selected="True" />
                 </Node>
+                <Node name="Gameplay" expanded="True" />
                 <Node name="Logging" expanded="True" />
                 <Node name="Menus" expanded="True" />
                 <Node name="Storage" expanded="True" />
+                <Node name="UI" expanded="True" />
+              </Node>
+              <Node name="Unity-Logs-Viewer" expanded="True">
+                <Node name="Reporter" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -30,7 +39,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b12bef88-c98d-43d5-b7f2-4617cc2110c0" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="b2481485-f449-40f5-92be-105e50870c8b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

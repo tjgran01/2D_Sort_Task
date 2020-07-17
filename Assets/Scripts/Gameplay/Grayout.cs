@@ -17,11 +17,13 @@ public class Grayout : MonoBehaviour
 
     bool taskStarted;
     bool grayout;
-    float currentTimeRate;
 
     string lastBinChosen = null;
 
+    DateTime epochStart;
+    double elapsedTime;
 
+    Timer greyOutTimer;
 
     void Start()
     {
@@ -29,8 +31,13 @@ public class Grayout : MonoBehaviour
         EventManager.AddTaskEndedListener(HandleTaskEndedEvent);
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
 
-        currentTimeRate = grayoutTimeRate;
         grayout = false;
+
+        epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+        elapsedTime = 0;
+
+        greyOutTimer = gameObject.AddComponent<Timer>();
+        greyOutTimer.AddTimerFinishedListener(HandleGreyOutTimerFinished);
     }
 
     void Update()
@@ -39,14 +46,10 @@ public class Grayout : MonoBehaviour
         {
             if (timeConsidered)
             {
-                if (taskStarted && grayout && lastBinChosen != null)
+                if (taskStarted && grayout && lastBinChosen != null && !greyOutTimer.Running)
                 {
-                    currentTimeRate -= Time.deltaTime;
-                    if (currentTimeRate <= 0)
-                    {
-                        GreyOutTimelimit();
-                        currentTimeRate = grayoutTimeRate;
-                    }
+                    greyOutTimer.Duration = grayoutTimeRate;
+                    greyOutTimer.Run();
                 }
             }
             else
@@ -120,8 +123,6 @@ public class Grayout : MonoBehaviour
     #region Event Handlers
     private void HandleStartTaskEvent()
     {
-        currentTimeRate = grayoutTimeRate;
-
         bins = GameObject.FindGameObjectsWithTag("Bin");
         binsCount = bins.Length;
 
@@ -136,7 +137,7 @@ public class Grayout : MonoBehaviour
         grayout = false;
     }
 
-    private void HandleBinChosenEvent(GameObject shape, int bin)
+    private void HandleBinChosenEvent(GameObject shape, int bin, double displayTimestamp, double binChosenTimestamp)
     {
         lastBinChosen = bin.ToString();
         grayout = true;
@@ -144,8 +145,12 @@ public class Grayout : MonoBehaviour
         if(mixGreyoutBehavior && timeConsidered)
         {
             GreyOutTimelimit();
-            currentTimeRate = grayoutTimeRate;
         }
+    }
+
+    private void HandleGreyOutTimerFinished()
+    {
+        GreyOutTimelimit();
     }
     #endregion
 

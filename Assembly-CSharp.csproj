@@ -72,12 +72,12 @@
     <Compile Include="Assets\Scripts\Events\DraggingShapeEvent.cs" />
     <Compile Include="Assets\Scripts\Events\EventManager.cs" />
     <Compile Include="Assets\Scripts\Events\InitializeTaskEvent.cs" />
+    <Compile Include="Assets\Scripts\Events\SecondsLeftEvent.cs" />
     <Compile Include="Assets\Scripts\Events\StartTaskEvent.cs" />
     <Compile Include="Assets\Scripts\Events\TargetBinsEvent.cs" />
     <Compile Include="Assets\Scripts\Events\TargetShapeEvent.cs" />
     <Compile Include="Assets\Scripts\Events\TargetSoundEvent.cs" />
     <Compile Include="Assets\Scripts\Events\TaskEndedEvent.cs" />
-    <Compile Include="Assets\Scripts\Events\TaskStartedEvent.cs" />
     <Compile Include="Assets\Scripts\Events\TimerFinishedEvent.cs" />
     <Compile Include="Assets\Scripts\Events\UserIdEvent.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Bin.cs" />

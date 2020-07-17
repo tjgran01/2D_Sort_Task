@@ -24,8 +24,13 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     Vector3 defaultPosition;
     RectTransform rt;
 
+    double timeOfDisplay;
+
     void Start()
     {
+        DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+        timeOfDisplay = (DateTime.UtcNow - epochStart).TotalSeconds;
+
         EventManager.AddBinChosenInvoker(this);
         EventManager.AddDraggingShapeInvoker(this);
 
@@ -48,6 +53,9 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
+        DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+        double binChosenTimestamp = (DateTime.UtcNow - epochStart).TotalSeconds;
+
         dragging = false;
         draggingShapeEvent.Invoke(false);
 
@@ -57,7 +65,7 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
         {
             if (rt.Overlaps(bin.GetComponent<RectTransform>()))
             {
-                binChosenEvent.Invoke(gameObject, int.Parse(bin.name));
+                binChosenEvent.Invoke(gameObject, int.Parse(bin.name), timeOfDisplay, binChosenTimestamp);
                 binChosen = true;
                 break;
             }
@@ -71,7 +79,7 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     }
 
     #region Listeners
-    public void AddBinChosenListener(UnityAction<GameObject, int> listener)
+    public void AddBinChosenListener(UnityAction<GameObject, int, double, double> listener)
     {
         binChosenEvent.AddListener(listener);
     }

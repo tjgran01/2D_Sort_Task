@@ -15,7 +15,6 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject bedfordCanvas;
 
 
-    TaskStartedEvent taskStartedEvent = new TaskStartedEvent();
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
     TargetBinsEvent targetBinsEvent = new TargetBinsEvent();
     TaskEndedEvent taskEndedEvent = new TaskEndedEvent();
@@ -42,18 +41,17 @@ public class Gameplay : MonoBehaviour
     float restDuration;
     bool pauseBeforeRest;
 
-    bool taskStarted = false;
-
     List<GameObject> possibleTaskShapes;
 
     float destroyedObjXPosition;
 
     int numShapes;
 
+    Timer taskTimer;
+
     void Start()
     {
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
-        EventManager.AddTaskStartedInvoker(this);
         EventManager.AddTargetShapeInvoker(this);
         EventManager.AddTargetBinsInvoker(this);
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
@@ -69,29 +67,12 @@ public class Gameplay : MonoBehaviour
 
         InitializeFields();
         InitializeTask();
+
+        taskTimer = gameObject.AddComponent<Timer>();
+        taskTimer.AddTimerFinishedListener(HandleTaskTimerFinishedEvent);
+        taskTimer.AddSecondsLeftListener(GameplayLogger.Instance().HandleElapsedTime);
+        taskTimer.AddSecondsLeftListener(HandleTaskSecondsLeftEvent);
     }
-
-    private void Update()
-    {
-        if (taskStarted)
-        {
-            taskDuration -= Time.deltaTime;
-            if (taskDuration <= 0f)
-            {
-                taskEndedEvent.Invoke();
-                DestroyAllObjects();
-                shapesPopulationObj.SetTaskStarted = false;
-
-                //Start the next task
-                SwitchCanvas(true);
-                taskStarted = false;
-                InitializeTask();
-            }
-            ui.SetTimerText = ((int)taskDuration).ToString();
-        }
-    }
-
-
 
     public void SwitchCanvas(bool isBedfordActive)
     {
@@ -211,6 +192,7 @@ public class Gameplay : MonoBehaviour
         {
             //End of game
             SceneManager.LoadScene("GameFinished");
+            return;
         }
 
         string[] currentTaskParams = parameters[paramsIndex];
@@ -250,7 +232,6 @@ public class Gameplay : MonoBehaviour
 
     private void InitializeTask()
     {
-
         SetTaskParams();
         initializeTaskEvent.Invoke(currentSoundVar, taskDuration);
 
@@ -317,8 +298,8 @@ public class Gameplay : MonoBehaviour
             x += 150;
         }
 
-        taskStarted = true;
-        taskStartedEvent.Invoke();
+        taskTimer.Duration = taskDuration;
+        taskTimer.Run();
     }
 
     public void ContinueTask(GameObject shapeChosen, bool forceTargetShapePopulation)
@@ -365,10 +346,6 @@ public class Gameplay : MonoBehaviour
         {
             tempObj.GetComponent<Shape>().SetIsTarget = true;
         }
-
-
-        if (IsTargetShapePopulated())
-            taskStartedEvent.Invoke();
     }
 
     private void DestroyAllObjects()
@@ -398,7 +375,7 @@ public class Gameplay : MonoBehaviour
 
 
     #region Event Handlers
-    private void HandleBinChosenEvent(GameObject shape, int bin)
+    private void HandleBinChosenEvent(GameObject shape, int bin, double displayTimestamp, double binChosenTimestamp)
     {
         ContinueTask(shape, false);
     }
@@ -409,15 +386,25 @@ public class Gameplay : MonoBehaviour
         shapesPopulationObj.SetTaskStarted = true;
     }
 
+    private void HandleTaskTimerFinishedEvent()
+    {
+        taskEndedEvent.Invoke();
+        DestroyAllObjects();
+        shapesPopulationObj.SetTaskStarted = false;
+
+        //Start the next task
+        SwitchCanvas(true);
+        InitializeTask();
+    }
+
+    private void HandleTaskSecondsLeftEvent(double secondsLeft)
+    {
+        ui.SetTimerText = ((int)secondsLeft).ToString();
+    }
     #endregion
 
 
     #region Add Listeners
-    public void AddTaskStartedListener(UnityAction listener)
-    {
-        taskStartedEvent.AddListener(listener);
-    }
-
     public void AddTargetShapeListener(UnityAction<string> listener)
     {
         targetShapeEvent.AddListener(listener);

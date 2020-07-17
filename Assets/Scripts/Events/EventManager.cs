@@ -7,12 +7,8 @@ public class EventManager : MonoBehaviour
 {
     #region Fields
     static List<Shape> binChosenInvokers = new List<Shape>();
-    static List<UnityAction<GameObject, int>> binChosenListeners =
-        new List<UnityAction<GameObject, int>>();
-
-    static List<Gameplay> taskStartedInvokers = new List<Gameplay>();
-    static List<UnityAction> taskStartedListeners =
-        new List<UnityAction>();
+    static List<UnityAction<GameObject, int, double, double>> binChosenListeners =
+        new List<UnityAction<GameObject, int, double, double>>();
 
     static List<Gameplay> targetShapeInvokers = new List<Gameplay>();
     static List<UnityAction<string>> targetShapeListeners =
@@ -48,39 +44,18 @@ public class EventManager : MonoBehaviour
     public static void AddBinChosenInvoker(Shape invoker)
     {
         binChosenInvokers.Add(invoker);
-        foreach (UnityAction<GameObject, int> listener in binChosenListeners)
+        foreach (UnityAction<GameObject, int, double, double> listener in binChosenListeners)
         {
             invoker.AddBinChosenListener(listener);
         }
     }
 
-    public static void AddBinChosenListener(UnityAction<GameObject, int> listener)
+    public static void AddBinChosenListener(UnityAction<GameObject, int, double, double> listener)
     {
         binChosenListeners.Add(listener);
         foreach (Shape invoker in binChosenInvokers)
         {
             invoker.AddBinChosenListener(listener);
-        }
-    }
-    #endregion
-
-
-    #region Task Started Support
-    public static void AddTaskStartedInvoker(Gameplay invoker)
-    {
-        taskStartedInvokers.Add(invoker);
-        foreach (UnityAction listener in taskStartedListeners)
-        {
-            invoker.AddTaskStartedListener(listener);
-        }
-    }
-
-    public static void AddTaskStartedListener(UnityAction listener)
-    {
-        taskStartedListeners.Add(listener);
-        foreach (Gameplay invoker in taskStartedInvokers)
-        {
-            invoker.AddTaskStartedListener(listener);
         }
     }
     #endregion

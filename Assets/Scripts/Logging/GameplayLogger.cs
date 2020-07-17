@@ -12,8 +12,6 @@ public class GameplayLogger : MonoBehaviour
     private static GameplayLogger instance = null;
 
     string userId = "NO_ID_PROVIDED";
-    float timeTrialStarted;
-    float timeTrialEnded;
 
     string targetShape;
     List<int> targetBins;
@@ -23,6 +21,7 @@ public class GameplayLogger : MonoBehaviour
     string bedfordFilePath = null;
     bool fileCreated;
 
+    double timeLeft;
 
     private void Awake()
     {
@@ -34,7 +33,6 @@ public class GameplayLogger : MonoBehaviour
 
         InitValues();
 
-        EventManager.AddTaskStartedListener(HandleTaskStartedEvent);
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
         EventManager.AddTargetShapeListener(HandleTargetShapeEvent);
         EventManager.AddTargetBinsListener(HandleTargetBinsEvent);
@@ -44,6 +42,7 @@ public class GameplayLogger : MonoBehaviour
     void Start()
     {
         fileCreated = false;
+        timeLeft = 0;
     }
 
     public static GameplayLogger Instance()
@@ -57,16 +56,17 @@ public class GameplayLogger : MonoBehaviour
 
 
     #region Helper Functions
-    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _currentTime)
+    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _timeOfDisplay, string _currentTime)
     {
-        string[] row = new string[7];
+        string[] row = new string[8];
         row[0] = _id;
         row[1] = _targetShape;
         row[2] = _targetBins;
         row[3] = _selectedShape;
         row[4] = _selectedBin;
         row[5] = _timeTaken;
-        row[6] = _currentTime;
+        row[6] = _timeOfDisplay;
+        row[7] = _currentTime;
 
         return row;
     }
@@ -103,42 +103,18 @@ public class GameplayLogger : MonoBehaviour
         }));
     }
 
-    //string ReturnFilePath(string dir)
-    //{
-    //    Directory.CreateDirectory(dir);
-
-    //    DirectoryInfo d = new DirectoryInfo(dir);
-    //    FileInfo[] files = d.GetFiles();
-
-    //    List<int> indices = new List<int>();
-    //    foreach (FileInfo f in files)
-    //    {
-    //        int fileIndex = int.Parse(f.Name.Remove(f.Name.IndexOf(".", StringComparison.Ordinal)));
-    //        indices.Add(fileIndex);
-    //    }
-
-    //    string newFileName;
-    //    if (indices.Count == 0)
-    //        newFileName = "0.csv";
-    //    else
-    //        newFileName = (indices.Max() + 1).ToString() + ".csv";
-
-    //    return dir + "/" + newFileName;
-    //}
-
-
-    void SaveToCSV(string selectedShape, int selectedBin, float timeTaken)
+    void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp)
     {
         if (!fileCreated)
         {
-            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Taken", "Current Time (ms)");
+            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Left", "Shape Display Timestamp", "Bin Chosen Timestamp");
             rowData.Add(header);
 
             fileCreated = true;
         }
 
         string[] row = ReturnRowData(userId, targetShape, String.Join(" & ", targetBins), selectedShape, selectedBin.ToString(),
-            timeTaken.ToString(), (Time.fixedTime * 1000).ToString());
+            timeLeft.ToString(), displayTimestamp.ToString(), binChosenTimestamp.ToString());
         rowData.Add(row);
 
         string[][] output = new string[rowData.Count][];
@@ -167,8 +143,6 @@ public class GameplayLogger : MonoBehaviour
     void InitValues()
     {
         userId = "";
-        timeTrialStarted = -1;
-        timeTrialEnded = 0;
         targetShape = "";
         targetBins = new List<int>();
     }
@@ -176,24 +150,11 @@ public class GameplayLogger : MonoBehaviour
 
 
     #region Event Handlers
-    private void HandleBinChosenEvent(GameObject shape, int bin)
+    private void HandleBinChosenEvent(GameObject shape, int bin, double displayTimestamp, double binChosenTimestamp)
     {
-        if(timeTrialStarted > 0)
-        {
-            timeTrialEnded = Time.fixedTime;
-
-            string shapeName = shape.name;
-            string cleanedShapeName = shapeName.Remove(shapeName.IndexOf("(", StringComparison.Ordinal));
-            SaveToCSV(cleanedShapeName, bin, timeTrialEnded - timeTrialStarted);
-
-            timeTrialStarted = -1;
-        }
-        
-    }
-
-    private void HandleTaskStartedEvent()
-    {
-        timeTrialStarted = Time.fixedTime;
+        string shapeName = shape.name;
+        string cleanedShapeName = shapeName.Remove(shapeName.IndexOf("(", StringComparison.Ordinal));
+        SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp);
     }
 
     private void HandleTargetShapeEvent(string shapeName)
@@ -212,6 +173,11 @@ public class GameplayLogger : MonoBehaviour
     {
         userId = id;
         SetFilePath($"Data/UserData/USER_{userId}/Gameplay");
+    }
+
+    public void HandleElapsedTime(double secondsLeft)
+    {
+        timeLeft = secondsLeft;
     }
     #endregion
 

@@ -41,6 +41,8 @@ public class InitGame : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+
+            Application.runInBackground = true;
         }
     }
 
@@ -71,11 +73,12 @@ public class InitGame : MonoBehaviour
 
         ReadConfig();
         ReadInstructions();
+
     }
 
     private void Update()
     {
-        if(!paramsReady && !loadedScene && numConfigsLoaded >= keyMapper.Count)
+        if (!paramsReady && !loadedScene && numConfigsLoaded >= keyMapper.Count)
         {
             paramsReady = true;
         }
@@ -102,15 +105,18 @@ public class InitGame : MonoBehaviour
             Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", $"Data/config{pair.Value}.csv" } };
             StartCoroutine(PHPCommunicator.Instance().PostRequest("ReadFile.php", fields, returnedText =>
             {
-                List<string> configText = returnedText.Split('\n').ToList();
+                List<string> configText = returnedText.TrimEnd('\n').Split('\n').ToList();
                 List<string[]> temp = new List<string[]>();
                 for (int i = 1; i < configText.Count; i++) //ignoring header
                 {
                     temp.Add(configText[i].Split(','));
                 }
 
-                parameters.Add(pair.Key, temp);
-                numConfigsLoaded++;
+                if(temp != new List<string[]>())
+                {
+                    parameters.Add(pair.Key, temp);
+                    numConfigsLoaded++;
+                }
             }));
         }
     }

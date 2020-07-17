@@ -29,7 +29,7 @@ public class PHPCommunicator : MonoBehaviour
     public IEnumerator PostRequest(string phpFile, Dictionary<string, string> fields, Action<string> callback)
     {
         string ip = "aws.shinelab-sorttask.com";
-        ip = "ec2-3-18-44-52.us-east-2.compute.amazonaws.com";
+        //ip = "ec2-3-18-44-52.us-east-2.compute.amazonaws.com";
 
         string returnedText = "";     
         WWWForm form = new WWWForm();
@@ -38,7 +38,7 @@ public class PHPCommunicator : MonoBehaviour
             form.AddField(field.Key, field.Value);
         }
 
-        using (UnityWebRequest www = UnityWebRequest.Post($"http://{ip}/{phpFile}", form))
+        using (UnityWebRequest www = UnityWebRequest.Post($"https://{ip}/{phpFile}", form))
         {
             yield return www.SendWebRequest();
 

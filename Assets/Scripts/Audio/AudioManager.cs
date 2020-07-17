@@ -219,7 +219,7 @@ public class AudioManager: MonoBehaviour
         List<GameObject> bins = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bin")).Where(x => !x.gameObject.GetComponent<Bin>().IsGreyedOut).ToList();
         int randomNum = UnityEngine.Random.Range(0, bins.Count);
 
-        yield return new WaitForSeconds(audio.length);
+        yield return new WaitForSecondsRealtime(audio.length);
 
         Play(binSounds[bins[randomNum].name]);
 

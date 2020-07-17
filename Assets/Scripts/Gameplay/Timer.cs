@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,12 +7,19 @@ using UnityEngine.Events;
 public class Timer : MonoBehaviour
 {
     #region Fields
-    float totalSeconds = 0;
-    float elapsedSeconds = 0;
+    double totalSeconds = 0;
+    double elapsedSeconds = 0;
     bool running = false;
     bool started = false;
 
+    DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+    double startTimestamp;
+
+    double timerateInvoke = 0.5;
+    int numInvoke = 0;
+
     TimerFinishedEvent timerFinishedEvent = new TimerFinishedEvent();
+    SecondsLeftEvent secondsLeftEvent = new SecondsLeftEvent();
     #endregion
 
 
@@ -20,11 +28,17 @@ public class Timer : MonoBehaviour
     {
         if (running)
         {
-            elapsedSeconds += Time.deltaTime;
+            elapsedSeconds = (DateTime.UtcNow - epochStart).TotalSeconds - startTimestamp;
             if (elapsedSeconds >= totalSeconds)
             {
                 running = false;
                 timerFinishedEvent.Invoke();
+            }
+
+            if(elapsedSeconds / timerateInvoke >= numInvoke)
+            {
+                numInvoke++;
+                secondsLeftEvent.Invoke(SecondsLeft);
             }
         }
     }
@@ -36,6 +50,9 @@ public class Timer : MonoBehaviour
             started = true;
             running = true;
             elapsedSeconds = 0;
+            timerateInvoke = 0.5;
+            numInvoke = 0;
+            startTimestamp = (DateTime.UtcNow - epochStart).TotalSeconds;
         }
     }
 
@@ -53,6 +70,11 @@ public class Timer : MonoBehaviour
     public void AddTimerFinishedListener(UnityAction listener)
     {
         timerFinishedEvent.AddListener(listener);
+    }
+
+    public void AddSecondsLeftListener(UnityAction<double> listener)
+    {
+        secondsLeftEvent.AddListener(listener);
     }
     #endregion
 
@@ -76,7 +98,7 @@ public class Timer : MonoBehaviour
 
     public bool Running { get { return running; } }
 
-    public float SecondsLeft
+    public double SecondsLeft
     {
         get
         {

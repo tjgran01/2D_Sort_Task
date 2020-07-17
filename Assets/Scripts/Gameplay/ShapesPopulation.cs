@@ -11,11 +11,11 @@ public class ShapesPopulation : MonoBehaviour
 
     Gameplay gameplayObj;
     bool draggingShape;
-    float timer;
-    float noTargetShapeTimer;
 
     bool taskStarted = false;
 
+    Timer timer;
+    Timer noTargetShapeTimer;
 
     void Start()
     {
@@ -23,32 +23,29 @@ public class ShapesPopulation : MonoBehaviour
 
         gameplayObj = Camera.main.GetComponent<Gameplay>();
         draggingShape = false;
-        timer = populationRate;
-        noTargetShapeTimer = noTargetShapeLimit;
-    }
 
+        timer = gameObject.AddComponent<Timer>();
+        timer.AddTimerFinishedListener(HandleTimerFinishedEvent);
+
+        noTargetShapeTimer = gameObject.AddComponent<Timer>();
+        noTargetShapeTimer.AddTimerFinishedListener(HandleNoTargetShapeTimerEvent);
+
+    }
 
     void Update()
     {
         if (!draggingShape && taskStarted)
         {
-            timer -= Time.deltaTime;
-
-            if (gameplayObj.IsTargetShapePopulated())
-                noTargetShapeTimer = noTargetShapeLimit;
-            else
-                noTargetShapeTimer -= Time.deltaTime;
-
-
-            if (noTargetShapeTimer <= 0)
+            if(!timer.Running)
             {
-                RePopulateOneShape(true);
-                timer = populationRate;
+                timer.Duration = populationRate;
+                timer.Run();
             }
-            else if (timer <= 0)
+
+            if (!gameplayObj.IsTargetShapePopulated() && !noTargetShapeTimer.Running)
             {
-                RePopulateOneShape(false);
-                timer = populationRate;
+                noTargetShapeTimer.Duration = noTargetShapeLimit;
+                noTargetShapeTimer.Run();
             }
         }
     }
@@ -65,10 +62,14 @@ public class ShapesPopulation : MonoBehaviour
         int randomNum;
         randomNum = UnityEngine.Random.Range(0, shapes.Count);
 
-        if (forceTargetShapePopulation)
-            gameplayObj.ContinueTask(shapes[randomNum], true);
-        else
-            gameplayObj.ContinueTask(shapes[randomNum], false);
+        try
+        {
+            if (forceTargetShapePopulation)
+                gameplayObj.ContinueTask(shapes[randomNum], true);
+            else
+                gameplayObj.ContinueTask(shapes[randomNum], false);
+        }
+        catch { }
 
     }
     #endregion
@@ -83,6 +84,19 @@ public class ShapesPopulation : MonoBehaviour
     private void HandleDraggingShapeEvent(bool dragging)
     {
         draggingShape = dragging;
+    }
+
+    private void HandleTimerFinishedEvent()
+    {
+        RePopulateOneShape(false);
+    }
+
+    private void HandleNoTargetShapeTimerEvent()
+    {
+        if (!gameplayObj.IsTargetShapePopulated())
+        {
+            RePopulateOneShape(true);
+        }
     }
     #endregion
 }

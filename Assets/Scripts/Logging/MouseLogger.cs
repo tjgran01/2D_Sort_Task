@@ -19,7 +19,8 @@ public class MouseLogger : MonoBehaviour
     bool fileCreated;
     Vector3 currectMousePosition;
 
-    float currentTimeRate;
+
+    Timer saveDataTimer;
 
     private void Awake()
     {
@@ -28,26 +29,16 @@ public class MouseLogger : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-
         InitValues();
     }
 
     private void Start()
     {
-        currentTimeRate = saveDataTimeRate;
+        saveDataTimer = gameObject.AddComponent<Timer>();
+        saveDataTimer.AddTimerFinishedListener(HandleSaveDataTimerFinished);
+        saveDataTimer.Duration = saveDataTimeRate;
+        saveDataTimer.Run();
         fileCreated = false;
-    }
-
-    private void Update()
-    {
-        currentTimeRate -= Time.deltaTime;
-        if (currentTimeRate <= 0)
-        {
-            if (filePath != "")
-                SaveToCSV();
-
-            currentTimeRate = saveDataTimeRate;
-        }
     }
 
     public static MouseLogger Instance()
@@ -75,14 +66,17 @@ public class MouseLogger : MonoBehaviour
     {
         if (!fileCreated)
         {
-            string[] header = ReturnRowData("ID", "Mouse Position (x/y)", "Current Time (ms)");
+            string[] header = ReturnRowData("ID", "Mouse Position (x/y)", "Current Time (s)");
             rowData.Add(header);
 
             fileCreated = true;
         }
 
+        DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
+        double cuurentTime = (DateTime.UtcNow - epochStart).TotalSeconds;
+
         currectMousePosition = Input.mousePosition;
-        string[] row = ReturnRowData(userId, $"({currectMousePosition.x}/{currectMousePosition.y})", (Time.fixedTime * 1000).ToString());
+        string[] row = ReturnRowData(userId, $"({currectMousePosition.x}/{currectMousePosition.y})", cuurentTime.ToString());
         rowData.Add(row);
 
         string[][] output = new string[rowData.Count][];
@@ -103,6 +97,15 @@ public class MouseLogger : MonoBehaviour
             { "data", sb.ToString() }
         };
         StartCoroutine(PHPCommunicator.Instance().PostRequest("WriteToFile.php", fields, _ => { }));
+    }
+
+    private void HandleSaveDataTimerFinished()
+    {
+        if (filePath != "")
+            SaveToCSV();
+
+        saveDataTimer.Duration = saveDataTimeRate;
+        saveDataTimer.Run();
     }
     #endregion
 

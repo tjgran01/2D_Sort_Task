@@ -25,6 +25,7 @@ public class UserInfo : MonoBehaviour
         errorText = error.GetComponent<TMP_Text>();
     }
 
+
     public void OnSubmit()
     {
         if(userIdText.text == "" && keyText.text == "")
@@ -45,10 +46,28 @@ public class UserInfo : MonoBehaviour
         }
         else
         {
-            userIdEvent.Invoke(userIdText.text);
-            InitGame.Instance().SetEnteredKey(keyText.text);
-            SceneManager.LoadScene("HeadphoneCheck");
+            bool userValid = CheckIfTextValid(userIdText.text);
+            if (userValid)
+            {
+                userIdEvent.Invoke(userIdText.text);
+                InitGame.Instance().SetEnteredKey(keyText.text);
+                SceneManager.LoadScene("HeadphoneCheck");
+            }
         }
+    }
+
+    // Only let letters and numbers through
+    private bool CheckIfTextValid(string theText)
+    {
+        foreach (char c in theText)
+        {
+            if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9'))
+            {
+                errorText.text = "Non-Acceptable character detected in user ID entry.";
+                return false;
+            }
+        }
+        return true;
     }
 
     public void AddUserIdListener(UnityAction<string> listener)

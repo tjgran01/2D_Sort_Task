@@ -23,7 +23,7 @@ public class InitGame : MonoBehaviour
 
 
     Dictionary<string, List<string[]>> parameters;
-    List<string> instructions;
+    List<string> instructions = new List<string>();
 
     bool paramsReady = false;
     bool instructionsReady = false;
@@ -66,7 +66,46 @@ public class InitGame : MonoBehaviour
             { "B8u8t", "4" },
             { "Bcmwo", "5" },
             { "Bi0jy", "6" },
-            { "Bn25t", "7" }
+            { "Bn25t", "7" },
+
+            { "C5ysr", "0" },  //(row 1 order in table below /w 6 shapes)
+            { "Co6j1", "1" },  //(row 2 order in table below / w 6 shapes)
+            { "C27xf", "2" },
+            { "Cr2yj", "3" },
+            { "C8u8t", "4" },
+            { "Ccmwo", "5" },
+            { "Ci0jy", "6" },
+            { "Cn25t", "7" },
+
+            { "D5ysr", "0" },  //(row 1 order in table below / w 10 shapes)
+            { "Do6j1", "1" },  //(row 2 order in table below / w 10 shapes)
+            { "D27xf", "2" },
+            { "Dr2yj", "3" },
+            { "D8u8t", "4" },
+            { "Dcmwo", "5" },
+            { "Di0jy", "6" },
+            { "Dn25t", "7" },
+
+            { "E5ysr", "0" },  //(row 1 order in table below /w 6 shapes)
+            { "Eo6j1", "1" },  //(row 2 order in table below / w 6 shapes)
+            { "E27xf", "2" },
+            { "Er2yj", "3" },
+            { "E8u8t", "4" },
+            { "Ecmwo", "5" },
+            { "Ei0jy", "6" },
+            { "En25t", "7" },
+
+            { "F5ysr", "0" },  //(row 1 order in table below / w 10 shapes)
+            { "Fo6j1", "1" },  //(row 2 order in table below / w 10 shapes)
+            { "F27xf", "2" },
+            { "Fr2yj", "3" },
+            { "F8u8t", "4" },
+            { "Fcmwo", "5" },
+            { "Fi0jy", "6" },
+            { "Fn25t", "7" },
+
+            { "xxxxx", "8" }, // for testing.
+            { "yyyyy", "9" }
         };
 
         numConfigsLoaded = 0;
@@ -124,7 +163,6 @@ public class InitGame : MonoBehaviour
     void ReadInstructions()
     {
         instructionsReady = false;
-        instructions = new List<string>();
 
         Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", "Data/Instructions" } };
         StartCoroutine(PHPCommunicator.Instance().PostRequest("ReturnFileNames.php", fields, returnedText =>
@@ -142,12 +180,10 @@ public class InitGame : MonoBehaviour
                         string v = match.ToString();
                         return "sprite name=" + v;
                     });
-
                     instructions.Add(modifiedIns);
                 }
                 ));
             }
-
             instructionsReady = true;
         }));
     }

@@ -10,6 +10,9 @@ TagManager:
   - SixBins
   - Logger
   - FourBins
+  - Bedford
+  - Canvas
+  - bedfordError
   layers:
   - Default
   - TransparentFX

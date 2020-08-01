@@ -21,6 +21,7 @@ public class Gameplay : MonoBehaviour
     InitializeTaskEvent initializeTaskEvent = new InitializeTaskEvent();
 
     GameplayUI ui;
+    bool finalBedford = false;
 
     ShapesPopulation shapesPopulationObj;
 
@@ -29,6 +30,7 @@ public class Gameplay : MonoBehaviour
      * Value: a collection of parameters (number of bins<int>, using similar variable "color of shape" <bool>) */
     List<string[]> parameters = new List<string[]>();
     int paramsIndex;
+    int bedfordIndex;
     Dictionary<string, Dictionary<string, int>> mapParamsToNums;
 
     GameObject targetShape;
@@ -76,8 +78,33 @@ public class Gameplay : MonoBehaviour
 
     public void SwitchCanvas(bool isBedfordActive)
     {
+        if (paramsIndex >= parameters.Count && !isBedfordActive && parameters.Count > 0)
+        {
+            if (!finalBedford)
+            {
+                finalBedford = true;
+            }
+            else
+            {
+                //End of game
+                SceneManager.LoadScene("GameFinished");
+                return;
+            }
+        }
         mainCanvas.SetActive(!isBedfordActive);
         bedfordCanvas.SetActive(isBedfordActive);
+    }
+
+
+    public void UpdateBedfordIndex(int increment)
+    {
+        bedfordIndex += increment;
+    }
+
+    // Used for GameplayLogger to get block condition.
+    public string GetCurrentCondition()
+    {
+        return parameters[paramsIndex - 1][0];
     }
 
 
@@ -191,10 +218,8 @@ public class Gameplay : MonoBehaviour
         if (paramsIndex >= parameters.Count)
         {
             //End of game
-            SceneManager.LoadScene("GameFinished");
             return;
         }
-
         string[] currentTaskParams = parameters[paramsIndex];
         string currentVal;
         for(int i = 0; i < currentTaskParams.Length; i++) //Loop through columns

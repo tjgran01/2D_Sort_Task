@@ -7,28 +7,61 @@ using UnityEngine.SceneManagement;
 public class BedfordLogger : MonoBehaviour
 {
     [SerializeField] GameObject bedfordInput;
+    [SerializeField] GameObject errorText;
 
     string filePath;
     List<string[]> rowData = new List<string[]>();
     bool fileCreated = false;
 
-
     void Awake()
     {
         filePath = GameplayLogger.Instance().GetBedfordFilePath;
+        if (SceneManager.GetActiveScene().name == "Gameplay")
+        {
+            errorText.SetActive(false);
+        }
+    }
+
+    private bool CheckBedfordValue(string theValue)
+    {
+        if (theValue == "10") { return true; }
+        foreach (char c in theValue)
+        {
+            if ((c < '1' || c > '9'))
+            {
+                errorText.SetActive(true);
+                return false;
+            }
+        }
+        return true;
     }
 
 
     public void LogBedfordValue()
     {
-        SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
-
-        Camera.main.GetComponent<Gameplay>().SwitchCanvas(false);
+        if (bedfordInput.GetComponent<TMP_InputField>().text != "")
+        {
+            if (CheckBedfordValue(bedfordInput.GetComponent<TMP_InputField>().text))
+            {
+                SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
+                errorText.SetActive(false);
+                Camera.main.GetComponent<Gameplay>().SwitchCanvas(false);
+                bedfordInput.GetComponent<TMP_InputField>().text = "";
+            }
+        }
     }
 
     public void MoveOn()
     {
         SceneManager.LoadScene("LastInstructions");
+    }
+
+
+    public void LogAndMoveOne()
+    {
+        SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
+        SceneManager.LoadScene("GameFinished");
+
     }
 
     void SaveToCSV(string bedfordValue)

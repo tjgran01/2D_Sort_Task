@@ -19,6 +19,7 @@ public class GameplayLogger : MonoBehaviour
     List<string[]> rowData = new List<string[]>();
     string filePath = null;
     string bedfordFilePath = null;
+    string bedfordFilePathLast = null;
     bool fileCreated;
 
     double timeLeft;
@@ -56,9 +57,9 @@ public class GameplayLogger : MonoBehaviour
 
 
     #region Helper Functions
-    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _timeOfDisplay, string _currentTime)
+    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _timeOfDisplay, string _currentTime, string _blockCondition)
     {
-        string[] row = new string[8];
+        string[] row = new string[9];
         row[0] = _id;
         row[1] = _targetShape;
         row[2] = _targetBins;
@@ -67,6 +68,7 @@ public class GameplayLogger : MonoBehaviour
         row[5] = _timeTaken;
         row[6] = _timeOfDisplay;
         row[7] = _currentTime;
+        row[8] = _blockCondition;
 
         return row;
     }
@@ -100,21 +102,22 @@ public class GameplayLogger : MonoBehaviour
             MouseLogger.Instance().SetUserId = userId;
             MouseLogger.Instance().SetFilePath = $"Data/UserData/USER_{userId}/MouseMovement/" + newFileName;
             bedfordFilePath = $"Data/UserData/USER_{userId}/bedford.csv";
+            // bedfordFilePath = $"Data/UserData/USER_{userId}/bedfordLast.csv";
         }));
     }
 
-    void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp)
+    void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp, string blockCondition)
     {
         if (!fileCreated)
         {
-            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Left", "Shape Display Timestamp", "Bin Chosen Timestamp");
+            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Left", "Shape Display Timestamp", "Bin Chosen Timestamp", "Block Condition");
             rowData.Add(header);
 
             fileCreated = true;
         }
 
         string[] row = ReturnRowData(userId, targetShape, String.Join(" & ", targetBins), selectedShape, selectedBin.ToString(),
-            timeLeft.ToString(), displayTimestamp.ToString(), binChosenTimestamp.ToString());
+            timeLeft.ToString(), displayTimestamp.ToString(), binChosenTimestamp.ToString(), blockCondition);
         rowData.Add(row);
 
         string[][] output = new string[rowData.Count][];
@@ -154,7 +157,8 @@ public class GameplayLogger : MonoBehaviour
     {
         string shapeName = shape.name;
         string cleanedShapeName = shapeName.Remove(shapeName.IndexOf("(", StringComparison.Ordinal));
-        SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp);
+        string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
+        SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp, blockCondition);
     }
 
     private void HandleTargetShapeEvent(string shapeName)

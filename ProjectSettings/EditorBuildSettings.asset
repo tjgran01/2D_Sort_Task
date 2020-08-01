@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UserInfo.unity
     guid: 12f069052dc5745c3b47daff41e0779e
+  - enabled: 1
+    path: Assets/Scenes/BedfordLast.unity
+    guid: 977eefe3fe749db48a5449e16cc5b4e5
   m_configObjects: {}

@@ -14,19 +14,23 @@ public class Instructions : MonoBehaviour
     [SerializeField] GameObject textObj;
 
     List<string> instructions;
+    //List<string> instructions = new List<string>()
+    //{
+    
+    //};
     int instructionIndex;
     int numInstructions;
 
     void Start()
     {
         instructions = InitGame.Instance().GetInstructions;
+        instructions.Sort();
         instructionIndex = 0;
         numInstructions = instructions.Count;
 
         textObj.GetComponent<TextMeshProUGUI>().text = instructions[instructionIndex];
     }
 
-    
 
     public void OnNextButtonClicked()
     {
@@ -58,6 +62,7 @@ public static class MyExtensions
 {
     public static IEnumerable<string> CustomSort(this IEnumerable<string> list)
     {
+
         int maxLen = list.Select(s => s.Length).Max();
 
         return list.Select(s => new

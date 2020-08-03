@@ -44,6 +44,7 @@ public class Gameplay : MonoBehaviour
     bool pauseBeforeRest;
 
     List<GameObject> possibleTaskShapes;
+    List<GameObject> otherTaskShapes;
 
     float destroyedObjXPosition;
 
@@ -165,20 +166,23 @@ public class Gameplay : MonoBehaviour
         return distinctShapes;
     }
 
-    private List<GameObject> ReturnPossibleTaskShapes(int similarVar)
+    private Tuple<List<GameObject>, List<GameObject>> ReturnPossibleTaskShapes(int similarVar)
     {
-        List<GameObject> taskShapes = new List<GameObject>();
+        List<GameObject> possibleTaskShapes = new List<GameObject>();
+        List<GameObject> otherTaskShapes = new List<GameObject>();
 
-        if (similarVar == 2) //One shapes shares either color or shape with target shape
+        if (similarVar == 2) //Shapes share either color or shape with target shape
         {
-            taskShapes = ReturnSimilarShapes();
+            possibleTaskShapes = ReturnSimilarShapes();
+            otherTaskShapes = ReturnDistinctShapes();
         }
         else if(similarVar == 1 || similarVar == 0) //Target shape does not share shape or color
         {
-            taskShapes = ReturnDistinctShapes();
+            possibleTaskShapes = ReturnDistinctShapes();
+            otherTaskShapes = ReturnSimilarShapes();
         }
 
-        return taskShapes;
+        return Tuple.Create(possibleTaskShapes, otherTaskShapes);
     }
 
     public bool IsTargetShapePopulated()
@@ -210,7 +214,7 @@ public class Gameplay : MonoBehaviour
 
         paramsIndex = 0;
 
-        parameters = InitGame.Instance().GetParams(InitGame.Instance().GetEnteredKey);
+        parameters = InitGame.Instance().GetParams();
     }
 
     private void SetTaskParams()
@@ -275,6 +279,53 @@ public class Gameplay : MonoBehaviour
 
 
     #region Start Gameplay
+    private GameObject ChooseShapeToPopulate()
+    {
+        GameObject chosenShape = null;
+        string key = InitGame.Instance().GetEnteredKey;
+
+        float threshold = 0;
+        int randomNum;
+
+        if (key[0] == 'E' || key[0] == 'F')
+        {
+            if (currentShapeVar == 2) //HIGH VISUAL LOAD
+            {
+                if (key[0] == 'E')
+                    threshold = 0.2f;
+                else
+                    threshold = 0;
+            }
+            else if (currentShapeVar == 1 || currentShapeVar == 0) //LOW VISUAL LOAD
+            {
+                if (key[0] == 'E')
+                    threshold = 0.2f;
+                else
+                    threshold = 0.4f;
+            }
+
+            float randomValue = UnityEngine.Random.value;
+            if(randomValue < threshold)
+            {
+                randomNum = UnityEngine.Random.Range(0, otherTaskShapes.Count);
+                chosenShape = otherTaskShapes[randomNum];
+            }
+            else
+            {
+                randomNum = UnityEngine.Random.Range(0, possibleTaskShapes.Count);
+                chosenShape = possibleTaskShapes[randomNum];
+            }
+
+        }
+        else
+        {
+            randomNum = UnityEngine.Random.Range(0, possibleTaskShapes.Count);
+            chosenShape = possibleTaskShapes[randomNum];
+        }
+
+        return chosenShape;
+    }
+
     private void StartTask()
     {
         if (currentNumBins == 4)
@@ -293,14 +344,15 @@ public class Gameplay : MonoBehaviour
             tempObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
         }
 
-        possibleTaskShapes = ReturnPossibleTaskShapes(currentShapeVar);
+        Tuple<List<GameObject>, List<GameObject>> tuple = ReturnPossibleTaskShapes(currentShapeVar);
+        possibleTaskShapes = tuple.Item1;
+        otherTaskShapes = tuple.Item2;
+
         List<GameObject> trialShapes = new List<GameObject>();
 
-        int randomNum;
         for(int i = 0; i < numShapes - 1; i++)
         {
-            randomNum = UnityEngine.Random.Range(0, possibleTaskShapes.Count);
-            trialShapes.Add(possibleTaskShapes[randomNum]);
+            trialShapes.Add(ChooseShapeToPopulate());
         }
         trialShapes.Add(targetShape);
         trialShapes.Shuffle();

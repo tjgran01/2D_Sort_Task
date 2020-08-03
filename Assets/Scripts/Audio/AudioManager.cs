@@ -7,10 +7,6 @@ using UnityEngine;
 
 public class AudioManager: MonoBehaviour
 {
-    [SerializeField] int rightEarRate; //in seconds
-    [SerializeField] int leftEarRate; //in seconds
-    [SerializeField] int targetCallsignAmount;
-
     private static AudioManager instance = null;
     public static AudioManager Instance()
     {
@@ -20,6 +16,8 @@ public class AudioManager: MonoBehaviour
         }
         return instance;
     }
+
+    [SerializeField] int targetCallsignAmount;
 
 
     Dictionary<AudioClipName, AudioClip> audioClips;
@@ -31,6 +29,9 @@ public class AudioManager: MonoBehaviour
     List<AudioClipName> leftEarSounds;
 
     List<AudioClipName> nonTargetCallsigns;
+
+    int rightEarRate; //in seconds
+    int leftEarRate; //in seconds
 
     int numRightEarSounds;
     int numLeftEarSounds;
@@ -80,6 +81,9 @@ public class AudioManager: MonoBehaviour
             {"7", AudioClipName.seven },
             {"8", AudioClipName.eight }
         };
+
+        rightEarRate = 15;
+        leftEarRate = 5;
 
         rightEarTimer = gameObject.AddComponent<Timer>();
         rightEarTimer.AddTimerFinishedListener(HandleRightEarTimerFinishedEvent);
@@ -240,11 +244,9 @@ public class AudioManager: MonoBehaviour
     #endregion
 
 
-    #region Getters
-    //public int GetRightEarRate { get { return rightEarRate; } }
-    //public int GetLeftEarRate { get { return leftEarRate; } }
-    //public List<AudioClipName> GetRightEarSounds { get { return rightEarSounds; } }
-    //public List<AudioClipName> GeLeftEarSounds { get { return leftEarSounds; } }
+    #region Setter
+    public int SetRightEarRate { set { rightEarRate = value; } }
+    public int SetLeftEarRate { set { leftEarRate = value; } }
     #endregion
 
 }

@@ -196,9 +196,9 @@ public class InitGame : MonoBehaviour
 
 
     #region Getters
-    public List<string[]> GetParams(string key)
+    public List<string[]> GetParams()
     {
-        return parameters[key];
+        return parameters[enteredKey];
     }
 
     public List<string> GetInstructions { get { return instructions; } }
@@ -213,12 +213,35 @@ public class InitGame : MonoBehaviour
     public void SetEnteredKey(string key)
     {
         enteredKey = key;
-        if (enteredKey[0] == 'A')
+        if (enteredKey[0] == 'A' || enteredKey[0] == 'C' || enteredKey[0] == 'D' || enteredKey[0] == 'E' || enteredKey[0] == 'F')
+        {
             numShapes = 6;
+            AudioManager.Instance().SetRightEarRate = 15;
+            AudioManager.Instance().SetLeftEarRate = 5;
+
+            if(enteredKey[0] == 'C')
+            {
+                AudioManager.Instance().SetRightEarRate = 15;
+                AudioManager.Instance().SetLeftEarRate = 5;
+            }
+            else if(enteredKey[0] == 'D')
+            {
+                AudioManager.Instance().SetRightEarRate = 10;
+                AudioManager.Instance().SetLeftEarRate = 3;
+            }
+        }
         else if (enteredKey[0] == 'B')
+        {
             numShapes = 10;
+            AudioManager.Instance().SetRightEarRate = 15;
+            AudioManager.Instance().SetLeftEarRate = 5;
+        }
         else
+        {
             numShapes = 3;
+            AudioManager.Instance().SetRightEarRate = 15;
+            AudioManager.Instance().SetLeftEarRate = 5;
+        }
     }
     #endregion
 }

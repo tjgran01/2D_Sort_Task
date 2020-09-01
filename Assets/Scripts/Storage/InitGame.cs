@@ -122,10 +122,6 @@ public class InitGame : MonoBehaviour
             { "Hi0jy", "config_pilot_3_6" },
             { "Hn25t", "config_pilot_3_7" },
 
-
-
-
-
             { "xxxxx", "8" }, // for testing.
             { "yyyyy", "9" }
         };
@@ -160,25 +156,52 @@ public class InitGame : MonoBehaviour
         paramsReady = false;
         parameters = new Dictionary<string, List<string[]>>();
 
-        
         foreach(KeyValuePair<string, string> pair in keyMapper)
         {
-            Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", $"Data/config{pair.Value}.csv" } };
-            StartCoroutine(PHPCommunicator.Instance().PostRequest("ReadFile.php", fields, returnedText =>
+            string csvPath = @".\Data\config" + pair[1]
+            if (true)
             {
-                List<string> configText = returnedText.TrimEnd('\n').Split('\n').ToList();
-                List<string[]> temp = new List<string[]>();
-                for (int i = 1; i < configText.Count; i++) //ignoring header
+                using (var reader = new StreamReader(csvPath))
                 {
-                    temp.Add(configText[i].Split(','));
+                    bool isHeader = true;
+                    while (!reader.EndOfStream)
+                    {
+                        //Ignore header
+                        if (isHeader)
+                        {
+                            var line = reader.ReadLine();
+                            var values = line.Split(',');
+                            isHeader = false;
+                        }
+                        else
+                        {
+                            var line = reader.ReadLine();
+                            var values = line.Split(',');
+                            parameters.Add(pair.Key, values);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", $"Data/config{pair.Value}.csv" } };
+                StartCoroutine(PHPCommunicator.Instance().PostRequest("ReadFile.php", fields, returnedText =>
+                {
 
-                if(temp != new List<string[]>())
+                    List<string> configText = returnedText.TrimEnd('\n').Split('\n').ToList();
+                    List<string[]> temp = new List<string[]>();
+                    for (int i = 1; i < configText.Count; i++) //ignoring header
                 {
-                    parameters.Add(pair.Key, temp);
-                    numConfigsLoaded++;
-                }
-            }));
+                        temp.Add(configText[i].Split(','));
+                    }
+
+                    if (temp != new List<string[]>())
+                    {
+                        parameters.Add(pair.Key, temp);
+                        numConfigsLoaded++;
+                    }
+                }));
+            }
         }
     }
 

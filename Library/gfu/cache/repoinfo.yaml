@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2020-09-01T09:41:30.993-06:00
-  initializedAtString: 2020-09-01T09:41:30.993-06:00
+  lastUpdatedAtString: 2020-09-01T11:43:06.081-06:00
+  initializedAtString: 2020-09-01T11:43:06.081-06:00
   currentGitRemote:
     name: origin
     url: https://github.com/tjgran01/2D_Sort_Task.git
@@ -24,14 +24,14 @@ MonoBehaviour:
     function: 0
     token: 
   currentGitBranch:
-    name: master
-    tracking: origin/master
+    name: back_to_desktop
+    tracking: origin/back_to_desktop
   currentConfigBranch:
-    name: master
+    name: back_to_desktop
     remote:
       name: origin
       url: https://github.com/tjgran01/2D_Sort_Task.git
-    trackingBranch: master
+    trackingBranch: back_to_desktop
   currentConfigRemote:
     name: origin
     url: https://github.com/tjgran01/2D_Sort_Task.git

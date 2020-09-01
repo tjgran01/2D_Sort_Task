@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1666186674, guid: 68c7e4565cde54155bb78d8e935f1ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cacheType: 2
+  lastUpdatedAtString: 2020-09-01T11:59:48.503-06:00
+  initializedAtString: 2020-09-01T11:59:48.488-06:00
+  localBranches:
+  - name: back_to_desktop
+    tracking: origin/back_to_desktop
+  - name: master
+    tracking: origin/master
+  remoteBranches:
+  - name: origin/back_to_desktop
+    tracking: '[None]'
+  - name: origin/HEAD
+    tracking: '[None]'
+  - name: origin/master
+    tracking: '[None]'
+  remotes:
+  - name: origin
+    url: https://github.com/tjgran01/2D_Sort_Task.git
+    login: 
+    user: 
+    host: 
+    function: 0
+    token: 
+  localConfigBranches:
+    keys:
+    - back_to_desktop
+    - master
+    values:
+    - name: back_to_desktop
+      remote:
+        name: origin
+        url: https://github.com/tjgran01/2D_Sort_Task.git
+      trackingBranch: back_to_desktop
+    - name: master
+      remote:
+        name: origin
+        url: https://github.com/tjgran01/2D_Sort_Task.git
+      trackingBranch: master
+  remoteConfigBranches:
+    keys:
+    - origin
+    subKeys:
+    - Values:
+      - back_to_desktop
+      - HEAD
+      - master
+    subKeyValues:
+    - Values:
+      - name: back_to_desktop
+        remote:
+          name: origin
+          url: https://github.com/tjgran01/2D_Sort_Task.git
+        trackingBranch: 
+      - name: HEAD
+        remote:
+          name: origin
+          url: https://github.com/tjgran01/2D_Sort_Task.git
+        trackingBranch: 
+      - name: master
+        remote:
+          name: origin
+          url: https://github.com/tjgran01/2D_Sort_Task.git
+        trackingBranch: 
+  configRemotes:
+    keys:
+    - origin
+    values:
+    - name: origin
+      url: https://github.com/tjgran01/2D_Sort_Task.git

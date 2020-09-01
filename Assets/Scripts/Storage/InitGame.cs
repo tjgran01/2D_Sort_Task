@@ -104,7 +104,7 @@ public class InitGame : MonoBehaviour
             { "Fi0jy", "6" },
             { "Fn25t", "7" },
 
-            { "G5ysr", "config_all_cond_0" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
+            { "G5ysr", "10" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
             { "Go6j1", "config_all_cond_1" },
             { "G27xf", "config_all_cond_2" },
             { "Gr2yj", "config_all_cond_3" },
@@ -113,7 +113,7 @@ public class InitGame : MonoBehaviour
             { "Gi0jy", "config_all_cond_6" },
             { "Gn25t", "config_all_cond_7" },
 
-            { "H5ysr", "config_pilot_3_0" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
+            { "H5ysr", "11" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
             { "Ho6j1", "config_pilot_3_1" },
             { "H27xf", "config_pilot_3_2" },
             { "Hr2yj", "config_pilot_3_3" },

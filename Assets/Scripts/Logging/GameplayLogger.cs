@@ -24,6 +24,8 @@ public class GameplayLogger : MonoBehaviour
 
     double timeLeft;
 
+    DateTime epochStart;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,6 +46,7 @@ public class GameplayLogger : MonoBehaviour
     {
         fileCreated = false;
         timeLeft = 0;
+        DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
     }
 
     public static GameplayLogger Instance()
@@ -159,6 +162,24 @@ public class GameplayLogger : MonoBehaviour
         string cleanedShapeName = shapeName.Remove(shapeName.IndexOf("(", StringComparison.Ordinal));
         string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
         SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp, blockCondition);
+    }
+
+    public void HandleSecondaryAudioPromptEvent(int bin, bool isTargetAudio)
+    {
+        if (isTargetAudio)
+        {
+            string shapeAppend = "TARGET AUDIO PROMPT";
+            string shapeName = "Any";
+            string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
+            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition);
+        }
+        else
+        {
+            string shapeAppend = "DISTRACTOR AUDIO PROMPT";
+            string shapeName = "Any";
+            string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
+            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition);
+        }
     }
 
     private void HandleTargetShapeEvent(string shapeName)

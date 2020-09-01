@@ -8,6 +8,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     private static AudioManager instance = null;
+    private static GameplayLogger theGameLogger;
     private int randomAudioPromptBin;
     public static AudioManager Instance()
     {
@@ -72,6 +73,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddInitializeTaskListener(HandleInitializeTaskEvent);
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
         EventManager.AddTaskEndedListener(HandleTaskEndedEvent);
+
+        theGameLogger = FindObjectOfType<GameplayLogger>().GetComponent<GameplayLogger>();
 
         audioClips = new Dictionary<AudioClipName, AudioClip>();
         InitializeAudio();
@@ -234,6 +237,7 @@ public class AudioManager : MonoBehaviour
     IEnumerator PlayPrompt()
     {
         AudioClip audio = Play(rightEarSounds[rightEarIndex]);
+        Debug.Log(audio.name);
         List<GameObject> bins = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bin")).Where(x => !x.gameObject.GetComponent<Bin>().IsGreyedOut).ToList();
         randomAudioPromptBin = UnityEngine.Random.Range(0, bins.Count);
         randomAudioPromptBinName = bins[randomAudioPromptBin].name;
@@ -241,6 +245,15 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(audio.length);
 
         Play(binSounds[bins[randomAudioPromptBin].name]);
+        if (audio.name == "attention_bravo_right")
+        {
+            theGameLogger.HandleSecondaryAudioPromptEvent(randomAudioPromptBin, true);
+        }
+        else
+        {
+            theGameLogger.HandleSecondaryAudioPromptEvent(randomAudioPromptBin, false);
+        }
+        
 
         rightEarIndex++;
 

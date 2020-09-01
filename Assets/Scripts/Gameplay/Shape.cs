@@ -11,6 +11,8 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     private float distance;
 
     private List<GameObject> bins;
+    private BoxCollider2D shapeBounds;
+    private Vector3 boundsSize, boundsMin, boundsMax;
 
     private Collider2D shapeCollider;
     private List<Collider2D> binsColliders;
@@ -21,13 +23,23 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     BinChosenEvent binChosenEvent = new BinChosenEvent();
     DraggingShapeEvent draggingShapeEvent = new DraggingShapeEvent();
 
+    [SerializeField] GameObject clickedHolder;
+
     Vector3 defaultPosition;
     RectTransform rt;
 
     double timeOfDisplay;
+    bool screenStatus;
+
 
     void Start()
     {
+        screenStatus = Screen.fullScreen;
+        shapeBounds = GameObject.FindGameObjectWithTag("ShapeBounds").GetComponent<BoxCollider2D>();
+        boundsSize = shapeBounds.bounds.center;
+        boundsMin = shapeBounds.bounds.min;
+        boundsMax = shapeBounds.bounds.max;
+
         DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
         timeOfDisplay = (DateTime.UtcNow - epochStart).TotalSeconds;
 
@@ -41,14 +53,48 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
     }
 
 
+    void Update()
+    {
+        if (rt.position != defaultPosition)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                rt.position = defaultPosition;
+            }
+        }
+
+        if (Screen.fullScreen != screenStatus)
+        {
+            ResetDefaultPoses();
+            screenStatus = Screen.fullScreen;
+        }
+    }
+
+
     public void OnDrag(PointerEventData eventData)
     {
         rt.position = Input.mousePosition;
+        rt.transform.SetAsLastSibling();
 
         if(!dragging)
             draggingShapeEvent.Invoke(true);
 
+        if (!Screen.fullScreen)
+        {
+            if (rt.position.x > boundsMax.x || rt.position.x < boundsMin.x || rt.position.y > boundsMax.y || rt.position.y < boundsMin.y)
+            {
+                dragging = false;
+                rt.position = defaultPosition;
+            }
+        }
+
         dragging = true;
+    }
+
+    void ResetDefaultPoses()
+    {
+        defaultPosition = rt.position;
+        rt.position = defaultPosition;
     }
 
     public void OnDrop(PointerEventData eventData)

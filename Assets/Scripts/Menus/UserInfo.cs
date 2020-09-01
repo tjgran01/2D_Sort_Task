@@ -19,10 +19,12 @@ public class UserInfo : MonoBehaviour
     void Start()
     {
         EventManager.AddUserIdInvoker(this);
-
         userIdText = userIdField.GetComponent<TMP_InputField>();
         keyText = keyField.GetComponent<TMP_InputField>();
         errorText = error.GetComponent<TMP_Text>();
+
+        userIdText.characterLimit = 6;
+        keyText.characterLimit = 5;
     }
 
 
@@ -59,6 +61,12 @@ public class UserInfo : MonoBehaviour
     // Only let letters and numbers through
     private bool CheckIfTextValid(string theText)
     {
+        if (theText.Length != 6)
+        {
+            errorText.text = "ID Key must be 6 characters long";
+            return false;
+        }
+
         foreach (char c in theText)
         {
             if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9'))

@@ -5,9 +5,10 @@ using System.Linq;
 using UnityEngine;
 
 
-public class AudioManager: MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     private static AudioManager instance = null;
+    private int randomAudioPromptBin;
     public static AudioManager Instance()
     {
         if (instance == null)
@@ -39,10 +40,23 @@ public class AudioManager: MonoBehaviour
     int rightEarIndex;
     int leftEarIndex;
 
+    string randomAudioPromptBinName;
+
     Timer rightEarTimer;
     Timer leftEarTimer;
 
     AudioSource audioSource;
+
+    Dictionary<string, int> stringIntDict = new Dictionary<string, int>() {
+                                                                            { "1", 0 },
+                                                                            { "2", 1 },
+                                                                            { "3", 2 },
+                                                                            { "4", 3 },
+                                                                            { "5", 4 },
+                                                                            { "6", 5 },
+                                                                            { "7", 6 },
+                                                                            { "8", 7  },
+                                                                          };
 
     private void Awake()
     {
@@ -221,11 +235,12 @@ public class AudioManager: MonoBehaviour
     {
         AudioClip audio = Play(rightEarSounds[rightEarIndex]);
         List<GameObject> bins = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bin")).Where(x => !x.gameObject.GetComponent<Bin>().IsGreyedOut).ToList();
-        int randomNum = UnityEngine.Random.Range(0, bins.Count);
+        randomAudioPromptBin = UnityEngine.Random.Range(0, bins.Count);
+        randomAudioPromptBinName = bins[randomAudioPromptBin].name;
 
         yield return new WaitForSecondsRealtime(audio.length);
 
-        Play(binSounds[bins[randomNum].name]);
+        Play(binSounds[bins[randomAudioPromptBin].name]);
 
         rightEarIndex++;
 
@@ -249,4 +264,10 @@ public class AudioManager: MonoBehaviour
     public int SetLeftEarRate { set { leftEarRate = value; } }
     #endregion
 
+    #region Getters
+    public int GetRandomAudioPromptBin()
+    {
+        return this.stringIntDict[randomAudioPromptBinName];
+    }
+    #endregion
 }

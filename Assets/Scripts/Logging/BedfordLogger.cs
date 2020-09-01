@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
+using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -24,16 +25,20 @@ public class BedfordLogger : MonoBehaviour
 
     private bool CheckBedfordValue(string theValue)
     {
-        if (theValue == "10") { return true; }
-        foreach (char c in theValue)
+        try
         {
-            if ((c < '1' || c > '9'))
+            int result = Int32.Parse(theValue);
+            if (result <= 10 && result >= 1)
             {
-                errorText.SetActive(true);
-                return false;
+                return true;
             }
+            return false;
         }
-        return true;
+        catch (FormatException)
+        {
+            errorText.SetActive(true);
+            return false;
+        }
     }
 
 

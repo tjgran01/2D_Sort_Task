@@ -68,8 +68,8 @@ public class InitGame : MonoBehaviour
             { "Bi0jy", "6" },
             { "Bn25t", "7" },
 
-            { "C5ysr", "0" },  //(row 1 order in table below /w 6 shapes)
-            { "Co6j1", "1" },  //(row 2 order in table below / w 6 shapes)
+            { "C5ysr", "0" },  //(row 1 order in table SetRightEarRate = 15; SetLeftEarRate = 5;
+            { "Co6j1", "1" },  //(row 2 order in table SetRightEarRate = 10; SetLeftEarRate = 3;
             { "C27xf", "2" },
             { "Cr2yj", "3" },
             { "C8u8t", "4" },
@@ -86,8 +86,8 @@ public class InitGame : MonoBehaviour
             { "Di0jy", "6" },
             { "Dn25t", "7" },
 
-            { "E5ysr", "0" },  //(row 1 order in table below /w 6 shapes)
-            { "Eo6j1", "1" },  //(row 2 order in table below / w 6 shapes)
+            { "E5ysr", "0" },  //(row 1 order in table below / w 20 / 80 Simalarity Coeffs)
+            { "Eo6j1", "1" },
             { "E27xf", "2" },
             { "Er2yj", "3" },
             { "E8u8t", "4" },
@@ -95,14 +95,25 @@ public class InitGame : MonoBehaviour
             { "Ei0jy", "6" },
             { "En25t", "7" },
 
-            { "F5ysr", "0" },  //(row 1 order in table below / w 10 shapes)
-            { "Fo6j1", "1" },  //(row 2 order in table below / w 10 shapes)
+            { "F5ysr", "0" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
+            { "Fo6j1", "1" },
             { "F27xf", "2" },
             { "Fr2yj", "3" },
             { "F8u8t", "4" },
             { "Fcmwo", "5" },
             { "Fi0jy", "6" },
             { "Fn25t", "7" },
+
+            { "G5ysr", "0" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
+            { "Go6j1", "1" },
+            { "G27xf", "2" },
+            { "Gr2yj", "3" },
+            { "G8u8t", "4" },
+            { "Gcmwo", "5" },
+            { "Gi0jy", "6" },
+            { "Gn25t", "7" },
+
+
 
             { "xxxxx", "8" }, // for testing.
             { "yyyyy", "9" }
@@ -235,6 +246,12 @@ public class InitGame : MonoBehaviour
             numShapes = 10;
             AudioManager.Instance().SetRightEarRate = 15;
             AudioManager.Instance().SetLeftEarRate = 5;
+        }
+        else if (enteredKey[0] == 'G')
+        {
+            numShapes = 10;
+            AudioManager.Instance().SetRightEarRate = 10;
+            AudioManager.Instance().SetLeftEarRate = 3;
         }
         else
         {

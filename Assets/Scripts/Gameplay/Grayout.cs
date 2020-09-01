@@ -6,14 +6,19 @@ using UnityEngine.UI;
 
 public class Grayout : MonoBehaviour
 {
-    [SerializeField] float grayoutTimeRate;
+    [SerializeField] float grayoutTimeRate = 2;
     [SerializeField] bool timeConsidered;
     [SerializeField] bool mixGreyoutBehavior;
+    [SerializeField] AudioManager theAudMan;
 
     GameObject[] bins;
     int binsCount;
     int randomBinNum;
     string binToGrayout;
+
+    private List<string> currentlyGreyedBins = new List<string>();
+
+    bool isGreyOutValid = false;
 
     bool taskStarted;
     bool grayout;
@@ -30,6 +35,7 @@ public class Grayout : MonoBehaviour
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
         EventManager.AddTaskEndedListener(HandleTaskEndedEvent);
         EventManager.AddBinChosenListener(HandleBinChosenEvent);
+        theAudMan = FindObjectOfType<AudioManager>();
 
         grayout = false;
 
@@ -69,7 +75,14 @@ public class Grayout : MonoBehaviour
             {
                 while (binToGrayout == lastBinChosen)
                 {
-                    randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                    while (true)
+                    {
+                        randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                        if (randomBinNum != theAudMan.GetComponent<AudioManager>().GetRandomAudioPromptBin())
+                        {
+                            break;
+                        }
+                    }
                     binToGrayout = randomBinNum.ToString();
                 }
             }
@@ -80,11 +93,13 @@ public class Grayout : MonoBehaviour
                 {
                     bin.GetComponent<Image>().color = Color.black;
                     bin.GetComponent<Bin>().SetGreyedOut = true;
+                    currentlyGreyedBins.Add(bin.name);
                 }
                 else
                 {
                     bin.GetComponent<Image>().color = Color.white;
                     bin.GetComponent<Bin>().SetGreyedOut = false;
+                    currentlyGreyedBins.Remove(bin.name);
                 }
             }
 
@@ -95,12 +110,26 @@ public class Grayout : MonoBehaviour
 
     void GreyOutTimelimit()
     {
+        Debug.Log("GreyOutTimeLimit");
         binToGrayout = lastBinChosen;
         if (binsCount == 8)
         {
             while (binToGrayout == lastBinChosen)
             {
-                randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                while (true)
+                {
+                    randomBinNum = UnityEngine.Random.Range(1, binsCount + 1);
+                    if (randomBinNum != theAudMan.GetComponent<AudioManager>().GetRandomAudioPromptBin())
+                    {
+                        if (randomBinNum.ToString() != lastBinChosen)
+                        {
+                            Debug.Log(randomBinNum);
+                            Debug.Log(theAudMan.GetComponent<AudioManager>().GetRandomAudioPromptBin());
+                            break;
+                        }
+                    }
+                }
+                
                 binToGrayout = randomBinNum.ToString();
             }
         }
@@ -111,11 +140,13 @@ public class Grayout : MonoBehaviour
             {
                 bin.GetComponent<Image>().color = Color.black;
                 bin.GetComponent<Bin>().SetGreyedOut = true;
+                currentlyGreyedBins.Add(bin.name);
             }
             else
             {
                 bin.GetComponent<Image>().color = Color.white;
                 bin.GetComponent<Bin>().SetGreyedOut = false;
+                currentlyGreyedBins.Remove(bin.name);
             }
         }
     }

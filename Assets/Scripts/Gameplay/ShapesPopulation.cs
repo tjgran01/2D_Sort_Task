@@ -88,12 +88,15 @@ public class ShapesPopulation : MonoBehaviour
 
     private void HandleTimerFinishedEvent()
     {
-        RePopulateOneShape(false);
+        if (!draggingShape)
+        {
+            RePopulateOneShape(false);
+        }
     }
 
     private void HandleNoTargetShapeTimerEvent()
     {
-        if (!gameplayObj.IsTargetShapePopulated())
+        if (!gameplayObj.IsTargetShapePopulated() && !draggingShape)
         {
             RePopulateOneShape(true);
         }

@@ -110,9 +110,8 @@ public class Grayout : MonoBehaviour
 
     void GreyOutTimelimit()
     {
-        Debug.Log("GreyOutTimeLimit");
         binToGrayout = lastBinChosen;
-        if (binsCount == 8)
+        if (binsCount == 8 && taskStarted)
         {
             while (binToGrayout == lastBinChosen)
             {
@@ -136,17 +135,20 @@ public class Grayout : MonoBehaviour
 
         foreach (GameObject bin in bins)
         {
-            if (bin.name == binToGrayout || bin.name == lastBinChosen)
+            if (taskStarted)
             {
-                bin.GetComponent<Image>().color = Color.black;
-                bin.GetComponent<Bin>().SetGreyedOut = true;
-                currentlyGreyedBins.Add(bin.name);
-            }
-            else
-            {
-                bin.GetComponent<Image>().color = Color.white;
-                bin.GetComponent<Bin>().SetGreyedOut = false;
-                currentlyGreyedBins.Remove(bin.name);
+                if (bin.name == binToGrayout || bin.name == lastBinChosen)
+                {
+                    bin.GetComponent<Image>().color = Color.black;
+                    bin.GetComponent<Bin>().SetGreyedOut = true;
+                    currentlyGreyedBins.Add(bin.name);
+                }
+                else
+                {
+                    bin.GetComponent<Image>().color = Color.white;
+                    bin.GetComponent<Bin>().SetGreyedOut = false;
+                    currentlyGreyedBins.Remove(bin.name);
+                }
             }
         }
     }

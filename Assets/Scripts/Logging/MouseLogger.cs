@@ -24,6 +24,9 @@ public class MouseLogger : MonoBehaviour
 
     private void Awake()
     {
+        filePath = GameplayLogger.Instance().GetMouseFilePath;
+        Debug.Log(filePath);
+
         if (instance == null)
         {
             instance = this;
@@ -90,19 +93,18 @@ public class MouseLogger : MonoBehaviour
         for (int i = 0; i < length; i++)
             sb.AppendLine(string.Join(delimeter, output[i]));
 
-
-        Dictionary<string, string> fields = new Dictionary<string, string>()
-        {
-            { "path", filePath },
-            { "data", sb.ToString() }
-        };
-        StartCoroutine(PHPCommunicator.Instance().PostRequest("WriteToFile.php", fields, _ => { }));
+        StreamWriter outStream = File.CreateText(filePath);
+        outStream.WriteLine(sb);
+        outStream.Close();
     }
 
     private void HandleSaveDataTimerFinished()
     {
         if (filePath != "")
+        {
+            Debug.Log("Saving mouse Data! to " + filePath);
             SaveToCSV();
+        }
 
         saveDataTimer.Duration = saveDataTimeRate;
         saveDataTimer.Run();

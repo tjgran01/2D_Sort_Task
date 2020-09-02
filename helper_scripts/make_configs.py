@@ -1,6 +1,6 @@
 import csv
 
-def main(repeats=1, orders_tag="pilot_3"):
+def main(repeats=1, orders_tag="pilot_2"):
 
     export_dir = "../configs/"
 
@@ -68,7 +68,7 @@ def main(repeats=1, orders_tag="pilot_3"):
 
 
     for indx, order in enumerate(orders):
-        fname = f"config_{orders_tag}_{indx}.csv"
+        fname = f"config{indx}.csv"
         print(len(order))
         print(len(conditions))
         condition_list = [conditions[i-1] for i in order]

@@ -18,8 +18,10 @@ public class GameplayLogger : MonoBehaviour
 
     List<string[]> rowData = new List<string[]>();
     string filePath = null;
+    string dir = null;
     string bedfordFilePath = null;
     string bedfordFilePathLast = null;
+    string newFileName = null;
     bool fileCreated;
 
     double timeLeft;
@@ -76,37 +78,32 @@ public class GameplayLogger : MonoBehaviour
         return row;
     }
 
-    void SetFilePath(string dir)
+    void SetFilePath()
     {
-        Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", dir } };
-        StartCoroutine(PHPCommunicator.Instance().PostRequest("ReturnFileNames.php", fields, returnedText =>
+        dir = "Data/USER_" + userId;
+        string dirBed = dir + @"\bedford\";
+        string mouseDir = dir + @"\MouseMovement\";
+        Directory.CreateDirectory(dir);
+        Directory.CreateDirectory(dirBed);
+        Directory.CreateDirectory(mouseDir);
+
+
+        DirectoryInfo d = new DirectoryInfo(dir);
+        FileInfo[] files = d.GetFiles();
+
+        List<int> indices = new List<int>();
+        foreach (FileInfo f in files)
         {
-            List<string> files = returnedText.Split('\n').ToList().CustomSort().ToList();
+            int fileIndex = int.Parse(f.Name.Remove(f.Name.IndexOf(".", StringComparison.Ordinal)));
+            indices.Add(fileIndex);
+        }
 
-            List<int> indices = new List<int>();
-            foreach (string f in files)
-            {
-                try
-                {
-                    int fileIndex = int.Parse(f.Remove(f.IndexOf(".", StringComparison.Ordinal)));
-                    indices.Add(fileIndex);
-                }
-                catch { }
-            }
+        if (indices.Count == 0)
+            newFileName = "0.csv";
+        else
+            newFileName = (indices.Max() + 1).ToString() + ".csv";
 
-            string newFileName;
-            if (indices.Count == 0)
-                newFileName = "0.csv";
-            else
-                newFileName = (indices.Max() + 1).ToString() + ".csv";
-
-            filePath = dir + "/" + newFileName;
-
-            MouseLogger.Instance().SetUserId = userId;
-            MouseLogger.Instance().SetFilePath = $"Data/UserData/USER_{userId}/MouseMovement/" + newFileName;
-            bedfordFilePath = $"Data/UserData/USER_{userId}/bedford.csv";
-            // bedfordFilePath = $"Data/UserData/USER_{userId}/bedfordLast.csv";
-        }));
+        this.filePath = dir + "/" + newFileName;
     }
 
     void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp, string blockCondition)
@@ -140,7 +137,10 @@ public class GameplayLogger : MonoBehaviour
             { "path", filePath },
             { "data", sb.ToString() }
         };
-        StartCoroutine(PHPCommunicator.Instance().PostRequest("WriteToFile.php", fields, _ => { }));
+
+        StreamWriter outStream = File.CreateText(filePath);
+        outStream.WriteLine(sb);
+        outStream.Close();
     }
     #endregion
 
@@ -197,7 +197,8 @@ public class GameplayLogger : MonoBehaviour
     private void HandleUserIdEvent(string id)
     {
         userId = id;
-        SetFilePath($"Data/UserData/USER_{userId}/Gameplay");
+        SetFilePath();
+        Debug.Log("File Path Set");
     }
 
     public void HandleElapsedTime(double secondsLeft)
@@ -208,6 +209,8 @@ public class GameplayLogger : MonoBehaviour
 
 
     #region Getters
-    public string GetBedfordFilePath { get { return bedfordFilePath; } }
+    public string GetBedfordFilePath { get { return dir + @"\bedford\" + newFileName; } }
+
+    public string GetMouseFilePath { get { return dir + @"\MouseMovement\" + newFileName; } }
     #endregion
 }

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Linq;
 using System.Text;
-using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +19,8 @@ public class BedfordLogger : MonoBehaviour
     void Awake()
     {
         filePath = GameplayLogger.Instance().GetBedfordFilePath;
+
+        
         if (SceneManager.GetActiveScene().name == "Gameplay")
         {
             errorText.SetActive(false);
@@ -93,13 +97,8 @@ public class BedfordLogger : MonoBehaviour
         for (int i = 0; i < length; i++)
             sb.AppendLine(string.Join(delimeter, output[i]));
 
-
-        Dictionary<string, string> fields = new Dictionary<string, string>()
-        {
-            { "path", filePath },
-            { "data", sb.ToString() }
-        };
-
-        StartCoroutine(PHPCommunicator.Instance().PostRequest("WriteToFile.php", fields, _ => { }));
+        StreamWriter outStream = File.CreateText(filePath);
+        outStream.WriteLine(sb);
+        outStream.Close();
     }
 }

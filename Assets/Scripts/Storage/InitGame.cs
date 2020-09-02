@@ -105,25 +105,10 @@ public class InitGame : MonoBehaviour
             { "Fn25t", "7" },
 
             { "G5ysr", "10" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
-            { "Go6j1", "config_all_cond_1" },
-            { "G27xf", "config_all_cond_2" },
-            { "Gr2yj", "config_all_cond_3" },
-            { "G8u8t", "config_all_cond_4" },
-            { "Gcmwo", "config_all_cond_5" },
-            { "Gi0jy", "config_all_cond_6" },
-            { "Gn25t", "config_all_cond_7" },
 
             { "H5ysr", "11" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
-            { "Ho6j1", "config_pilot_3_1" },
-            { "H27xf", "config_pilot_3_2" },
-            { "Hr2yj", "config_pilot_3_3" },
-            { "H8u8t", "config_pilot_3_4" },
-            { "Hcmwo", "config_pilot_3_5" },
-            { "Hi0jy", "config_pilot_3_6" },
-            { "Hn25t", "config_pilot_3_7" },
 
             { "xxxxx", "8" }, // for testing.
-            { "yyyyy", "9" }
         };
 
         numConfigsLoaded = 0;
@@ -155,53 +140,20 @@ public class InitGame : MonoBehaviour
     {
         paramsReady = false;
         parameters = new Dictionary<string, List<string[]>>();
-
-        foreach(KeyValuePair<string, string> pair in keyMapper)
+        List<string> values = new List<string>();
+        foreach (KeyValuePair<string, string> pair in keyMapper)
         {
-            string csvPath = @".\Data\config" + pair[1]
-            if (true)
+            string curDir = Directory.GetCurrentDirectory();
+            string csvPath = curDir + @"\configs\config" + pair.Value + ".csv";
+            List<string[]> temp = new List<string[]>();
+            string[] theRows = File.ReadAllLines(csvPath);
+            for (int i = 1; i < theRows.Length; i++) //ignoring header
             {
-                using (var reader = new StreamReader(csvPath))
-                {
-                    bool isHeader = true;
-                    while (!reader.EndOfStream)
-                    {
-                        //Ignore header
-                        if (isHeader)
-                        {
-                            var line = reader.ReadLine();
-                            var values = line.Split(',');
-                            isHeader = false;
-                        }
-                        else
-                        {
-                            var line = reader.ReadLine();
-                            var values = line.Split(',');
-                            parameters.Add(pair.Key, values);
-                        }
-                    }
-                }
+                temp.Add(theRows[i].Split(','));
             }
-            else
-            {
-                Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", $"Data/config{pair.Value}.csv" } };
-                StartCoroutine(PHPCommunicator.Instance().PostRequest("ReadFile.php", fields, returnedText =>
-                {
-
-                    List<string> configText = returnedText.TrimEnd('\n').Split('\n').ToList();
-                    List<string[]> temp = new List<string[]>();
-                    for (int i = 1; i < configText.Count; i++) //ignoring header
-                {
-                        temp.Add(configText[i].Split(','));
-                    }
-
-                    if (temp != new List<string[]>())
-                    {
-                        parameters.Add(pair.Key, temp);
-                        numConfigsLoaded++;
-                    }
-                }));
-            }
+            parameters.Add(pair.Key, temp);
+            numConfigsLoaded++;
+            
         }
     }
 

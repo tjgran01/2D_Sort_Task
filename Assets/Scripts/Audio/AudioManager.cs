@@ -280,7 +280,14 @@ public class AudioManager : MonoBehaviour
     #region Getters
     public int GetRandomAudioPromptBin()
     {
-        return this.stringIntDict[randomAudioPromptBinName];
+        try
+        {
+            return this.stringIntDict[randomAudioPromptBinName];
+        }
+        catch (ArgumentNullException)
+        {
+            return 0;
+        }
     }
     #endregion
 }

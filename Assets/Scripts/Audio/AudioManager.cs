@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Assets.LSL4Unity.Scripts;
 
 
 public class AudioManager : MonoBehaviour
@@ -18,6 +19,9 @@ public class AudioManager : MonoBehaviour
         }
         return instance;
     }
+
+    // Marking
+    private LSLMarkerStream marker;
 
     [SerializeField] int targetCallsignAmount;
 
@@ -70,6 +74,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        marker = GameObject.FindWithTag("lslObj").GetComponent<LSLMarkerStream>();
+
         EventManager.AddInitializeTaskListener(HandleInitializeTaskEvent);
         EventManager.AddStartTaskListener(HandleStartTaskEvent);
         EventManager.AddTaskEndedListener(HandleTaskEndedEvent);
@@ -237,7 +243,6 @@ public class AudioManager : MonoBehaviour
     IEnumerator PlayPrompt()
     {
         AudioClip audio = Play(rightEarSounds[rightEarIndex]);
-        Debug.Log(audio.name);
         List<GameObject> bins = new List<GameObject>(GameObject.FindGameObjectsWithTag("Bin")).Where(x => !x.gameObject.GetComponent<Bin>().IsGreyedOut).ToList();
         randomAudioPromptBin = UnityEngine.Random.Range(0, bins.Count);
         randomAudioPromptBinName = bins[randomAudioPromptBin].name;
@@ -248,10 +253,12 @@ public class AudioManager : MonoBehaviour
         if (audio.name == "attention_bravo_right")
         {
             theGameLogger.HandleSecondaryAudioPromptEvent(randomAudioPromptBin, true);
+            marker.Write("Target Audio Prompt Played", Time.time);
         }
         else
         {
             theGameLogger.HandleSecondaryAudioPromptEvent(randomAudioPromptBin, false);
+            marker.Write("Distractor Audio Prompt Played", Time.time);
         }
         
 
@@ -268,6 +275,8 @@ public class AudioManager : MonoBehaviour
 
         leftEarTimer.Duration = leftEarRate;
         leftEarTimer.Run();
+
+        marker.Write("Left Ear Prompt Played", Time.time);
     }
     #endregion
 

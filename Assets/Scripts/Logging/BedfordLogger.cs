@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BedfordLogger : MonoBehaviour
 {
     [SerializeField] GameObject bedfordInput;
     [SerializeField] GameObject errorText;
+    private Slider tlxSlider;
 
     string filePath;
     List<string[]> rowData = new List<string[]>();
@@ -19,6 +21,8 @@ public class BedfordLogger : MonoBehaviour
     void Awake()
     {
         filePath = GameplayLogger.Instance().GetBedfordFilePath;
+        tlxSlider = GameObject.FindWithTag("tlxSlider").GetComponent<Slider>();
+        Debug.Log(tlxSlider.value);
 
         
         if (SceneManager.GetActiveScene().name == "Gameplay")
@@ -32,7 +36,7 @@ public class BedfordLogger : MonoBehaviour
         try
         {
             int result = Int32.Parse(theValue);
-            if (result <= 10 && result >= 1)
+            if (result <= 21 && result >= 1)
             {
                 return true;
             }
@@ -54,7 +58,7 @@ public class BedfordLogger : MonoBehaviour
             {
                 SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
                 errorText.SetActive(false);
-                Camera.main.GetComponent<Gameplay>().SwitchCanvas(false);
+                Camera.main.GetComponent<Gameplay>().SwitchCanvas(false, true);
                 bedfordInput.GetComponent<TMP_InputField>().text = "";
             }
         }

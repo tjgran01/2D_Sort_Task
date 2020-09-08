@@ -4,9 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using System;
+using Assets.LSL4Unity.Scripts;
 
 public class GameplayUI : MonoBehaviour
 {
+
+    // Marking
+    private LSLMarkerStream marker;
+
     StartTaskEvent startTaskEvent = new StartTaskEvent();
 
     [SerializeField] GameObject timerObj;
@@ -52,6 +57,8 @@ public class GameplayUI : MonoBehaviour
         reminderTimer = gameObject.AddComponent<Timer>();
         reminderTimer.Duration = reminderDisplayTime;
         reminderTimer.AddTimerFinishedListener(HandleReminderTimerFinishedEvent);
+
+        marker = GameObject.FindWithTag("lslObj").GetComponent<LSLMarkerStream>();
     }
 
     void Update()
@@ -69,6 +76,7 @@ public class GameplayUI : MonoBehaviour
         targetShapeObj.SetActive(false);
         targetBinsObj.SetActive(false);
         reminderButton.SetActive(true);
+        marker.Write("Block Started", Time.time);
 
         startTaskEvent.Invoke();
     }

@@ -1,0 +1,6 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Left,Shape Display Timestamp,Bin Chosen Timestamp,Block Condition
+TrevTs,Green_Square,1 & 2,Green_Square,3,43.9998645782471,1599559044.33885,1599559045.47813,WM_Low_AL_High_VL_Low
+TrevTs,Green_Square,1 & 2,Any -- TARGET AUDIO PROMPT,1,30.9995245933533,63735184658.6535,0,WM_Low_AL_High_VL_Low
+TrevTs,Green_Square,1 & 2,Any -- DISTRACTOR AUDIO PROMPT,3,16.4993393421173,63735184672.9712,0,WM_Low_AL_High_VL_Low
+TrevTs,Green_Square,1 & 2,Any -- TARGET AUDIO PROMPT,2,2.48104500770569,63735184687.2926,0,WM_Low_AL_High_VL_Low
+

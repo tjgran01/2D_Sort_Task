@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Assets.LSL4Unity.Scripts;
 
 public class Gameplay : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Gameplay : MonoBehaviour
     [SerializeField] GameObject eightBinsObj;
     [SerializeField] GameObject mainCanvas;
     [SerializeField] GameObject bedfordCanvas;
+    [SerializeField] GameObject restCanvas;
+
+
+    // Marking
+    private LSLMarkerStream marker;
 
 
     TargetShapeEvent targetShapeEvent = new TargetShapeEvent();
@@ -24,7 +30,6 @@ public class Gameplay : MonoBehaviour
     bool finalBedford = false;
 
     ShapesPopulation shapesPopulationObj;
-
 
     /* Key: an index
      * Value: a collection of parameters (number of bins<int>, using similar variable "color of shape" <bool>) */
@@ -42,6 +47,7 @@ public class Gameplay : MonoBehaviour
     float taskDuration;
     float restDuration;
     bool pauseBeforeRest;
+    bool restOver;
 
     List<GameObject> possibleTaskShapes;
     List<GameObject> otherTaskShapes;
@@ -63,8 +69,9 @@ public class Gameplay : MonoBehaviour
 
         ui = gameObject.GetComponent<GameplayUI>();
         shapesPopulationObj = gameObject.GetComponent<ShapesPopulation>();
+        marker = GameObject.FindWithTag("lslObj").GetComponent<LSLMarkerStream>();
 
-        SwitchCanvas(false);
+        SwitchCanvas(false, false);
 
         numShapes = InitGame.Instance().GetNumShapes;
 
@@ -77,7 +84,7 @@ public class Gameplay : MonoBehaviour
         taskTimer.AddSecondsLeftListener(HandleTaskSecondsLeftEvent);
     }
 
-    public void SwitchCanvas(bool isBedfordActive)
+    public void SwitchCanvas(bool isBedfordActive, bool resting)
     {
         if (paramsIndex >= parameters.Count && !isBedfordActive && parameters.Count > 0)
         {
@@ -92,8 +99,32 @@ public class Gameplay : MonoBehaviour
                 return;
             }
         }
-        mainCanvas.SetActive(!isBedfordActive);
-        bedfordCanvas.SetActive(isBedfordActive);
+        if (resting)
+        {
+            mainCanvas.SetActive(false);
+            bedfordCanvas.SetActive(false);
+            restCanvas.SetActive(true);
+            StartCoroutine(RunRest());
+        }
+        else
+        {
+            mainCanvas.SetActive(!isBedfordActive);
+            bedfordCanvas.SetActive(isBedfordActive);
+            restCanvas.SetActive(false);
+        }
+    }
+
+    IEnumerator RunRest()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        marker.Write("Rest Started", Time.time);
+
+        yield return new WaitForSeconds(15);
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        marker.Write("Rest Ended", Time.time);
+        SwitchCanvas(false, false);
     }
 
 
@@ -455,6 +486,7 @@ public class Gameplay : MonoBehaviour
     private void HandleBinChosenEvent(GameObject shape, int bin, double displayTimestamp, double binChosenTimestamp)
     {
         ContinueTask(shape, false);
+        marker.Write("Bin Chosen", Time.time);
     }
 
     private void HandleStartTaskEvent()
@@ -470,7 +502,7 @@ public class Gameplay : MonoBehaviour
         shapesPopulationObj.SetTaskStarted = false;
 
         //Start the next task
-        SwitchCanvas(true);
+        SwitchCanvas(true, false);
         InitializeTask();
     }
 

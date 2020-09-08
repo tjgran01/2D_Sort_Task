@@ -1,6 +1,6 @@
 import csv
 
-def main(repeats=1, orders_tag="pilot_2"):
+def main(repeats=3, orders_tag="pilot_3"):
 
     export_dir = "../configs/"
 
@@ -31,7 +31,7 @@ def main(repeats=1, orders_tag="pilot_2"):
               "pause before rest (boolean)"]
 
     # Values for other parameters in config file.
-    extra_params = ["60", "60", "TRUE"]
+    extra_params = ["45", "45", "TRUE"]
 
     # Latin Sqaure of condition orders.
     if orders_tag == "pilot_2":

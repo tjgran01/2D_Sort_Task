@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Assets.LSL4Unity.Scripts;
 
 public class ShapesPopulation : MonoBehaviour
 {
-    [SerializeField] float populationRate; //seconds
+    float populationRate = 4; //seconds
     float noTargetShapeLimit = 6f;
 
     Gameplay gameplayObj;
@@ -16,6 +17,8 @@ public class ShapesPopulation : MonoBehaviour
 
     Timer timer;
     Timer noTargetShapeTimer;
+
+    private LSLMarkerStream marker;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class ShapesPopulation : MonoBehaviour
         noTargetShapeTimer = gameObject.AddComponent<Timer>();
         noTargetShapeTimer.AddTimerFinishedListener(HandleNoTargetShapeTimerEvent);
 
+        marker = GameObject.FindWithTag("lslObj").GetComponent<LSLMarkerStream>();
     }
 
     void Update()
@@ -65,7 +69,10 @@ public class ShapesPopulation : MonoBehaviour
         try
         {
             if (forceTargetShapePopulation)
+            {
                 gameplayObj.ContinueTask(shapes[randomNum], true);
+                marker.Write("Target Shape Displayed", Time.time);
+            }
             else
                 gameplayObj.ContinueTask(shapes[randomNum], false);
         }

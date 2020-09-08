@@ -108,7 +108,7 @@ public class InitGame : MonoBehaviour
 
             { "H5ysr", "11" },  //(row 1 order in table below / w 40 / 100 Simalarity Coeffs)
 
-            { "xxxxx", "8" }, // for testing.
+            { "xxxxx", "20" }, // for testing.
         };
 
         numConfigsLoaded = 0;
@@ -152,37 +152,31 @@ public class InitGame : MonoBehaviour
                 temp.Add(theRows[i].Split(','));
             }
             parameters.Add(pair.Key, temp);
-            numConfigsLoaded++;
-            
+            numConfigsLoaded++;      
         }
     }
 
     void ReadInstructions()
     {
         instructionsReady = false;
+        string curDir = Directory.GetCurrentDirectory();
+        string insturctionsPath = curDir + @"\Instructions\";
+        string[] instrFiles = Directory.GetFiles(insturctionsPath, "*.txt", SearchOption.TopDirectoryOnly);
 
-        Dictionary<string, string> fields = new Dictionary<string, string>() { { "path", "Data/Instructions" } };
-        StartCoroutine(PHPCommunicator.Instance().PostRequest("ReturnFileNames.php", fields, returnedText =>
+        foreach (string file in instrFiles)
         {
-            List<string> fileNames = returnedText.Split('\n').ToList().CustomSort().ToList();
-
-            foreach (string f in fileNames)
-            {
-                fields = new Dictionary<string, string>() { { "path", $"Data/Instructions/{f}" } };
-                StartCoroutine(PHPCommunicator.Instance().PostRequest("ReadFile.php", fields, instruction =>
+            string[] instrText = File.ReadAllLines(file);
+            string asString = string.Join("", instrText);
+            string modifiedIns = Regex.Replace(asString, @"(?<=\<).+?(?=\>)",
+            delegate (Match match)
                 {
-                    string modifiedIns = Regex.Replace(instruction, @"(?<=\<).+?(?=\>)",
-                    delegate (Match match)
-                    {
-                        string v = match.ToString();
-                        return "sprite name=" + v;
-                    });
-                    instructions.Add(modifiedIns);
-                }
-                ));
-            }
-            instructionsReady = true;
-        }));
+                    string v = match.ToString();
+                    return "sprite name=" + v;
+                });
+            instructions.Add(modifiedIns);
+        }
+
+        instructionsReady = true;
     }
 
     public bool IsValidKey(string key)

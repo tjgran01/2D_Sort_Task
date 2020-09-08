@@ -1341,8 +1341,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please enter the first SIX characters from your mTurk worker ID into the
-    ID box.
+  m_text: Please enter the first SIX characters from your User ID into the ID box.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1411,10 +1410,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 91.34281, w: 98.41301}
   m_textInfo:
     textComponent: {fileID: 1898849770}
-    characterCount: 80
+    characterCount: 72
     spriteCount: 0
-    spaceCount: 14
-    wordCount: 15
+    spaceCount: 13
+    wordCount: 14
     linkCount: 0
     lineCount: 3
     pageCount: 1

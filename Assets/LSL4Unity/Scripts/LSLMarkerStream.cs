@@ -87,7 +87,10 @@ namespace Assets.LSL4Unity.Scripts
                 { "Target Audio Prompt Played", 5 },
                 { "Distractor Audio Prompt Played", 6 },
                 { "Rest Started", 7 },
-                { "Rest Ended", 8 }
+                { "Rest Ended", 8 },
+                { "Target Shape Missed", 9 }, // Add these listeners.
+                { "Right Ear Callsign - TARGET", 10 },
+                { "Right Ear Callssign - DISTRACTOR", 11 }
             };
 
             if (instance == null)
@@ -110,7 +113,8 @@ namespace Assets.LSL4Unity.Scripts
             Debug.Log(marker);
             sample[0] = marker;
             lslOutlet.push_sample(sample, customTimeStamp);
-            float[] data = new float[] { (float)triggerMapper[sample[0]] };
+            Debug.Log(triggerMapper[sample[0]].ToString());
+            int[] data = new int[] { (int)triggerMapper[sample[0]] };
             lslOutlet_ints.push_sample(data, customTimeStamp);
         }
 
@@ -119,7 +123,8 @@ namespace Assets.LSL4Unity.Scripts
             Debug.Log(marker);
             sample[0] = marker;
             lslOutlet.push_sample(sample, customTimeStamp);
-            float[] data = new float[] { (float)triggerMapper[sample[0]] };
+            Debug.Log(triggerMapper[sample[0]].ToString());
+            int[] data = new int[] { triggerMapper[sample[0]] };
             lslOutlet_ints.push_sample(data, customTimeStamp);
         }
 

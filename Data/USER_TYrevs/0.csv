@@ -1,0 +1,5 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Left,Shape Display Timestamp,Bin Chosen Timestamp,Block Condition
+TYrevs,Blue_Circle,1 & 4,Any -- TARGET AUDIO PROMPT,3,30.9861040115356,63735194090.77,0,WM_Low_AL_High_VL_Low
+TYrevs,Blue_Circle,1 & 4,Any -- DISTRACTOR AUDIO PROMPT,0,16.4881572723389,63735194105.0441,0,WM_Low_AL_High_VL_Low
+TYrevs,Blue_Circle,1 & 4,Any -- DISTRACTOR AUDIO PROMPT,1,2.48769521713257,63735194119.3045,0,WM_Low_AL_High_VL_Low
+

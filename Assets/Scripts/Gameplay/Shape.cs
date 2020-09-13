@@ -109,6 +109,7 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
         foreach (GameObject bin in bins)
         {
+            // Maybe look for when people try to drag it on an inactive bin ...?
             if (rt.Overlaps(bin.GetComponent<RectTransform>()))
             {
                 binChosenEvent.Invoke(gameObject, int.Parse(bin.name), timeOfDisplay, binChosenTimestamp);

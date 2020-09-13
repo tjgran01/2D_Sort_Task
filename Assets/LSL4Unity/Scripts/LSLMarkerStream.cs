@@ -31,7 +31,7 @@ namespace Assets.LSL4Unity.Scripts
         private const string unique_source_id_ints = "D3F83BB699EB49AB94A9FA44B88882AC";
 
         private string lslStreamName_ints = "Unity_<APERTURE_INTS>";
-        public string lslStreamType_ints = "LSL_Marker_Ints";
+        public string lslStreamType_ints = "Markers";
 
         private liblsl.StreamInfo lslStreamInfo;
         private liblsl.StreamOutlet lslOutlet;
@@ -46,7 +46,7 @@ namespace Assets.LSL4Unity.Scripts
         private double nominal_srate = liblsl.IRREGULAR_RATE;
 
         private const liblsl.channel_format_t lslChannelFormat = liblsl.channel_format_t.cf_string;
-        private const liblsl.channel_format_t lslChannelFormat_ints = liblsl.channel_format_t.cf_int32;
+        private const liblsl.channel_format_t lslChannelFormat_ints = liblsl.channel_format_t.cf_float32;
 
         private string[] sample;
         private int[] sample_ints;
@@ -125,7 +125,7 @@ namespace Assets.LSL4Unity.Scripts
             lslOutlet.push_sample(sample, customTimeStamp);
             Debug.Log(triggerMapper[sample[0]].ToString());
             int[] data = new int[] { triggerMapper[sample[0]] };
-            lslOutlet_ints.push_sample(data, customTimeStamp);
+            lslOutlet_ints.push_sample(data);
         }
 
         public void WriteBeforeFrameIsDisplayed(string marker)

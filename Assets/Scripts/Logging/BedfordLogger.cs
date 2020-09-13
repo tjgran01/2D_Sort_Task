@@ -14,6 +14,12 @@ public class BedfordLogger : MonoBehaviour
     [SerializeField] GameObject errorText;
     private Slider tlxSlider;
 
+    [SerializeField] GameObject tlxButton;
+    [SerializeField] GameObject yesButton;
+    [SerializeField] GameObject noButton;
+    [SerializeField] GameObject wanderText;
+    [SerializeField] GameObject tlxText;
+
     string filePath;
     List<string[]> rowData = new List<string[]>();
     bool fileCreated = false;
@@ -28,6 +34,9 @@ public class BedfordLogger : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Gameplay")
         {
             errorText.SetActive(false);
+            yesButton.SetActive(false);
+            noButton.SetActive(false);
+            wanderText.SetActive(false);
         }
     }
 
@@ -49,6 +58,19 @@ public class BedfordLogger : MonoBehaviour
         }
     }
 
+    private void DisplayWanderCanvas()
+    {
+        errorText.SetActive(false);
+        tlxSlider.gameObject.SetActive(false);
+        bedfordInput.SetActive(false);
+        tlxText.SetActive(false);
+        tlxButton.SetActive(false);
+
+        yesButton.SetActive(true);
+        noButton.SetActive(true);
+        wanderText.SetActive(true);
+    }
+
 
     public void LogBedfordValue()
     {
@@ -57,11 +79,26 @@ public class BedfordLogger : MonoBehaviour
             if (CheckBedfordValue(bedfordInput.GetComponent<TMP_InputField>().text))
             {
                 SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
+                tlxSlider.value = 10;
                 errorText.SetActive(false);
-                Camera.main.GetComponent<Gameplay>().SwitchCanvas(false, true);
+                DisplayWanderCanvas();
                 bedfordInput.GetComponent<TMP_InputField>().text = "";
             }
         }
+    }
+
+    public void LogWanderPromptValue()
+    {
+        errorText.SetActive(true);
+        tlxSlider.gameObject.SetActive(true);
+        bedfordInput.SetActive(true);
+        tlxText.SetActive(true);
+        tlxButton.SetActive(true);
+
+        yesButton.SetActive(false);
+        noButton.SetActive(false);
+        wanderText.SetActive(false);
+        Camera.main.GetComponent<Gameplay>().SwitchCanvas(false, true);
     }
 
     public void MoveOn()

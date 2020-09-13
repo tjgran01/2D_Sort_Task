@@ -60,7 +60,7 @@ namespace Assets.LSL4Unity.EditorExtensions
 
             File.Delete(obsoleteFile);
 
-            var sourceFile = Path.Combine(pluginDirectory, sourceName + fileEnding);
+            var sourceFile = Path.Combine(pluginDirectory + @"\x86", sourceName + fileEnding);
 
             var targetFile = Path.Combine(pluginDirectory, LIB_LSL_NAME + fileEnding);
             

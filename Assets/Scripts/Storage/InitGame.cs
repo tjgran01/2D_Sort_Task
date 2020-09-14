@@ -166,7 +166,7 @@ public class InitGame : MonoBehaviour
         foreach (string file in instrFiles)
         {
             string[] instrText = File.ReadAllLines(file);
-            string asString = string.Join("", instrText);
+            string asString = string.Join("\n", instrText);
             string modifiedIns = Regex.Replace(asString, @"(?<=\<).+?(?=\>)",
             delegate (Match match)
                 {

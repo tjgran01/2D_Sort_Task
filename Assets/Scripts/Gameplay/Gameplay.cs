@@ -117,12 +117,10 @@ public class Gameplay : MonoBehaviour
     IEnumerator RunRest()
     {
         //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
         marker.Write("Rest Started", Time.time);
 
         yield return new WaitForSeconds(15);
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         marker.Write("Rest Ended", Time.time);
         SwitchCanvas(false, false);
     }
@@ -500,6 +498,7 @@ public class Gameplay : MonoBehaviour
         taskEndedEvent.Invoke();
         DestroyAllObjects();
         shapesPopulationObj.SetTaskStarted = false;
+        marker.Write("Block Ended", Time.time);
 
         //Start the next task
         SwitchCanvas(true, false);

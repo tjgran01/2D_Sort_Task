@@ -19,6 +19,9 @@ public class BedfordLogger : MonoBehaviour
     [SerializeField] GameObject noButton;
     [SerializeField] GameObject wanderText;
     [SerializeField] GameObject tlxText;
+    [SerializeField] GameObject tlxTitle;
+
+    private string currentDemand;
 
     string filePath;
     List<string[]> rowData = new List<string[]>();
@@ -53,7 +56,7 @@ public class BedfordLogger : MonoBehaviour
         }
         catch (FormatException)
         {
-            errorText.SetActive(true);
+            errorText.SetActive(false);
             return false;
         }
     }
@@ -65,6 +68,7 @@ public class BedfordLogger : MonoBehaviour
         bedfordInput.SetActive(false);
         tlxText.SetActive(false);
         tlxButton.SetActive(false);
+        tlxTitle.SetActive(false);
 
         yesButton.SetActive(true);
         noButton.SetActive(true);
@@ -78,22 +82,47 @@ public class BedfordLogger : MonoBehaviour
         {
             if (CheckBedfordValue(bedfordInput.GetComponent<TMP_InputField>().text))
             {
-                SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
-                tlxSlider.value = 10;
+                currentDemand = bedfordInput.GetComponent<TMP_InputField>().text;
+                // SaveToCSV(bedfordInput.GetComponent<TMP_InputField>().text);
+                tlxSlider.value = 11;
                 errorText.SetActive(false);
                 DisplayWanderCanvas();
                 bedfordInput.GetComponent<TMP_InputField>().text = "";
             }
         }
+        else
+        {
+            Debug.Log("Ayyo --- DIDN'T DO NOTHIN");
+        }
     }
 
-    public void LogWanderPromptValue()
+    public void LogWanderPromptValueYes()
     {
-        errorText.SetActive(true);
+        SaveToCSV(currentDemand, wanderValue: "Yes");
+
+        errorText.SetActive(false);
         tlxSlider.gameObject.SetActive(true);
         bedfordInput.SetActive(true);
         tlxText.SetActive(true);
         tlxButton.SetActive(true);
+        tlxTitle.SetActive(true);
+
+        yesButton.SetActive(false);
+        noButton.SetActive(false);
+        wanderText.SetActive(false);
+        Camera.main.GetComponent<Gameplay>().SwitchCanvas(false, true);
+    }
+
+    public void LogWanderPromptValueNo()
+    {
+        SaveToCSV(currentDemand, wanderValue: "No");
+
+        errorText.SetActive(false);
+        tlxSlider.gameObject.SetActive(true);
+        bedfordInput.SetActive(true);
+        tlxText.SetActive(true);
+        tlxButton.SetActive(true);
+        tlxTitle.SetActive(true);
 
         yesButton.SetActive(false);
         noButton.SetActive(false);
@@ -114,17 +143,17 @@ public class BedfordLogger : MonoBehaviour
 
     }
 
-    void SaveToCSV(string bedfordValue)
+    void SaveToCSV(string bedfordValue, string wanderValue = "No")
     {
         if (!fileCreated)
         {
-            string[] header = { "BedfordValue" };
+            string[] header = { "Mental Demand", "Mind Wander Prompt", "Block Condition" };
             rowData.Add(header);
 
             fileCreated = true;
         }
 
-        string[] row = { bedfordValue };
+        string[] row = { bedfordValue, wanderValue };
         rowData.Add(row);
 
         string[][] output = new string[rowData.Count][];

@@ -7,8 +7,11 @@ using UnityEngine.EventSystems;
 
 public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 {
+    DateTime epochStart;
     private bool dragging = false;
     private float distance;
+
+    private double selectedTime;
 
     private List<GameObject> bins;
     private BoxCollider2D shapeBounds;
@@ -76,8 +79,11 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
         rt.position = Input.mousePosition;
         rt.transform.SetAsLastSibling();
 
-        if(!dragging)
+        if (!dragging)
+        {
+            selectedTime = (DateTime.UtcNow - epochStart).TotalSeconds;
             draggingShapeEvent.Invoke(true);
+        }
 
         if (!Screen.fullScreen)
         {
@@ -99,7 +105,6 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        DateTime epochStart = new DateTime(1970, 1, 1, 8, 0, 0, DateTimeKind.Utc);
         double binChosenTimestamp = (DateTime.UtcNow - epochStart).TotalSeconds;
 
         dragging = false;
@@ -140,6 +145,16 @@ public class Shape : MonoBehaviour, IDragHandler, IDropHandler
 
     #region Getters
     public bool IsTargetShape { get { return isTarget; } }
+
+    public Vector3 GetDefaultPosition()
+    {
+        return this.defaultPosition;
+    }
+
+    public double GetSelectedTime()
+    {
+        return this.selectedTime;
+    }
     #endregion
 
 

@@ -1,0 +1,4 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Left,Shape Display Timestamp,Bin Chosen Timestamp,Block Condition
+TrevTs,Red_Tri,2 & 3,Red_Tri,3,43.9857404232025,1599557373.45492,1599557374.63873,WM_Low_AL_Low_VL_Low
+TrevTs,Red_Tri,2 & 3,Any -- TARGET AUDIO PROMPT,1,25.9843516349792,63735182992.7838,0,WM_Low_AL_Low_VL_Low
+

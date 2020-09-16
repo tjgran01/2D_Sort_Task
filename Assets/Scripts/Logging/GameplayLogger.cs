@@ -62,9 +62,9 @@ public class GameplayLogger : MonoBehaviour
 
 
     #region Helper Functions
-    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _timeOfDisplay, string _currentTime, string _blockCondition)
+    string[] ReturnRowData(string _id, string _targetShape, string _targetBins, string _selectedShape, string _selectedBin, string _timeTaken, string _timeOfDisplay, string _currentTime, string _blockCondition, string _defaultPosition, string _shapeSelectedTime)
     {
-        string[] row = new string[9];
+        string[] row = new string[11];
         row[0] = _id;
         row[1] = _targetShape;
         row[2] = _targetBins;
@@ -74,6 +74,8 @@ public class GameplayLogger : MonoBehaviour
         row[6] = _timeOfDisplay;
         row[7] = _currentTime;
         row[8] = _blockCondition;
+        row[9] = _defaultPosition;
+        row[10] = _shapeSelectedTime;
 
         return row;
     }
@@ -106,18 +108,18 @@ public class GameplayLogger : MonoBehaviour
         this.filePath = dir + "/" + newFileName;
     }
 
-    void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp, string blockCondition)
+    void SaveToCSV(string selectedShape, int selectedBin, double displayTimestamp, double binChosenTimestamp, string blockCondition, string defaultPosition, double shapeSelectedTime)
     {
         if (!fileCreated)
         {
-            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Left", "Shape Display Timestamp", "Bin Chosen Timestamp", "Block Condition");
+            string[] header = ReturnRowData("ID", "Target Shape", "Target Bins", "Selected Shape", "Selected Bin", "Time Left", "Shape Display Timestamp", "Bin Chosen Timestamp", "Block Condition", "Shape Default Position", "Shape Selected Timestamp");
             rowData.Add(header);
 
             fileCreated = true;
         }
 
         string[] row = ReturnRowData(userId, targetShape, String.Join(" & ", targetBins), selectedShape, selectedBin.ToString(),
-            timeLeft.ToString(), displayTimestamp.ToString(), binChosenTimestamp.ToString(), blockCondition);
+            timeLeft.ToString(), displayTimestamp.ToString(), binChosenTimestamp.ToString(), blockCondition, defaultPosition, shapeSelectedTime.ToString());
         rowData.Add(row);
 
         string[][] output = new string[rowData.Count][];
@@ -158,10 +160,17 @@ public class GameplayLogger : MonoBehaviour
     #region Event Handlers
     private void HandleBinChosenEvent(GameObject shape, int bin, double displayTimestamp, double binChosenTimestamp)
     {
+        // Get Shape Slot Pixel Position
+        Vector3 shapeSlot = shape.GetComponent<Shape>().GetDefaultPosition();
+        string shapeSlotPixel = Camera.main.WorldToScreenPoint(shapeSlot).x.ToString();
+
+        // Get Shape Selected Time.
+        double selectedTime = shape.GetComponent<Shape>().GetSelectedTime();
+
         string shapeName = shape.name;
         string cleanedShapeName = shapeName.Remove(shapeName.IndexOf("(", StringComparison.Ordinal));
         string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
-        SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp, blockCondition);
+        SaveToCSV(cleanedShapeName, bin, displayTimestamp, binChosenTimestamp, blockCondition, shapeSlotPixel, selectedTime);
     }
 
     public void HandleSecondaryAudioPromptEvent(int bin, bool isTargetAudio)
@@ -171,14 +180,14 @@ public class GameplayLogger : MonoBehaviour
             string shapeAppend = "TARGET AUDIO PROMPT";
             string shapeName = "Any";
             string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
-            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition);
+            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition, "0", 0.0f);
         }
         else
         {
             string shapeAppend = "DISTRACTOR AUDIO PROMPT";
             string shapeName = "Any";
             string blockCondition = Camera.main.GetComponent<Gameplay>().GetCurrentCondition();
-            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition);
+            SaveToCSV(shapeName + " -- " + shapeAppend, bin, (DateTime.UtcNow - epochStart).TotalSeconds, 0.0, blockCondition, "0", 0.0f);
         }
     }
 

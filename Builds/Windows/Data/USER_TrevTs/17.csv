@@ -1,0 +1,4 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Left,Shape Display Timestamp,Bin Chosen Timestamp,Block Condition
+TrevTs,Blue_Tri,3 & 4,Blue_Tri,3,43.9878444671631,1599562331.59771,1599562332.96487,WM_Low_AL_High_VL_Low
+TrevTs,Blue_Tri,3 & 4,Blue_Tri,4,36.9846613407135,1599562338.99369,1599562340.03291,WM_Low_AL_High_VL_Low
+

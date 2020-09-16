@@ -1,0 +1,5 @@
+2. In this task you will be shown a series of objects. The objects will vary both in their shape as well as their color. Your goal in this task is to select a certain object, given to you before the task begins, and place that object into one of the appropriate numbered bins (also provided before the task begins). 
+
+<Green_Circle> <Bin>
+
+Displayed above is an example shape, as well as an example bin.

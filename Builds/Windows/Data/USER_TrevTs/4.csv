@@ -1,0 +1,5 @@
+ID,Target Shape,Target Bins,Selected Shape,Selected Bin,Time Left,Shape Display Timestamp,Bin Chosen Timestamp,Block Condition
+TrevTs,Green_Square,1 & 4,Green_Square,4,3.99749350547791,1599557481.39159,1599557482.65842,WM_Low_AL_Low_VL_Low
+TrevTs,Green_Square,1 & 4,Red_Circle,1,1.99803876876831,1599557482.66736,1599557484.74793,WM_Low_AL_Low_VL_Low
+TrevTs,Green_Square,1 & 4,Green_Square,1,0.496696949005127,1599557484.75491,1599557485.90986,WM_Low_AL_Low_VL_Low
+
